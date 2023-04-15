@@ -1,13 +1,29 @@
 import 'dart:math';
 
+import 'package:cafemenu_app/core/model/product/product_list_model.dart';
+import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/diningart_page/page_diningcart.dart';
 import 'package:flutter/material.dart';
 
 class PageMenuCard extends StatelessWidget {
-  const PageMenuCard({Key? key}) : super(key: key);
+  const PageMenuCard({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Map<String, List<ProductModel>> byCategory = {};
+    ProductListModel.productList.forEach((element) {
+      if (element.categoryName != null) {
+        if (byCategory.containsKey(element.categoryName)) {
+          byCategory[element.categoryName]!.add(element);
+        } else {
+          if (element.categoryName != null) {
+            byCategory[element.categoryName!] = [element];
+          }
+        }
+      }
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text("Shop Name"),
@@ -22,9 +38,11 @@ class PageMenuCard extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (contxt, categoryIndex) =>
-            Category(categoryIndex: categoryIndex),
+        itemCount: byCategory.length,
+        itemBuilder: (contxt, categoryIndex) => Category(
+          categoryIndex: categoryIndex,
+          byCategory: byCategory,
+        ),
       ),
     );
   }
@@ -32,7 +50,12 @@ class PageMenuCard extends StatelessWidget {
 
 class Category extends StatelessWidget {
   final int categoryIndex;
-  const Category({super.key, required this.categoryIndex});
+  final Map<String, List<ProductModel>> byCategory;
+  const Category({
+    super.key,
+    required this.categoryIndex,
+    required this.byCategory,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +65,17 @@ class Category extends StatelessWidget {
         children: [
           PageView.builder(
             itemCount: 5,
-            itemBuilder: (context, categoryItemIndex) =>
-                CategoryItem(categoryItemIndex: categoryItemIndex),
+            itemBuilder: (context, categoryItemIndex) => CategoryItem(
+              categoryItemIndex: categoryItemIndex,
+              productModelList: byCategory.values.toList()[categoryIndex],
+            ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.topCenter,
             child: Padding(
               padding: EdgeInsets.only(top: 10),
               child: Text(
-                "Category Name",
+                byCategory.keys.toList()[categoryIndex] ?? "Category Name",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),
@@ -63,7 +88,12 @@ class Category extends StatelessWidget {
 
 class CategoryItem extends StatelessWidget {
   final int categoryItemIndex;
-  const CategoryItem({super.key, required this.categoryItemIndex});
+  final List<ProductModel> productModelList;
+  const CategoryItem({
+    super.key,
+    required this.categoryItemIndex,
+    required this.productModelList,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +110,10 @@ class CategoryItem extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Sub Category Name",
-                  style: TextStyle(fontSize: 20),
+                Text(
+                  productModelList[categoryItemIndex].itemName ??
+                      "Sub Category Name",
+                  style: const TextStyle(fontSize: 20),
                 ),
                 Text(
                   "Closed/Left",
@@ -91,7 +122,9 @@ class CategoryItem extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.purple.withOpacity(0.5)),
                 ),
-                const CountPriceCartButtonSection()
+                CountPriceCartButtonSection(
+                  productModel: productModelList[categoryItemIndex],
+                )
               ],
             ),
           ),
@@ -102,8 +135,10 @@ class CategoryItem extends StatelessWidget {
 }
 
 class CountPriceCartButtonSection extends StatelessWidget {
+  final ProductModel productModel;
   const CountPriceCartButtonSection({
     super.key,
+    required this.productModel,
   });
 
   @override
@@ -112,7 +147,7 @@ class CountPriceCartButtonSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const CountSection(),
-        const Text("120/pc Only"),
+        Text("${productModel.itemPrice}/Qty Only" ?? "120/pc Only"),
         IconButton(
           onPressed: () {
             // dining cart button pressed

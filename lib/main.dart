@@ -1,3 +1,4 @@
+import 'package:cafemenu_app/core/model/customer/customer_model.dart';
 import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -26,10 +27,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: FirebaseRealtimeDemoScreen(),
-      home: Scaffold(
-      // key: navigatorState,
+      home: const Scaffold(
+        // key: navigatorState,
+        // body: FirebaseRealtimeDemoScreen(),
         body: PageHome(),
+        // body: ObjRealTimeDataBaseFirebase(),
       ),
     );
   }
@@ -51,7 +53,7 @@ class FirebaseRealtimeDemoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // readData();
+    readData();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter Realtime Database Demo'),
@@ -154,5 +156,33 @@ class FirebaseRealtimeDemoScreen extends StatelessWidget {
     ref.child('flutterDevsTeam1').remove();
     ref.child('flutterDevsTeam2').remove();
     ref.child('flutterDevsTeam3').remove();
+    // ref.parent?.remove();
   }
 }
+
+class ObjRealTimeDataBaseFirebase extends StatelessWidget {
+  const ObjRealTimeDataBaseFirebase({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    CustomerModel cM =
+        const CustomerModel(orderList: ["sampleList", "sampleListY"]);
+    var cmJson = cM.toJson();
+    DatabaseReference dRef = FirebaseDatabase.instance.ref();
+    dRef.child("sampleObj").set({"name": cmJson});
+    return StreamBuilder(
+      stream: dRef.onChildChanged,
+      builder: (context, snapshot) {
+        // CustomerModel.fromJson(snapshot.data);
+        print(
+          // snapshot.requireData.snapshot.value,
+          snapshot.data!.snapshot.value,
+        );
+        return SizedBox();
+      },
+    );
+  }
+}
+
+
+// {"menuCard":{"category":{"categoryType":{"plate":["Shaway","Shawarma","Broast","Burger","Sandwitch","Snack"]}}}}

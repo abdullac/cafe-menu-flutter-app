@@ -1,6 +1,12 @@
+import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/item_page/page_item.dart';
 import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
 import 'package:flutter/material.dart';
+
+int orderLength = 5;
+int additionalOrderLength = 3;
+int runningOrderLength = 2;
+int length = orderLength + additionalOrderLength + runningOrderLength;
 
 class PageDiningCart extends StatelessWidget {
   const PageDiningCart({Key? key}) : super(key: key);
@@ -23,9 +29,27 @@ class PageDiningCart extends StatelessWidget {
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 290),
-                child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: ((context, index) => const DiningCartItem()),
+                child: ListView.separated(
+                  itemCount: length,
+                  itemBuilder: ((context, index) => DiningCartItem(
+                        index: index,
+                      )),
+                  separatorBuilder: (context, index) {
+                    Widget container(Color color, String title) => Container(
+                          height: 30,
+                          color: color,
+                          child: Center(child: Text(title)),
+                        );
+                    if (index == orderLength - 1 && additionalOrderLength > 0) {
+                      return container(Colors.cyan, "Additional");
+                    } else if (index ==
+                            (orderLength + additionalOrderLength - 1) &&
+                        runningOrderLength > 0) {
+                      return container(Colors.deepOrange, "Running");
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
                 ),
               ),
             ),
@@ -35,7 +59,7 @@ class PageDiningCart extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: const [
                   TotalItemQtyAmount(),
-                  NameChair(),
+                  NameChairNumber(),
                   OrderNumberTime(),
                   MultiPurposeButton(),
                 ],
@@ -79,8 +103,8 @@ class TotalItemQtyAmount extends StatelessWidget {
   }
 }
 
-class NameChair extends StatelessWidget {
-  const NameChair({
+class NameChairNumber extends StatelessWidget {
+  const NameChairNumber({
     super.key,
   });
 
@@ -127,7 +151,7 @@ class MultiPurposeButton extends StatelessWidget {
       onPressed: () {
         // take(Order) now button pressed
       },
-      child: const Text("Take Now/additional/Running"),
+      child: const Text("Take Now/additional/Running/paid/confirm order"),
     );
   }
 }
@@ -154,7 +178,8 @@ class OrderNumberTime extends StatelessWidget {
 }
 
 class DiningCartItem extends StatelessWidget {
-  const DiningCartItem({super.key});
+  final int index;
+  const DiningCartItem({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -164,12 +189,18 @@ class DiningCartItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Checkbox(
-            value: true,
-            onChanged: (value) {
-              // checkbox on changed
-            },
-            shape: const CircleBorder(),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text("${index + 1}"),
+              Checkbox(
+                value: true,
+                onChanged: (value) {
+                  // checkbox on changed
+                },
+                shape: const CircleBorder(),
+              ),
+            ],
           ),
           InkWell(
             onTap: () {
@@ -212,11 +243,24 @@ class DiningCartItem extends StatelessWidget {
               ],
             ),
           ),
-          IconButton(
-              onPressed: () {
-                // cart item delete button pressed
-              },
-              icon: const Icon(Icons.delete_outline))
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {
+                  // cart item delete button pressed
+                },
+                icon: const Icon(Icons.delete_outline),
+              ),
+              Checkbox(
+                value: false,
+                onChanged: (value) {
+                  // item recieved checkbox changed
+                },
+              ),
+              const Text("8:41\nPM",textAlign: TextAlign.center,),
+            ],
+          )
         ],
       ),
     );
