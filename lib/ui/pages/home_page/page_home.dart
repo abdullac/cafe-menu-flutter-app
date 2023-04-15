@@ -5,11 +5,22 @@ import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
+List<ProductModel> initialProductModelList = [];
+
+enum ComingPage {
+  menuCard,
+  diningCart,
+}
+
 class PageHome extends StatelessWidget {
   const PageHome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      initialProductModelList = await getItemslist();
+      // setItemsList();
+    });
     return Stack(
       children: [
         Container(
@@ -24,10 +35,9 @@ class PageHome extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () async {
                 // MenuCard button pressed
-                final productModelList = await getItemslist();
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => PageMenuCard(
-                          productModelList: productModelList,
+                          productModelList: initialProductModelList,
                         )));
               },
               child: const Text("Menu Card"),
@@ -46,7 +56,7 @@ DatabaseReference fireBaseDatabaseReference = FirebaseDatabase.instance.ref();
 setItemsList() {
   final pM = const ProductModel(
           itemId: 501,
-          itemName: "Qr Shaway",
+          itemName: "Shaway Qr",
           categoryName: "Shaway",
           itemPrice: 99,
           itemType: ItemType.plate,
@@ -60,12 +70,27 @@ setItemsList() {
           itemType: ItemType.plate,
           availableQty: 100)
       .toJson();
+  final pMr = const ProductModel(
+          itemId: 504,
+          itemName: "Shawarma Roll",
+          categoryName: "Shawarma",
+          itemPrice: 79,
+          itemType: ItemType.plate,
+          availableQty: 100)
+      .toJson();
+  final pMg = const ProductModel(
+          itemId: 502,
+          itemName: "Shaway Hf",
+          categoryName: "Shaway",
+          itemPrice: 189,
+          itemType: ItemType.plate,
+          availableQty: 27)
+      .toJson();
 
   fireBaseDatabaseReference.child("cafeMenu/menuCard/").set({
-    "itemsSample": [pM, pMt]
+    "itemsSample": [pM, pMt, pMr,pMg]
   });
 }
-
 
 updateItemsList() {
   final pM = const ProductModel(

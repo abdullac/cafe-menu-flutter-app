@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/diningart_page/page_diningcart.dart';
+import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
+import 'package:cafemenu_app/ui/pages/item_page/page_item.dart';
 import 'package:flutter/material.dart';
 
 List<ProductModel> diningCartList = [];
@@ -28,12 +30,18 @@ class PageMenuCard extends StatelessWidget {
     }
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              // appBar back button
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back)),
         title: const Text("Shop Name"),
         actions: [
           IconButton(
               onPressed: () {
                 // goto dining cart button pressed
-                Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => PageDiningCart(
                           diningCartList: diningCartList,
                         )));
@@ -102,39 +110,49 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          margin: const EdgeInsets.all(5),
-          color: color[Random().nextInt(color.length)],
-        ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 40),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  productModelList[categoryItemIndex].itemName ??
-                      "Sub Category Name",
-                  style: const TextStyle(fontSize: 20),
-                ),
-                Text(
-                  "Closed/Left",
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.purple.withOpacity(0.5)),
-                ),
-                CountPriceCartButtonSection(
-                  productModel: productModelList[categoryItemIndex],
-                )
-              ],
-            ),
+    ProductModel productModel = productModelList[categoryItemIndex];
+    return InkWell(
+      onTap: () {
+        // catyegory item image taped
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => PageItem(
+                  productModel: productModel,
+                  comingPage: ComingPage.menuCard,
+                )));
+      },
+      child: Stack(
+        children: [
+          Container(
+            margin: const EdgeInsets.all(5),
+            color: color[Random().nextInt(color.length)],
           ),
-        )
-      ],
+          Align(
+            alignment: Alignment.topCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 40),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    productModel.itemName ?? "Sub Category Name",
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    "Closed/Left",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.purple.withOpacity(0.5)),
+                  ),
+                  CountPriceCartButtonSection(
+                    productModel: productModel,
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -149,14 +167,22 @@ class CountPriceCartButtonSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ValueNotifier<int?> setQtyNotifier = ValueNotifier(null);
+    ProductModel productModelModified = productModel;
+    for (var element in diningCartList) {
+      if (element.itemName == productModel.itemName) {
+        int elementPosition = diningCartList.indexOf(element);
+        productModelModified = diningCartList[elementPosition];
+      }
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SetQtySetion(
           valueNotifier: setQtyNotifier,
-          productModel: productModel,
+          productModel: productModelModified,
         ),
-        Text("₹ ${productModel.itemPrice}/Qty Only" ?? "₹ 120/Qty Only"),
+        Text(
+            "₹ ${productModelModified.itemPrice}/Qty Only" ?? "₹ 120/Qty Only"),
         IconButton(
           onPressed: () {
             // dining cart button pressed
@@ -194,6 +220,20 @@ class SetQtySetion extends StatelessWidget {
                   if (newValue != 0) {
                     valueNotifier.value = newValue! - 1;
                     valueNotifier.notifyListeners();
+                    ProductModel productModelModified =
+                        productModel.copyWith(orderedQty: valueNotifier.value);
+                    int? elementPosition;
+                    for (var element in diningCartList) {
+                      if (element.itemName == productModel.itemName) {
+                        elementPosition = diningCartList.indexOf(element);
+                        break;
+                      }
+                    }
+                    if (elementPosition != null) {
+                      diningCartList[elementPosition] = productModelModified;
+                    } else {
+                      diningCartList.add(productModelModified);
+                    }
                   }
                   if (newValue == 1 || newValue == 0) {
                     int? elementPosition;

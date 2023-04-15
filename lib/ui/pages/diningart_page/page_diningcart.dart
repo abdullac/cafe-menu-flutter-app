@@ -1,4 +1,5 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
 import 'package:cafemenu_app/ui/pages/item_page/page_item.dart';
 import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
 import 'package:flutter/material.dart';
@@ -23,55 +24,81 @@ class PageDiningCart extends StatelessWidget {
           leading: IconButton(
               onPressed: () {
                 // appBar back button pressed
-                Navigator.of(context).pop();
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => PageMenuCard(
+                        productModelList: initialProductModelList)));
               },
               icon: const Icon(Icons.arrow_back)),
           title: const Text("Your Dining Cart"),
         ),
-        body: Stack(
-          children: [
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 290),
-                child: ListView.separated(
-                  itemCount: diningCartList.length,
-                  itemBuilder: ((context, index) => DiningCartItem(
-                        index: index,
-                        productModellist: diningCartList,
-                      )),
-                  separatorBuilder: (context, index) {
-                    Widget container(Color color, String title) => Container(
-                          height: 30,
-                          color: color,
-                          child: Center(child: Text(title)),
-                        );
-                    if (index == orderLength - 1 && additionalOrderLength > 0) {
-                      return container(Colors.cyan, "Additional");
-                    } else if (index ==
-                            (orderLength + additionalOrderLength - 1) &&
-                        runningOrderLength > 0) {
-                      return container(Colors.deepOrange, "Running");
-                    } else {
-                      return const SizedBox();
-                    }
-                  },
+        body: diningCartList.isEmpty
+            ? Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text("You h'nt selected any item"),
+                    IconButton(
+                        onPressed: () {
+                          // goto menucard page
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => PageMenuCard(
+                                      productModelList:
+                                          initialProductModelList)));
+                        },
+                        icon: const Icon(
+                          Icons.add_circle,
+                          color: Colors.green,
+                        ))
+                  ],
                 ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  TotalItemQtyAmount(),
-                  NameChairNumber(),
-                  OrderNumberTime(),
-                  MultiPurposeButton(),
+              )
+            : Stack(
+                children: [
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 290),
+                      child: ListView.separated(
+                        itemCount: diningCartList.length,
+                        itemBuilder: ((context, index) => DiningCartItem(
+                              index: index,
+                              productModellist: diningCartList,
+                            )),
+                        separatorBuilder: (context, index) {
+                          Widget container(Color color, String title) =>
+                              Container(
+                                height: 30,
+                                color: color,
+                                child: Center(child: Text(title)),
+                              );
+                          if (index == orderLength - 1 &&
+                              additionalOrderLength > 0) {
+                            return container(Colors.cyan, "Additional");
+                          } else if (index ==
+                                  (orderLength + additionalOrderLength - 1) &&
+                              runningOrderLength > 0) {
+                            return container(Colors.deepOrange, "Running");
+                          } else {
+                            return const SizedBox();
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        TotalItemQtyAmount(),
+                        NameChairNumber(),
+                        OrderNumberTime(),
+                        MultiPurposeButton(),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -217,10 +244,10 @@ class DiningCartItem extends StatelessWidget {
           InkWell(
             onTap: () {
               // cart item image taped
-              Navigator.of(context).push(MaterialPageRoute(
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => PageItem(
-                        productModelList: productModellist,
-                        index: index,
+                        productModel: productModel,
+                        comingPage: ComingPage.diningCart,
                       )));
             },
             child: Container(
