@@ -9,7 +9,11 @@ int runningOrderLength = 2;
 int length = orderLength + additionalOrderLength + runningOrderLength;
 
 class PageDiningCart extends StatelessWidget {
-  const PageDiningCart({Key? key}) : super(key: key);
+  final List<ProductModel> diningCartList;
+  const PageDiningCart({
+    Key? key,
+    required this.diningCartList,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +34,10 @@ class PageDiningCart extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 290),
                 child: ListView.separated(
-                  itemCount: length,
+                  itemCount: diningCartList.length,
                   itemBuilder: ((context, index) => DiningCartItem(
                         index: index,
+                        productModellist: diningCartList,
                       )),
                   separatorBuilder: (context, index) {
                     Widget container(Color color, String title) => Container(
@@ -179,10 +184,17 @@ class OrderNumberTime extends StatelessWidget {
 
 class DiningCartItem extends StatelessWidget {
   final int index;
-  const DiningCartItem({super.key, required this.index});
+  final List<ProductModel> productModellist;
+  const DiningCartItem({
+    super.key,
+    required this.index,
+    required this.productModellist,
+  });
 
   @override
   Widget build(BuildContext context) {
+    ValueNotifier<int?> setQtyNotifier = ValueNotifier(null);
+    ProductModel productModel = productModellist[index];
     return Container(
       height: 150,
       margin: const EdgeInsets.all(5),
@@ -205,8 +217,11 @@ class DiningCartItem extends StatelessWidget {
           InkWell(
             onTap: () {
               // cart item image taped
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const PageItem()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => PageItem(
+                        productModelList: productModellist,
+                        index: index,
+                      )));
             },
             child: Container(
               height: 140,
@@ -221,23 +236,28 @@ class DiningCartItem extends StatelessWidget {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      "Category Name",
-                      style: TextStyle(fontSize: 15),
+                      productModel.categoryName ?? "Category Name",
+                      style: const TextStyle(fontSize: 15),
                     ),
                     Text(
-                      "Sub category Name",
-                      style: TextStyle(fontSize: 20),
+                      productModel.itemName ?? "Sub category Name",
+                      style: const TextStyle(fontSize: 20),
                     ),
                   ],
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Text("₹ 120.00"),
-                    CountSection(),
+                  children: [
+                    Text(productModel.itemPrice != null
+                        ? "₹ ${productModel.itemPrice}/Pc"
+                        : "₹ N/A"),
+                    SetQtySetion(
+                      valueNotifier: setQtyNotifier,
+                      productModel: productModel,
+                    ),
                   ],
                 ),
               ],
@@ -258,7 +278,10 @@ class DiningCartItem extends StatelessWidget {
                   // item recieved checkbox changed
                 },
               ),
-              const Text("8:41\nPM",textAlign: TextAlign.center,),
+              const Text(
+                "8:41\nPM",
+                textAlign: TextAlign.center,
+              ),
             ],
           )
         ],

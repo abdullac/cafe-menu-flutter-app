@@ -1,19 +1,21 @@
 import 'dart:math';
-
-import 'package:cafemenu_app/core/model/product/product_list_model.dart';
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/diningart_page/page_diningcart.dart';
 import 'package:flutter/material.dart';
 
+List<ProductModel> diningCartList = [];
+
 class PageMenuCard extends StatelessWidget {
+  final List<ProductModel> productModelList;
   const PageMenuCard({
     Key? key,
+    required this.productModelList,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Map<String, List<ProductModel>> byCategory = {};
-    ProductListModel.productList.forEach((element) {
+    for (var element in productModelList) {
       if (element.categoryName != null) {
         if (byCategory.containsKey(element.categoryName)) {
           byCategory[element.categoryName]!.add(element);
@@ -23,7 +25,7 @@ class PageMenuCard extends StatelessWidget {
           }
         }
       }
-    });
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text("Shop Name"),
@@ -32,7 +34,9 @@ class PageMenuCard extends StatelessWidget {
               onPressed: () {
                 // goto dining cart button pressed
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const PageDiningCart()));
+                    builder: (context) => PageDiningCart(
+                          diningCartList: diningCartList,
+                        )));
               },
               icon: const Icon(Icons.dining))
         ],
@@ -73,10 +77,11 @@ class Category extends StatelessWidget {
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Text(
                 byCategory.keys.toList()[categoryIndex] ?? "Category Name",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -143,11 +148,15 @@ class CountPriceCartButtonSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ValueNotifier<int?> setQtyNotifier = ValueNotifier(null);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const CountSection(),
-        Text("${productModel.itemPrice}/Qty Only" ?? "120/pc Only"),
+        SetQtySetion(
+          valueNotifier: setQtyNotifier,
+          productModel: productModel,
+        ),
+        Text("₹ ${productModel.itemPrice}/Qty Only" ?? "₹ 120/Qty Only"),
         IconButton(
           onPressed: () {
             // dining cart button pressed
@@ -159,42 +168,84 @@ class CountPriceCartButtonSection extends StatelessWidget {
   }
 }
 
-class CountSection extends StatelessWidget {
+class SetQtySetion extends StatelessWidget {
   final MainAxisAlignment? mainAxisAlignment;
-  const CountSection({
+  final ValueNotifier<int?> valueNotifier;
+  final ProductModel productModel;
+  const SetQtySetion({
     super.key,
     this.mainAxisAlignment,
+    required this.valueNotifier,
+    required this.productModel,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
-      children: [
-        IconButton(
-          onPressed: () {
-            // count decrease button pressed
-          },
-          icon: const Text(
-            "-",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-        ),
-        const Text(
-          "2",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-        ),
-        IconButton(
-          onPressed: () {
-            // count increase button pressed
-          },
-          icon: const Text(
-            "+",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-        ),
-      ],
-    );
+    valueNotifier.value ??= productModel.orderedQty ?? 0;
+    return ValueListenableBuilder(
+        valueListenable: valueNotifier,
+        builder: (context, newValue, _) {
+          return Row(
+            mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
+            children: [
+              IconButton(
+                onPressed: () {
+                  // count decrease button pressed
+                  if (newValue != 0) {
+                    valueNotifier.value = newValue! - 1;
+                    valueNotifier.notifyListeners();
+                  }
+                  if (newValue == 1 || newValue == 0) {
+                    int? elementPosition;
+                    for (var element in diningCartList) {
+                      if (element.itemName == productModel.itemName) {
+                        elementPosition = diningCartList.indexOf(element);
+                        break;
+                      }
+                    }
+                    if (elementPosition != null) {
+                      diningCartList.removeAt(elementPosition);
+                    }
+                  }
+                },
+                icon: const Text(
+                  "-",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+              ),
+              Text(
+                "$newValue",
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              IconButton(
+                onPressed: () {
+                  // count increase button pressed
+                  valueNotifier.value = newValue! + 1;
+                  valueNotifier.notifyListeners();
+                  ProductModel productModelModified =
+                      productModel.copyWith(orderedQty: valueNotifier.value);
+                  int? elementPosition;
+                  for (var element in diningCartList) {
+                    if (element.itemName == productModel.itemName) {
+                      elementPosition = diningCartList.indexOf(element);
+                      break;
+                    }
+                  }
+                  if (elementPosition != null) {
+                    diningCartList[elementPosition] = productModelModified;
+                  } else {
+                    diningCartList.add(productModelModified);
+                  }
+                },
+                icon: const Text(
+                  "+",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+              ),
+            ],
+          );
+        });
   }
 }
 

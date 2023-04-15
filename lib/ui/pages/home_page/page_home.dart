@@ -1,11 +1,7 @@
 import 'dart:convert';
 
-import 'package:cafemenu_app/core/model/customer/customer_model.dart';
-import 'package:cafemenu_app/core/model/product/product_list_model.dart';
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/main.dart';
 import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
-import 'package:cafemenu_app/utils/constants/size.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -28,9 +24,11 @@ class PageHome extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () async {
                 // MenuCard button pressed
-                final productListModel = await getItemslist();
+                final productModelList = await getItemslist();
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const PageMenuCard()));
+                    builder: (context) => PageMenuCard(
+                          productModelList: productModelList,
+                        )));
               },
               child: const Text("Menu Card"),
             ),
@@ -41,44 +39,73 @@ class PageHome extends StatelessWidget {
   }
 }
 
+//////////////////////////////////////////
+
 DatabaseReference fireBaseDatabaseReference = FirebaseDatabase.instance.ref();
 
 setItemsList() {
   final pM = const ProductModel(
-          itemId: 55,
-          itemName: "Shamam",
-          categoryName: "fruit",
-          itemPrice: 49,
+          itemId: 501,
+          itemName: "Qr Shaway",
+          categoryName: "Shaway",
+          itemPrice: 99,
           itemType: ItemType.plate,
-          availableQty: 51)
+          availableQty: 24)
       .toJson();
   final pMt = const ProductModel(
-          itemId: 24,
-          itemName: "Tomato",
-          categoryName: "veg",
-          itemPrice: 37,
-          itemType: ItemType.glass,
-          availableQty: 62)
+          itemId: 504,
+          itemName: "Shawarma Roll",
+          categoryName: "Shawarma",
+          itemPrice: 79,
+          itemType: ItemType.plate,
+          availableQty: 100)
       .toJson();
 
   fireBaseDatabaseReference.child("cafeMenu/menuCard/").set({
     "itemsSample": [pM, pMt]
   });
-  // CustomerModel cM =
-  //       const CustomerModel(orderList: ["sampleList", "sampleListY"]);
-  //   var cmJson = cM.toJson();
-  //   DatabaseReference dRef = FirebaseDatabase.instance.ref();
-  //   dRef.child("sampleObj").set({"name": cmJson});
 }
 
-Future<ProductListModel> getItemslist() async {
+
+updateItemsList() {
+  final pM = const ProductModel(
+          itemId: 501,
+          itemName: "Qr Shaway",
+          categoryName: "Shaway",
+          itemPrice: 99,
+          itemType: ItemType.plate,
+          availableQty: 24)
+      .toJson();
+  final pMt = const ProductModel(
+          itemId: 504,
+          itemName: "Shawarma Roll",
+          categoryName: "Shawarma",
+          itemPrice: 79,
+          itemType: ItemType.plate,
+          availableQty: 100)
+      .toJson();
+
+  fireBaseDatabaseReference.child("cafeMenu/menuCard/").update({
+    "itemsSample": [pM, pMt]
+  });
+}
+
+Future<List<ProductModel>> getItemslist() async {
   final productItemsPath =
       fireBaseDatabaseReference.child("cafeMenu/menuCard/itemsSample");
   final event = await productItemsPath.once(DatabaseEventType.value);
   final readItemsList = event.snapshot.value ?? [];
-  final itemsListJson = jsonEncode(readItemsList);
-  final productListModel = ProductListModel(jsonDecode(itemsListJson));
-  return productListModel;
+  readItemsList as List;
+  List<ProductModel> listOfProductModel = [];
+  for (var element in readItemsList) {
+    var itemjsonString = jsonEncode(element);
+    var itemJson = jsonDecode(itemjsonString);
+    listOfProductModel.add(ProductModel.fromJson(itemJson));
+  }
+  print(listOfProductModel);
+  // final itemsListJson = jsonEncode(readItemsList);
+  // final productListModel = ProductListModel(jsonDecode(itemsListJson));
+  return listOfProductModel;
 }
 
 

@@ -1,11 +1,20 @@
+import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
 import 'package:flutter/material.dart';
 
 class PageItem extends StatelessWidget {
-  const PageItem({Key? key}) : super(key: key);
+  final List<ProductModel> productModelList;
+  final int index;
+  const PageItem({
+    Key? key,
+    required this.productModelList,
+    required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    ValueNotifier<int?> setQtyNotifier = ValueNotifier(null);
+    ProductModel productModel = productModelList[index];
     return Scaffold(
       appBar: AppBar(
         title: const Text("Your Cart Item"),
@@ -19,33 +28,39 @@ class PageItem extends StatelessWidget {
         ],
       ),
       body: Stack(
-        children: const [
+        children: [
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Text("Category Name"),
+              padding: const EdgeInsets.only(top: 20),
+              child: Text(productModel.categoryName ?? "Category Name"),
             ),
           ),
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: EdgeInsets.only(top: 40),
-              child: Text("Sub Category Name"),
+              padding: const EdgeInsets.only(top: 40),
+              child: Text(productModel.itemName ?? "Sub Category Name"),
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: EdgeInsets.only(bottom: 70),
-              child: Text("₹ 120.00/Pc only"),
+              child: Text(productModel.itemPrice != null
+                  ? "₹ ${productModel.itemPrice}/Pc only"
+                  : "₹ N/A"),
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: EdgeInsets.only(bottom: 20),
-              child: CountSection(mainAxisAlignment: MainAxisAlignment.center),
+              padding: const EdgeInsets.only(bottom: 20),
+              child: SetQtySetion(
+                mainAxisAlignment: MainAxisAlignment.center,
+                valueNotifier: setQtyNotifier,
+                productModel: productModel,
+              ),
             ),
           ),
         ],
