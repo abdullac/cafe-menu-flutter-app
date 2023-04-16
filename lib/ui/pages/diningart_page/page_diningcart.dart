@@ -4,6 +4,7 @@ import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
 import 'package:cafemenu_app/ui/pages/menucard_page/widgets/set_qty_section.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
+import 'package:cafemenu_app/utils/functions/diningcart_page/find_total_itemsqtyamount.dart';
 import 'package:flutter/material.dart';
 
 int orderLength = 5;
@@ -109,40 +110,51 @@ class TotalItemQtyAmount extends StatelessWidget {
     required this.diningCartList,
   });
 
+  static ValueNotifier<Map<String, dynamic>> diningCartTotalNotifier =
+      ValueNotifier(findTotalitemsQtyAmount());
   @override
   Widget build(BuildContext context) {
-    int totalItems = diningCartList.length;
-    int totalQty = 0;
-    double totalAmount = 0.0;
-    diningCartList.forEach((element) {
-      if (element.orderedQty != null) {
-        totalQty += element.orderedQty!;
-        if (element.itemPrice != null) {
-          totalAmount +=
-              (element.orderedQty!).toDouble() * (element.itemPrice!);
-        }
-      }
-    });
-
+    // Map<String, dynamic> findTotal = findTotalitemsQtyAmount();
+    diningCartTotalNotifier.value = findTotalitemsQtyAmount();
+    diningCartTotalNotifier.notifyListeners();
     return Column(
       children: [
-        const Text("Total"),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: const [
-            Text("Items"),
-            Text("Qty"),
-            Text("Amount"),
-          ],
+        const Text(
+          "Total",
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text("$totalItems"),
-            Text("$totalQty"),
-            Text("$totalAmount"),
-          ],
-        ),
+        ValueListenableBuilder(
+            valueListenable: diningCartTotalNotifier,
+            builder: (context, findTotal, _) {
+              return Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        const Text("Items"),
+                        Text("${findTotal['items']}"),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        const Text("Qty"),
+                        Text("${findTotal['Qty']}"),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        const Text("Amount"),
+                        Text("${findTotal['amount']}"),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            }),
       ],
     );
   }
@@ -170,6 +182,15 @@ class NameChairNumber extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text("Table/Chair No: "),
+            DropdownButton(
+              items: const <DropdownMenuItem<dynamic>>[
+                DropdownMenuItem(value: "table",child: Text("Table"),),
+                DropdownMenuItem(value: "chair",child: Text("Chair"),),
+              ],
+              onChanged: (value){
+                print(value);
+              },
+            ),
             DropdownButton(
               value: 1,
               items: dropDownMenuItems(TableOrChair.chair),
@@ -231,6 +252,7 @@ class DiningCartItem extends StatelessWidget {
     required this.productModellist,
   });
 
+  //  static ValueNotifier<int?> setQtyNotifier = ValueNotifier(null);
   @override
   Widget build(BuildContext context) {
     ValueNotifier<int?> setQtyNotifier = ValueNotifier(null);
@@ -296,6 +318,8 @@ class DiningCartItem extends StatelessWidget {
                       SetQtySetion(
                         valueNotifier: setQtyNotifier,
                         productModel: productModel,
+                        onIncreasePressed: () => changeDiningCartTotal(),
+                        onDecreasePressed: () => changeDiningCartTotal(),
                       ),
                     ],
                   ),
@@ -328,6 +352,11 @@ class DiningCartItem extends StatelessWidget {
       ),
     );
   }
+}
+
+changeDiningCartTotal() {
+  TotalItemQtyAmount.diningCartTotalNotifier.value = findTotalitemsQtyAmount();
+  TotalItemQtyAmount.diningCartTotalNotifier.notifyListeners();
 }
 
 enum TableOrChair {

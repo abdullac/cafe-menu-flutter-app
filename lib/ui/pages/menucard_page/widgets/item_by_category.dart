@@ -1,8 +1,6 @@
 import 'dart:math';
-
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/item_page/page_item.dart';
-import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
 import 'package:cafemenu_app/ui/pages/menucard_page/widgets/count_price_widgets.dart';
 import 'package:cafemenu_app/utils/constants/colors.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
@@ -54,7 +52,8 @@ class ItemByCategory extends StatelessWidget {
             ),
 
             /// text widget
-            /// shows leftQty of productModel
+            /// shows leftQty(available item quantity) of productModel
+            /// or availability(closed or not) ProductModel. 
             Text(
               productModel.isClosed == null && productModel.leftQty == null
                   ? ""

@@ -1,5 +1,5 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/utils/functions/productmodel_list_by_category.dart';
+import 'package:cafemenu_app/utils/functions/menucard_page/productmodel_list_by_category.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/category_list.dart';

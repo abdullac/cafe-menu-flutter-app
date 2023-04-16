@@ -8,11 +8,15 @@ class SetQtySetion extends StatelessWidget {
   final MainAxisAlignment? mainAxisAlignment;
   final ValueNotifier<int?> valueNotifier;
   final ProductModel productModel;
+  final void Function()? onIncreasePressed;
+  final void Function()? onDecreasePressed;
   const SetQtySetion({
     super.key,
     this.mainAxisAlignment,
     required this.valueNotifier,
     required this.productModel,
+    this.onIncreasePressed,
+    this.onDecreasePressed,
   });
 
   @override
@@ -26,9 +30,11 @@ class SetQtySetion extends StatelessWidget {
             children: [
               /// button for Decrease Qty
               QtyDecreaseButton(
-                  valueNotifier: valueNotifier,
-                  productModel: productModel,
-                  newValue: newValue!),
+                valueNotifier: valueNotifier,
+                productModel: productModel,
+                newValue: newValue!,
+                onDecreasePressed: onDecreasePressed,
+              ),
 
               /// shows increased/decreased Qty
               Text(
@@ -39,9 +45,11 @@ class SetQtySetion extends StatelessWidget {
 
               /// button for increase Qty
               QtyIncreaseButton(
-                  valueNotifier: valueNotifier,
-                  productModel: productModel,
-                  newValue: newValue),
+                valueNotifier: valueNotifier,
+                productModel: productModel,
+                newValue: newValue,
+                onIncreasePressed: onIncreasePressed,
+              ),
             ],
           );
         });

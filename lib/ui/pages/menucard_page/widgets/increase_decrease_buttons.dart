@@ -11,11 +11,13 @@ class QtyIncreaseButton extends StatelessWidget {
     required this.valueNotifier,
     required this.productModel,
     required this.newValue,
+    this.onIncreasePressed,
   });
 
   final ValueNotifier<int?> valueNotifier;
   final ProductModel productModel;
   final int newValue;
+  final void Function()? onIncreasePressed;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +25,16 @@ class QtyIncreaseButton extends StatelessWidget {
       onPressed: () {
         // count increase button pressed
         /// call method for increase Qty of ProductModel
-        /// and ProductModel add/update to diningCardList 
+        /// and ProductModel add/update to diningCardList
         changeSetQtyAndNotifyListener(
-            inreaseOrDecrease: ChangeQty.increase,
-            valueNotifier: valueNotifier,
-            newValue: newValue,
-            productModel: productModel);
+          inreaseOrDecrease: ChangeQty.increase,
+          valueNotifier: valueNotifier,
+          newValue: newValue,
+          productModel: productModel,
+        );
+        if (onIncreasePressed != null) {
+          onIncreasePressed!();
+        }
       },
       icon: const Text(
         "+",
@@ -45,11 +51,13 @@ class QtyDecreaseButton extends StatelessWidget {
     required this.valueNotifier,
     required this.productModel,
     required this.newValue,
+    this.onDecreasePressed,
   });
 
   final ValueNotifier<int?> valueNotifier;
   final ProductModel productModel;
   final int newValue;
+  final void Function()? onDecreasePressed;
 
   @override
   Widget build(BuildContext context) {
@@ -57,16 +65,20 @@ class QtyDecreaseButton extends StatelessWidget {
       onPressed: () {
         // count decrease button pressed
         if (newValue != 0) {
-        /// call method for decrease Qty of ProductModel
-        /// and ProductModel add/update to diningCardList 
+          /// call method for decrease Qty of ProductModel
+          /// and ProductModel add/update to diningCardList
           changeSetQtyAndNotifyListener(
             inreaseOrDecrease: ChangeQty.decrease,
             valueNotifier: valueNotifier,
             newValue: newValue,
             productModel: productModel,
           );
+          if (onDecreasePressed != null) {
+            onDecreasePressed!();
+          }
         }
-        /// remove ProductModel from diningCardList 
+
+        /// remove ProductModel from diningCardList
         /// when setQty reach to count 0.
         qty0removeItemFromDiningCartList(newValue, productModel);
       },
@@ -77,4 +89,3 @@ class QtyDecreaseButton extends StatelessWidget {
     );
   }
 }
-
