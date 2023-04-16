@@ -6,11 +6,27 @@ import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/find_total_itemsqtyamount.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 int orderLength = 5;
 int additionalOrderLength = 3;
 int runningOrderLength = 2;
 int length = orderLength + additionalOrderLength + runningOrderLength;
+
+int setOrderNumber() {
+  /// create method for get last number from firebase realtime database.
+  int? lastOrderNumberFromFirebase = 611 + 1;
+
+  /// set new order number to irebase realtime database.
+  return lastOrderNumberFromFirebase ?? 10023;
+}
+
+DateTime setOrderTime() {
+  DateTime getDateTimeNow = DateTime.now();
+
+  /// method for set ordertime to firebase.
+  return getDateTimeNow;
+}
 
 class PageDiningCart extends StatelessWidget {
   final List<ProductModel> diningCartList;
@@ -18,6 +34,8 @@ class PageDiningCart extends StatelessWidget {
     Key? key,
     required this.diningCartList,
   }) : super(key: key);
+
+  static ValueNotifier diningCartListViewNotifier = ValueNotifier("_value");
 
   @override
   Widget build(BuildContext context) {
@@ -58,30 +76,35 @@ class PageDiningCart extends StatelessWidget {
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 290),
-                    child: ListView.separated(
-                      itemCount: diningCartList.length,
-                      itemBuilder: ((context, index) => DiningCartItem(
-                            index: index,
-                            productModellist: diningCartList,
-                          )),
-                      separatorBuilder: (context, index) {
-                        Widget container(Color color, String title) =>
-                            Container(
-                              height: 30,
-                              color: color,
-                              child: Center(child: Text(title)),
-                            );
-                        if (index == orderLength - 1 &&
-                            additionalOrderLength > 0) {
-                          return container(Colors.cyan, "Additional");
-                        } else if (index ==
-                                (orderLength + additionalOrderLength - 1) &&
-                            runningOrderLength > 0) {
-                          return container(Colors.deepOrange, "Running");
-                        } else {
-                          return const SizedBox();
-                        }
-                      },
+                    child: ValueListenableBuilder(
+                      valueListenable: diningCartListViewNotifier,
+                      builder: (context,newValue,_) {
+                        return ListView.separated(
+                          itemCount: diningCartList.length,
+                          itemBuilder: ((context, index) => DiningCartItem(
+                                index: index,
+                                productModellist: diningCartList,
+                              )),
+                          separatorBuilder: (context, index) {
+                            Widget container(Color color, String title) =>
+                                Container(
+                                  height: 30,
+                                  color: color,
+                                  child: Center(child: Text(title)),
+                                );
+                            if (index == orderLength - 1 &&
+                                additionalOrderLength > 0) {
+                              return container(Colors.cyan, "Additional");
+                            } else if (index ==
+                                    (orderLength + additionalOrderLength - 1) &&
+                                runningOrderLength > 0) {
+                              return container(Colors.deepOrange, "Running");
+                            } else {
+                              return const SizedBox();
+                            }
+                          },
+                        );
+                      }
                     ),
                   ),
                 ),
@@ -91,7 +114,7 @@ class PageDiningCart extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       TotalItemQtyAmount(diningCartList: diningCartList),
-                      const NameChairNumber(),
+                      NameChairNumber(),
                       const OrderNumberTime(),
                       const MultiPurposeButton(),
                     ],
@@ -161,18 +184,25 @@ class TotalItemQtyAmount extends StatelessWidget {
 }
 
 class NameChairNumber extends StatelessWidget {
-  const NameChairNumber({
+  NameChairNumber({
     super.key,
   });
+
+  ValueNotifier<TableOrChair?> tableOrChairNotifier = ValueNotifier(null);
+  ValueNotifier<int?> tableOrChairNumberNotifier = ValueNotifier(null);
+  TextEditingController customerNameEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.all(8.0),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+
+          /// customer name textFieald
           child: TextField(
-            decoration: InputDecoration(
+            controller: customerNameEditingController,
+            decoration: const InputDecoration(
               hintText: "Name:",
               border: OutlineInputBorder(),
             ),
@@ -182,23 +212,50 @@ class NameChairNumber extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text("Table/Chair No: "),
-            DropdownButton(
-              items: const <DropdownMenuItem<dynamic>>[
-                DropdownMenuItem(value: "table",child: Text("Table"),),
-                DropdownMenuItem(value: "chair",child: Text("Chair"),),
-              ],
-              onChanged: (value){
-                print(value);
-              },
-            ),
-            DropdownButton(
-              value: 1,
-              items: dropDownMenuItems(TableOrChair.chair),
-              onChanged: (value) {
-                // dropdown item changed
-                print(value);
-              },
-            ),
+            ValueListenableBuilder(
+                valueListenable: tableOrChairNotifier,
+                builder: (context, tableOrChair, _) {
+                  /// select table or chair dropDown
+                  return DropdownButton(
+                    value: tableOrChair,
+                    items: const <DropdownMenuItem<dynamic>>[
+                      DropdownMenuItem(
+                        value: null,
+                        child: Text("-Select-"),
+                      ),
+                      DropdownMenuItem(
+                        value: TableOrChair.table,
+                        child: Text("Table"),
+                      ),
+                      DropdownMenuItem(
+                        value: TableOrChair.chair,
+                        child: Text("Chair"),
+                      ),
+                    ],
+                    onChanged: (value) {
+                      // dropdown item changed
+                      tableOrChairNotifier.value = value;
+                      tableOrChairNotifier.notifyListeners();
+                      tableOrChairNumberNotifier.value =
+                          value == null ? null : -1;
+                      tableOrChairNumberNotifier.notifyListeners();
+                    },
+                  );
+                }),
+            ValueListenableBuilder(
+                valueListenable: tableOrChairNumberNotifier,
+                builder: (context, newValue, _) {
+                  /// seat number by table/chair
+                  return DropdownButton(
+                    value: newValue,
+                    items: dropDownMenuItems(tableOrChairNotifier.value),
+                    onChanged: (value) {
+                      // dropdown item changed
+                      tableOrChairNumberNotifier.value = value;
+                      tableOrChairNumberNotifier.notifyListeners();
+                    },
+                  );
+                }),
           ],
         ),
       ],
@@ -229,13 +286,14 @@ class OrderNumberTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatedDate = DateFormat("hh:mm aa").format(setOrderTime());
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: const [
-            Text("Order no: 598"),
-            Text("Time: 8:31 PM"),
+          children: [
+            Text("Order no: ${setOrderNumber()}"),
+            Text("Time: $formatedDate"),
           ],
         ),
       ],
@@ -252,7 +310,6 @@ class DiningCartItem extends StatelessWidget {
     required this.productModellist,
   });
 
-  //  static ValueNotifier<int?> setQtyNotifier = ValueNotifier(null);
   @override
   Widget build(BuildContext context) {
     ValueNotifier<int?> setQtyNotifier = ValueNotifier(null);
@@ -279,7 +336,8 @@ class DiningCartItem extends StatelessWidget {
                 Checkbox(
                   value: true,
                   onChanged: (value) {
-                    // checkbox on changed
+                    // checkbox on changed (select unselect)
+                    
                   },
                   shape: const CircleBorder(),
                 ),
@@ -332,6 +390,9 @@ class DiningCartItem extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     // cart item delete button pressed
+                    print("deleteng progres...");
+                    deleteItemFromDiningCartList(productModel);
+                    PageDiningCart.diningCartListViewNotifier.notifyListeners();
                   },
                   icon: const Icon(Icons.delete_outline),
                 ),
@@ -364,14 +425,46 @@ enum TableOrChair {
   chair,
 }
 
-List<DropdownMenuItem> dropDownMenuItems(TableOrChair tableOrChair) {
+List<DropdownMenuItem> dropDownMenuItems(TableOrChair? tableOrChair) {
   List<DropdownMenuItem> dropDownItemList = [];
-  int count = tableOrChair == TableOrChair.table ? 7 : 40;
-  for (int index = 0; index < count; index++) {
-    dropDownItemList.add(DropdownMenuItem(
-      value: index + 1,
-      child: Text("${index + 1}"),
-    ));
+  if (tableOrChair == null) {
+    dropDownItemList
+        .add(const DropdownMenuItem(value: null, child: Text("--")));
+  } else {
+    int count = tableOrChair == TableOrChair.table ? 8 : 40;
+    for (int index = 0; index < count; index++) {
+      if (index == 0) {
+        dropDownItemList.add(const DropdownMenuItem(
+          value: -1,
+          child: Text("-Select-"),
+        ));
+      } else {
+        dropDownItemList.add(DropdownMenuItem(
+          value: index,
+          child: Text("$index"),
+        ));
+      }
+    }
   }
   return dropDownItemList;
+}
+
+deleteItemFromDiningCartList(ProductModel productModel) {
+  String? itemNameTemp = productModel.itemName;
+  if (itemNameTemp == null) {
+    print("C'nt delete Item");
+  } else {
+    int? itemPosition;
+    for (var element in diningCartList) {
+      if (element.itemName == itemNameTemp) {
+        itemPosition = diningCartList.indexOf(element);
+        break;
+      }
+    }
+    if (itemPosition != null) {
+      diningCartList.removeAt(itemPosition);
+    } else {
+      print("Sorry, C'nt find item");
+    }
+  }
 }
