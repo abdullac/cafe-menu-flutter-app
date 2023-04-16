@@ -12,7 +12,7 @@ class ProductModel with _$ProductModel {
     String? horizontalImageUrl,
     String? defualtImageUrl,
     required String? categoryName,
-    required int? itemPrice,
+    required double? itemPrice,
     int? orderedQty,
     DateTime? recievedTime,
     bool? isDiningCart,

@@ -1,16 +1,13 @@
 import 'dart:convert';
 
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
+import 'package:cafemenu_app/ui/pages/home_page/widgets/menu_card_button.dart';
+import 'package:cafemenu_app/utils/constants/colors.dart';
+import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-List<ProductModel> initialProductModelList = [];
 
-enum ComingPage {
-  menuCard,
-  diningCart,
-}
 
 class PageHome extends StatelessWidget {
   const PageHome({Key? key}) : super(key: key);
@@ -18,36 +15,28 @@ class PageHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      /// menu card items list gets from firebase realtime database using getItemlist(),
+      /// and returned asign to initialProductModelList.
+      /// initialProductModelList is List of ProdectModel
       initialProductModelList = await getItemslist();
-      // setItemsList();
     });
     return Stack(
       children: [
+        /// Home page background image container
+        /// image shows with networkImage,firebase storage image url
         Container(
           decoration: const BoxDecoration(
-            color: Colors.green,
+            color: clrGreen,
           ),
         ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 100),
-            child: ElevatedButton(
-              onPressed: () async {
-                // MenuCard button pressed
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PageMenuCard(
-                          productModelList: initialProductModelList,
-                        )));
-              },
-              child: const Text("Menu Card"),
-            ),
-          ),
-        ),
+        /// button for goto menu card page
+        /// push Navigator with initialProductModelList
+        const MenuCardButton(),
       ],
     );
   }
 }
+
 
 //////////////////////////////////////////
 
@@ -88,7 +77,7 @@ setItemsList() {
       .toJson();
 
   fireBaseDatabaseReference.child("cafeMenu/menuCard/").set({
-    "itemsSample": [pM, pMt, pMr,pMg]
+    "itemsSample": [pM, pMt, pMr, pMg]
   });
 }
 

@@ -27,7 +27,7 @@ mixin _$ProductModel {
   String? get horizontalImageUrl => throw _privateConstructorUsedError;
   String? get defualtImageUrl => throw _privateConstructorUsedError;
   String? get categoryName => throw _privateConstructorUsedError;
-  int? get itemPrice => throw _privateConstructorUsedError;
+  double? get itemPrice => throw _privateConstructorUsedError;
   int? get orderedQty => throw _privateConstructorUsedError;
   DateTime? get recievedTime => throw _privateConstructorUsedError;
   bool? get isDiningCart => throw _privateConstructorUsedError;
@@ -56,7 +56,7 @@ abstract class $ProductModelCopyWith<$Res> {
       String? horizontalImageUrl,
       String? defualtImageUrl,
       String? categoryName,
-      int? itemPrice,
+      double? itemPrice,
       int? orderedQty,
       DateTime? recievedTime,
       bool? isDiningCart,
@@ -127,7 +127,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       itemPrice: freezed == itemPrice
           ? _value.itemPrice
           : itemPrice // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       orderedQty: freezed == orderedQty
           ? _value.orderedQty
           : orderedQty // ignore: cast_nullable_to_non_nullable
@@ -176,7 +176,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       String? horizontalImageUrl,
       String? defualtImageUrl,
       String? categoryName,
-      int? itemPrice,
+      double? itemPrice,
       int? orderedQty,
       DateTime? recievedTime,
       bool? isDiningCart,
@@ -245,7 +245,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
       itemPrice: freezed == itemPrice
           ? _value.itemPrice
           : itemPrice // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       orderedQty: freezed == orderedQty
           ? _value.orderedQty
           : orderedQty // ignore: cast_nullable_to_non_nullable
@@ -316,7 +316,7 @@ class _$_ProductModel implements _ProductModel {
   @override
   final String? categoryName;
   @override
-  final int? itemPrice;
+  final double? itemPrice;
   @override
   final int? orderedQty;
   @override
@@ -415,7 +415,7 @@ abstract class _ProductModel implements ProductModel {
       final String? horizontalImageUrl,
       final String? defualtImageUrl,
       required final String? categoryName,
-      required final int? itemPrice,
+      required final double? itemPrice,
       final int? orderedQty,
       final DateTime? recievedTime,
       final bool? isDiningCart,
@@ -442,7 +442,7 @@ abstract class _ProductModel implements ProductModel {
   @override
   String? get categoryName;
   @override
-  int? get itemPrice;
+  double? get itemPrice;
   @override
   int? get orderedQty;
   @override

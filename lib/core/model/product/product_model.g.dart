@@ -15,7 +15,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       horizontalImageUrl: json['horizontalImageUrl'] as String?,
       defualtImageUrl: json['defualtImageUrl'] as String?,
       categoryName: json['categoryName'] as String?,
-      itemPrice: json['itemPrice'] as int?,
+      itemPrice: (json['itemPrice'] as num?)?.toDouble(),
       orderedQty: json['orderedQty'] as int?,
       recievedTime: json['recievedTime'] == null
           ? null
