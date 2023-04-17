@@ -25,6 +25,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       availableQty: json['availableQty'] as int?,
       leftQty: json['leftQty'] as int?,
       isClosed: json['isClosed'] as bool?,
+      isSelectDiningCart: json['isSelectDiningCart'] as bool?,
     );
 
 Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
@@ -44,6 +45,7 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'availableQty': instance.availableQty,
       'leftQty': instance.leftQty,
       'isClosed': instance.isClosed,
+      'isSelectDiningCart': instance.isSelectDiningCart,
     };
 
 const _$ItemTypeEnumMap = {

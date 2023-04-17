@@ -30,7 +30,9 @@ class PageItem extends StatelessWidget {
             } else if (comingPage == ComingPage.diningCart) {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) =>
-                      PageDiningCart(diningCartList: diningCartList)));
+                      PageDiningCart(
+                        // diningCartList: diningCartList,
+                        )));
             }
           },
           icon: const Icon(Icons.arrow_back),

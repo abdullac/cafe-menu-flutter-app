@@ -26,7 +26,7 @@ class MenuCardPageAppBar extends StatelessWidget {
               /// diningCartList is List of selected ProductModel from initialProductModelList 
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => PageDiningCart(
-                        diningCartList: diningCartList,
+                        // diningCartList: diningCartList,
                       )));
             },
             icon: const Icon(Icons.dining))

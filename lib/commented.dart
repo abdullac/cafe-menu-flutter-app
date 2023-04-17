@@ -132,7 +132,9 @@ class ObjRealTimeDataBaseFirebase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CustomerModel cM =
-        const CustomerModel(orderList: ["sampleList", "sampleListY"]);
+        const CustomerModel(productModelOrderList: [
+          // "sampleList", "sampleListY"
+          ]);
     var cmJson = cM.toJson();
     DatabaseReference dRef = FirebaseDatabase.instance.ref();
     dRef.child("sampleObj").set({"name": cmJson});

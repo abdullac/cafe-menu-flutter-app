@@ -12,18 +12,21 @@ _$_CustomerModel _$$_CustomerModelFromJson(Map<String, dynamic> json) =>
       customerName: json['customerName'] as String?,
       orderNumber: json['orderNumber'] as int?,
       positionCode: json['positionCode'] as String?,
-      orderList: json['orderList'] as List<dynamic>,
+      productModelOrderList: (json['productModelOrderList'] as List<dynamic>)
+          .map((e) => e as Map<String, dynamic>)
+          .toList(),
       additionalOrderList: json['additionalOrderList'] as List<dynamic>?,
       runningOrderList: json['runningOrderList'] as List<dynamic>?,
       orderType: $enumDecodeNullable(_$OrderTypeEnumMap, json['orderType']),
       totalItems: json['totalItems'] as int?,
       totalQty: json['totalQty'] as int?,
-      totalAmount: json['totalAmount'] as int?,
+      totalAmount: (json['totalAmount'] as num?)?.toDouble(),
       orderedTime: json['orderedTime'] == null
           ? null
           : DateTime.parse(json['orderedTime'] as String),
       isPaid: json['isPaid'] as bool?,
       isTakeNow: json['isTakeNow'] as bool?,
+      isOrderConfirmed: json['isOrderConfirmed'] as bool?,
     );
 
 Map<String, dynamic> _$$_CustomerModelToJson(_$_CustomerModel instance) =>
@@ -32,7 +35,7 @@ Map<String, dynamic> _$$_CustomerModelToJson(_$_CustomerModel instance) =>
       'customerName': instance.customerName,
       'orderNumber': instance.orderNumber,
       'positionCode': instance.positionCode,
-      'orderList': instance.orderList,
+      'productModelOrderList': instance.productModelOrderList,
       'additionalOrderList': instance.additionalOrderList,
       'runningOrderList': instance.runningOrderList,
       'orderType': _$OrderTypeEnumMap[instance.orderType],
@@ -42,6 +45,7 @@ Map<String, dynamic> _$$_CustomerModelToJson(_$_CustomerModel instance) =>
       'orderedTime': instance.orderedTime?.toIso8601String(),
       'isPaid': instance.isPaid,
       'isTakeNow': instance.isTakeNow,
+      'isOrderConfirmed': instance.isOrderConfirmed,
     };
 
 const _$OrderTypeEnumMap = {

@@ -19,7 +19,7 @@ void changeSetQtyAndNotifyListener({
   valueNotifier.value =
       inreaseOrDecrease == ChangeQty.increase ? newValue + 1 : newValue - 1;
   valueNotifier.notifyListeners();
-  /// add/update itemQty count to ProdutModel using copywith
+  /// update itemQty count to ProdutModel using copywith
   ProductModel productModelModified =
       productModel.copyWith(orderedQty: valueNotifier.value);
   /// int elementPosition for gets current position of that ProdutModel from diningCartList. temporary usage
