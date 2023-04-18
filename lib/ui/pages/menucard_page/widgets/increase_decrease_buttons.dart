@@ -1,7 +1,6 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/functions/change_set_qty_productmodel.dart';
-import 'package:cafemenu_app/utils/functions/remove_item_from_diningcart.dart';
 import 'package:flutter/material.dart';
 
 /// this widget is increase(+) Qty button.
@@ -52,12 +51,14 @@ class QtyDecreaseButton extends StatelessWidget {
     required this.productModel,
     required this.newValue,
     this.onDecreasePressed,
+    required this.removeitemAtQty0,
   });
 
   final ValueNotifier<int?> valueNotifier;
   final ProductModel productModel;
   final int newValue;
   final void Function()? onDecreasePressed;
+  final bool removeitemAtQty0;
 
   @override
   Widget build(BuildContext context) {
@@ -72,15 +73,19 @@ class QtyDecreaseButton extends StatelessWidget {
             valueNotifier: valueNotifier,
             newValue: newValue,
             productModel: productModel,
+            removeitemAtQty0: removeitemAtQty0
           );
           if (onDecreasePressed != null) {
             onDecreasePressed!();
           }
         }
 
-        /// remove ProductModel from diningCardList
-        /// when setQty reach to count 0.
-        qty0removeItemFromDiningCartList(newValue, productModel);
+        // UNUSED
+        // /// remove ProductModel from diningCardList
+        // /// when setQty reach to count 0.
+        // if (removeitemAtQty0 == true) {
+        //   removeItemAtQty0FromDiningCartList(newValue, productModel);
+        // }
       },
       icon: const Text(
         "-",

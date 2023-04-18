@@ -3,7 +3,6 @@ import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:flutter/material.dart';
 
-
 /// this method for increase or decrease itemQty count
 /// when pressed +/- button.
 /// and update that ProductModel to diningCartList
@@ -12,6 +11,7 @@ void changeSetQtyAndNotifyListener({
   required ValueNotifier<int?> valueNotifier,
   required int newValue,
   required ProductModel productModel,
+  bool? removeitemAtQty0,
 }) {
   /// gets urrent value from valueNotifier
   /// and set value to valueNotifier aftr pressed +/- button
@@ -19,9 +19,11 @@ void changeSetQtyAndNotifyListener({
   valueNotifier.value =
       inreaseOrDecrease == ChangeQty.increase ? newValue + 1 : newValue - 1;
   valueNotifier.notifyListeners();
+
   /// update itemQty count to ProdutModel using copywith
   ProductModel productModelModified =
       productModel.copyWith(orderedQty: valueNotifier.value);
+
   /// int elementPosition for gets current position of that ProdutModel from diningCartList. temporary usage
   /// iterate diningCartList for find current position of that ProdutModel position.
   int? elementPosition;
@@ -31,8 +33,30 @@ void changeSetQtyAndNotifyListener({
       break;
     }
   }
+
   /// upadate ProductModel to that position of diningCartList if elementPosition contains any value
   /// add new data to diningCartList as productModel if elementPosition is null
+
+  /// remove ProductModel from diningCardList
+  /// when setQty reach to count 0.
+
+  if (valueNotifier.value != 0) {
+    addOrUpdateItemDiningCartList(elementPosition, productModelModified);
+  } else {
+    if (removeitemAtQty0 == true) {
+      if (elementPosition != null) {
+        diningCartList.removeAt(elementPosition);
+      } else {
+        print("cannot delete");
+      }
+    } else {
+      addOrUpdateItemDiningCartList(elementPosition, productModelModified);
+    }
+  }
+}
+
+void addOrUpdateItemDiningCartList(
+    int? elementPosition, ProductModel productModelModified) {
   if (elementPosition != null) {
     diningCartList[elementPosition] = productModelModified;
   } else {

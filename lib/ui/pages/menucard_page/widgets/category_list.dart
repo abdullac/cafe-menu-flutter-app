@@ -1,14 +1,13 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
 import 'package:cafemenu_app/ui/pages/menucard_page/widgets/item_by_category.dart';
 import 'package:flutter/material.dart';
 
 /// this is child Listview (pageview) by categoryName of productModelList.
 /// each child listview(pageview) with gategoryItems(items by category).
-class CategoryList extends StatelessWidget {
+class CategoryListviewOfProductPageview extends StatelessWidget {
   final int categoryIndex;
   final Map<String, List<ProductModel>> listOfProductmodelByCategory;
-  const CategoryList({
+  const CategoryListviewOfProductPageview({
     super.key,
     required this.categoryIndex,
     required this.listOfProductmodelByCategory,
@@ -27,7 +26,7 @@ class CategoryList extends StatelessWidget {
           /// pageview with items by categoryName.
           PageView.builder(
             itemCount: 5,
-            itemBuilder: (context, categoryItemIndex) => ItemByCategory(
+            itemBuilder: (context, categoryItemIndex) => productItemByCategory(
               /// convert Map values to values list for make Product Model list by that catgoryName,
               /// and pass item(productModel) to ItemByCategory widget
               productModel: listOfProductmodelByCategory.values

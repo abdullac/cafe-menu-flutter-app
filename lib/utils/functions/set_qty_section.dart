@@ -10,13 +10,14 @@ class SetQtySetion extends StatelessWidget {
   final ProductModel productModel;
   final void Function()? onIncreasePressed;
   final void Function()? onDecreasePressed;
+  final bool removeitemAtQty0;
   const SetQtySetion({
     super.key,
     this.mainAxisAlignment,
     required this.valueNotifier,
     required this.productModel,
     this.onIncreasePressed,
-    this.onDecreasePressed,
+    this.onDecreasePressed, required this.removeitemAtQty0,
   });
 
   @override
@@ -34,6 +35,7 @@ class SetQtySetion extends StatelessWidget {
                 productModel: productModel,
                 newValue: newValue!,
                 onDecreasePressed: onDecreasePressed,
+                removeitemAtQty0: removeitemAtQty0,
               ),
 
               /// shows increased/decreased Qty

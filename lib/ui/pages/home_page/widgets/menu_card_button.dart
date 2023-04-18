@@ -22,7 +22,7 @@ class MenuCardButton extends StatelessWidget {
             /// initialProductModelList for show all product Items(list of 'productModel') from firebase realtime database
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => PageMenuCard(
-                      productModelList: initialProductModelList,
+                      productModelList: productModelList,
                     )));
           },
           child: const Text("Menu Card"),

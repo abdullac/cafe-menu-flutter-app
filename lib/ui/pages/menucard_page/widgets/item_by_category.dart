@@ -7,9 +7,9 @@ import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 
 /// this widget is builder item(productModel) widget of Listview by categoryName
-class ItemByCategory extends StatelessWidget {
+class productItemByCategory extends StatelessWidget {
   final ProductModel productModel;
-  const ItemByCategory({
+  const productItemByCategory({
     super.key,
     required this.productModel,
   });

@@ -18,7 +18,7 @@ class PageHome extends StatelessWidget {
       /// menu card items list gets from firebase realtime database using getItemlist(),
       /// and returned asign to initialProductModelList.
       /// initialProductModelList is List of ProdectModel
-      initialProductModelList = await getItemslist();
+      productModelList = await getItemslist();
     });
     return Stack(
       children: [

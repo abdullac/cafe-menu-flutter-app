@@ -30,7 +30,7 @@ class PageMenuCard extends StatelessWidget {
       /// this ListView is Base listview includes child listViews by CategryName
       body: ListView.builder(
         itemCount: listOfProductmodelByCategory.length,
-        itemBuilder: (contxt, categoryIndex) => CategoryList(
+        itemBuilder: (contxt, categoryIndex) => CategoryListviewOfProductPageview(
           categoryIndex: categoryIndex,
           listOfProductmodelByCategory: listOfProductmodelByCategory,
         ),

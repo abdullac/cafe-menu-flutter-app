@@ -1,6 +1,5 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
-import 'package:cafemenu_app/ui/pages/menucard_page/widgets/set_qty_section.dart';
+import 'package:cafemenu_app/utils/functions/set_qty_section.dart';
 import 'package:cafemenu_app/utils/functions/modified_product_model.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +32,7 @@ class CountPriceWidgets extends StatelessWidget {
           SetQtySetion(
             valueNotifier: setQtyNotifier,
             productModel: productModelModified,
+            removeitemAtQty0: true,
           ),
         ],
       ),
