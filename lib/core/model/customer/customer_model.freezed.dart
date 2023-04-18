@@ -36,6 +36,9 @@ mixin _$CustomerModel {
   bool? get isPaid => throw _privateConstructorUsedError;
   bool? get isTakeNow => throw _privateConstructorUsedError;
   bool? get isOrderConfirmed => throw _privateConstructorUsedError;
+  String? get customerFeadback => throw _privateConstructorUsedError;
+  String? get customerSuggession => throw _privateConstructorUsedError;
+  bool? get recievedAllItems => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,7 +67,10 @@ abstract class $CustomerModelCopyWith<$Res> {
       DateTime? orderedTime,
       bool? isPaid,
       bool? isTakeNow,
-      bool? isOrderConfirmed});
+      bool? isOrderConfirmed,
+      String? customerFeadback,
+      String? customerSuggession,
+      bool? recievedAllItems});
 }
 
 /// @nodoc
@@ -95,6 +101,9 @@ class _$CustomerModelCopyWithImpl<$Res, $Val extends CustomerModel>
     Object? isPaid = freezed,
     Object? isTakeNow = freezed,
     Object? isOrderConfirmed = freezed,
+    Object? customerFeadback = freezed,
+    Object? customerSuggession = freezed,
+    Object? recievedAllItems = freezed,
   }) {
     return _then(_value.copyWith(
       customerId: freezed == customerId
@@ -157,6 +166,18 @@ class _$CustomerModelCopyWithImpl<$Res, $Val extends CustomerModel>
           ? _value.isOrderConfirmed
           : isOrderConfirmed // ignore: cast_nullable_to_non_nullable
               as bool?,
+      customerFeadback: freezed == customerFeadback
+          ? _value.customerFeadback
+          : customerFeadback // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerSuggession: freezed == customerSuggession
+          ? _value.customerSuggession
+          : customerSuggession // ignore: cast_nullable_to_non_nullable
+              as String?,
+      recievedAllItems: freezed == recievedAllItems
+          ? _value.recievedAllItems
+          : recievedAllItems // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -184,7 +205,10 @@ abstract class _$$_CustomerModelCopyWith<$Res>
       DateTime? orderedTime,
       bool? isPaid,
       bool? isTakeNow,
-      bool? isOrderConfirmed});
+      bool? isOrderConfirmed,
+      String? customerFeadback,
+      String? customerSuggession,
+      bool? recievedAllItems});
 }
 
 /// @nodoc
@@ -213,6 +237,9 @@ class __$$_CustomerModelCopyWithImpl<$Res>
     Object? isPaid = freezed,
     Object? isTakeNow = freezed,
     Object? isOrderConfirmed = freezed,
+    Object? customerFeadback = freezed,
+    Object? customerSuggession = freezed,
+    Object? recievedAllItems = freezed,
   }) {
     return _then(_$_CustomerModel(
       customerId: freezed == customerId
@@ -275,6 +302,18 @@ class __$$_CustomerModelCopyWithImpl<$Res>
           ? _value.isOrderConfirmed
           : isOrderConfirmed // ignore: cast_nullable_to_non_nullable
               as bool?,
+      customerFeadback: freezed == customerFeadback
+          ? _value.customerFeadback
+          : customerFeadback // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerSuggession: freezed == customerSuggession
+          ? _value.customerSuggession
+          : customerSuggession // ignore: cast_nullable_to_non_nullable
+              as String?,
+      recievedAllItems: freezed == recievedAllItems
+          ? _value.recievedAllItems
+          : recievedAllItems // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -297,7 +336,10 @@ class _$_CustomerModel implements _CustomerModel {
       this.orderedTime,
       this.isPaid,
       this.isTakeNow,
-      this.isOrderConfirmed})
+      this.isOrderConfirmed,
+      this.customerFeadback,
+      this.customerSuggession,
+      this.recievedAllItems})
       : _productModelOrderList = productModelOrderList,
         _additionalOrderList = additionalOrderList,
         _runningOrderList = runningOrderList;
@@ -360,10 +402,16 @@ class _$_CustomerModel implements _CustomerModel {
   final bool? isTakeNow;
   @override
   final bool? isOrderConfirmed;
+  @override
+  final String? customerFeadback;
+  @override
+  final String? customerSuggession;
+  @override
+  final bool? recievedAllItems;
 
   @override
   String toString() {
-    return 'CustomerModel(customerId: $customerId, customerName: $customerName, orderNumber: $orderNumber, positionCode: $positionCode, productModelOrderList: $productModelOrderList, additionalOrderList: $additionalOrderList, runningOrderList: $runningOrderList, orderType: $orderType, totalItems: $totalItems, totalQty: $totalQty, totalAmount: $totalAmount, orderedTime: $orderedTime, isPaid: $isPaid, isTakeNow: $isTakeNow, isOrderConfirmed: $isOrderConfirmed)';
+    return 'CustomerModel(customerId: $customerId, customerName: $customerName, orderNumber: $orderNumber, positionCode: $positionCode, productModelOrderList: $productModelOrderList, additionalOrderList: $additionalOrderList, runningOrderList: $runningOrderList, orderType: $orderType, totalItems: $totalItems, totalQty: $totalQty, totalAmount: $totalAmount, orderedTime: $orderedTime, isPaid: $isPaid, isTakeNow: $isTakeNow, isOrderConfirmed: $isOrderConfirmed, customerFeadback: $customerFeadback, customerSuggession: $customerSuggession, recievedAllItems: $recievedAllItems)';
   }
 
   @override
@@ -399,7 +447,13 @@ class _$_CustomerModel implements _CustomerModel {
             (identical(other.isTakeNow, isTakeNow) ||
                 other.isTakeNow == isTakeNow) &&
             (identical(other.isOrderConfirmed, isOrderConfirmed) ||
-                other.isOrderConfirmed == isOrderConfirmed));
+                other.isOrderConfirmed == isOrderConfirmed) &&
+            (identical(other.customerFeadback, customerFeadback) ||
+                other.customerFeadback == customerFeadback) &&
+            (identical(other.customerSuggession, customerSuggession) ||
+                other.customerSuggession == customerSuggession) &&
+            (identical(other.recievedAllItems, recievedAllItems) ||
+                other.recievedAllItems == recievedAllItems));
   }
 
   @JsonKey(ignore: true)
@@ -420,7 +474,10 @@ class _$_CustomerModel implements _CustomerModel {
       orderedTime,
       isPaid,
       isTakeNow,
-      isOrderConfirmed);
+      isOrderConfirmed,
+      customerFeadback,
+      customerSuggession,
+      recievedAllItems);
 
   @JsonKey(ignore: true)
   @override
@@ -452,7 +509,10 @@ abstract class _CustomerModel implements CustomerModel {
       final DateTime? orderedTime,
       final bool? isPaid,
       final bool? isTakeNow,
-      final bool? isOrderConfirmed}) = _$_CustomerModel;
+      final bool? isOrderConfirmed,
+      final String? customerFeadback,
+      final String? customerSuggession,
+      final bool? recievedAllItems}) = _$_CustomerModel;
 
   factory _CustomerModel.fromJson(Map<String, dynamic> json) =
       _$_CustomerModel.fromJson;
@@ -487,6 +547,12 @@ abstract class _CustomerModel implements CustomerModel {
   bool? get isTakeNow;
   @override
   bool? get isOrderConfirmed;
+  @override
+  String? get customerFeadback;
+  @override
+  String? get customerSuggession;
+  @override
+  bool? get recievedAllItems;
   @override
   @JsonKey(ignore: true)
   _$$_CustomerModelCopyWith<_$_CustomerModel> get copyWith =>

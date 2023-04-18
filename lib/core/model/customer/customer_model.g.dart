@@ -27,6 +27,9 @@ _$_CustomerModel _$$_CustomerModelFromJson(Map<String, dynamic> json) =>
       isPaid: json['isPaid'] as bool?,
       isTakeNow: json['isTakeNow'] as bool?,
       isOrderConfirmed: json['isOrderConfirmed'] as bool?,
+      customerFeadback: json['customerFeadback'] as String?,
+      customerSuggession: json['customerSuggession'] as String?,
+      recievedAllItems: json['recievedAllItems'] as bool?,
     );
 
 Map<String, dynamic> _$$_CustomerModelToJson(_$_CustomerModel instance) =>
@@ -46,6 +49,9 @@ Map<String, dynamic> _$$_CustomerModelToJson(_$_CustomerModel instance) =>
       'isPaid': instance.isPaid,
       'isTakeNow': instance.isTakeNow,
       'isOrderConfirmed': instance.isOrderConfirmed,
+      'customerFeadback': instance.customerFeadback,
+      'customerSuggession': instance.customerSuggession,
+      'recievedAllItems': instance.recievedAllItems,
     };
 
 const _$OrderTypeEnumMap = {

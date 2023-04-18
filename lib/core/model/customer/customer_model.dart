@@ -21,6 +21,9 @@ class CustomerModel with _$CustomerModel {
     bool? isPaid,
     bool? isTakeNow,
     bool? isOrderConfirmed,
+    String? customerFeadback,
+    String? customerSuggession,
+    bool? recievedAllItems,
   }) = _CustomerModel;
 
   factory CustomerModel.fromJson(Map<String, dynamic> json) =>

@@ -1,3 +1,4 @@
+import 'package:cafemenu_app/admin/ui/page_add_item.dart';
 import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
 import 'package:flutter/material.dart';
 
@@ -22,8 +23,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Scaffold(
+      home:  Scaffold(
         body: PageHome(),
+        // body: PageAddItem(),
       ),
     );
   }

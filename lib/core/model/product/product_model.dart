@@ -31,3 +31,6 @@ enum ItemType {
   plate,
   glass,
 }
+
+
+/// customerSuggession - customer needs/required with order
