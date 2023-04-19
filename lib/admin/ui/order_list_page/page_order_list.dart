@@ -7,8 +7,8 @@ import 'package:intl/intl.dart';
 
 List<CustomerModel> orderedListFromFireBase = [];
 
-class PageOrderPageView extends StatelessWidget {
-  const PageOrderPageView({Key? key}) : super(key: key);
+class PageOrderListPageView extends StatelessWidget {
+  const PageOrderListPageView({Key? key}) : super(key: key);
 
   static ValueNotifier<List<CustomerModel>> orderedListNotifier =
       ValueNotifier(orderedListFromFireBase);
@@ -69,10 +69,6 @@ class AllOrderedItems extends StatelessWidget {
     customerModel.productModelOrderList.forEach((element) {
       orderedItemProductModelList.add(ProductModel.fromJson(element));
     });
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      PageOrderPageView.pageViewIndexNotifier.value = pageViewItemIndex;
-      PageOrderPageView.pageViewIndexNotifier.notifyListeners();
-    });
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -95,7 +91,16 @@ class AllOrderedItems extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                      "${pageViewItemIndex + 1}/${orderedListFromFireBase.length}")
+                    "${pageViewItemIndex + 1}/${orderedListFromFireBase.length}",
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        // ready/ delivered all items  button pressed
+                      },
+                      child: const Text(
+                        "Ready/\nDelivered\n All",
+                        textAlign: TextAlign.center,
+                      ))
                 ],
               )
             ],
@@ -157,8 +162,8 @@ Future<void> getOrderedListFromFireBase() async {
     }
   }
   print(orderedListFromFireBase);
-  PageOrderPageView.orderedListNotifier.value = orderedListFromFireBase;
-  PageOrderPageView.orderedListNotifier.notifyListeners();
+  PageOrderListPageView.orderedListNotifier.value = orderedListFromFireBase;
+  PageOrderListPageView.orderedListNotifier.notifyListeners();
 }
 
 class OrderedItem extends StatelessWidget {
@@ -202,7 +207,7 @@ class OrderedItem extends StatelessWidget {
                 onPressed: () {
                   /// ready Button
                 },
-                child: const Text("Rdy\/\nDlvrd")),
+                child: const Text("Rdy/\nDlvrd")),
           )
         ],
       ),

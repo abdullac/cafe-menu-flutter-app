@@ -1,6 +1,7 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/diningcart_page/page_diningcart.dart';
 import 'package:cafemenu_app/ui/pages/item_page/page_item.dart';
+import 'package:cafemenu_app/ui/pages/menucard_page/widgets/item_by_category.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/set_qty_section.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
@@ -49,7 +50,7 @@ class DiningCartItem extends StatelessWidget {
               productModellist: productModellist,
               isSelectNotifier: isSelectNotifier,
             ),
-            const DinngcartListItemImageContainer(),
+             DinngcartListItemImageContainer(productModel: productModel),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -83,8 +84,10 @@ class DiningCartItem extends StatelessWidget {
 }
 
 class DinngcartListItemImageContainer extends StatelessWidget {
+  final ProductModel productModel;
   const DinngcartListItemImageContainer({
     super.key,
+    required this.productModel,
   });
 
   @override
@@ -92,7 +95,9 @@ class DinngcartListItemImageContainer extends StatelessWidget {
     return Container(
       height: 140,
       width: 100,
-      decoration: BoxDecoration(color: Colors.teal[700]),
+      decoration: BoxDecoration(
+          color: Colors.teal[700],
+          image: DecorationImage(image: NetworkImage(productModel.verticalImageUrl??sampleImageUrl),fit: BoxFit.cover)),
     );
   }
 }

@@ -1,7 +1,13 @@
+import 'dart:io';
+
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
+// import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PageAddItem extends StatelessWidget {
   PageAddItem({Key? key}) : super(key: key);
@@ -10,6 +16,9 @@ class PageAddItem extends StatelessWidget {
   TextEditingController categoryNameEditingController = TextEditingController();
   TextEditingController priceEditingController = TextEditingController();
   TextEditingController availableQtyEditingController = TextEditingController();
+  static ValueNotifier<XFile?> pickedImageNotifier = ValueNotifier(null);
+  static UploadTask? uploadTask;
+  static String? firebaseImageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +37,7 @@ class PageAddItem extends StatelessWidget {
                   categoryName: categoryNameEditingController.text,
                   price: priceEditingController.text,
                   availableQuantity: availableQtyEditingController.text,
-                  verticalImageUrl: null,
+                  verticalImageUrl:await uploadImagetoFirebaseGetUrl(),
                 );
                 if (productModelJson != null) {
                   await addOrUpdateProductModelItemToFireBase(productModelJson);
@@ -94,12 +103,41 @@ class PageAddItem extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  IconButton(
-                    onPressed: () {
-                      // Image from gallery button
-                      // verticalImage & get Url
-                    },
-                    icon: const Icon(Icons.add_photo_alternate_outlined),
+                  Center(
+                    child: Column(
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            // Image from gallery button
+                            // verticalImage & get Url
+                            getImageFromDevice();
+                          },
+                          label: const Text("Add Image"),
+                          icon: const Icon(Icons.add_photo_alternate_outlined),
+                        ),
+                        ValueListenableBuilder(
+                            valueListenable: pickedImageNotifier,
+                            builder: (context, pickedImage, _) {
+                              return pickedImage != null
+                                  ? Stack(
+                                      children: [
+                                        Opacity(
+                                          opacity: 1,
+                                          child: Image.file(
+                                            File(pickedImage.path),
+                                          ),
+                                        ),
+                                        const Center(
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  : const SizedBox();
+                            }),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -107,6 +145,35 @@ class PageAddItem extends StatelessWidget {
           ),
         ));
   }
+}
+
+Future<void> getImageFromDevice() async {
+  final imagePicker = ImagePicker();
+  PageAddItem.pickedImageNotifier.value =
+      await imagePicker.pickImage(source: ImageSource.gallery);
+  if (PageAddItem.pickedImageNotifier.value != null) {
+    print("picked image ${PageAddItem.pickedImageNotifier.value!.name}");
+  } else {
+    print("picked image null");
+  }
+}
+
+Future<String?> uploadImagetoFirebaseGetUrl() async {
+  if (PageAddItem.pickedImageNotifier.value != null) {
+    final imagePath =
+        "files/images/cafeMenu/${PageAddItem.pickedImageNotifier.value!.name}";
+    final imagefile = File(PageAddItem.pickedImageNotifier.value!.path);
+
+    Reference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child(imagePath);
+    PageAddItem.uploadTask = firebaseStorageRef.putFile(imagefile);
+  }
+  if (PageAddItem.uploadTask != null) {
+    final taskSnapshot = await PageAddItem.uploadTask!.whenComplete(() {});
+    PageAddItem.firebaseImageUrl = await taskSnapshot.ref.getDownloadURL();
+    print("fireBaseImageUrl : ${PageAddItem.firebaseImageUrl}");
+  }
+  return PageAddItem.firebaseImageUrl;
 }
 
 int getNewItemId() {
@@ -156,8 +223,9 @@ addOrUpdateProductModelItemToFireBase(
       await firebaseRef.child("cafeMenu/menuCard/itemsSample").get();
   // List<int> keyList = [];
   // int newKey = 0;
-  var lastPositionKeySnapshort = getproductModelListObjet.children.last.key as String;
-  int newPosition = int.parse(lastPositionKeySnapshort)+1;
+  var lastPositionKeySnapshort =
+      getproductModelListObjet.children.last.key as String;
+  int newPosition = int.parse(lastPositionKeySnapshort) + 1;
   // getproductModelListObjet.children.forEach((element) {
   //   if (element.key != null) {
   //     keyList.add(int.parse(element.key!));

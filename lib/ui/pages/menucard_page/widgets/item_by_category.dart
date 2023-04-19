@@ -6,6 +6,8 @@ import 'package:cafemenu_app/utils/constants/colors.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 
+  String sampleImageUrl = "https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2FtcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80";
+
 /// this widget is builder item(productModel) widget of Listview by categoryName
 class productItemByCategory extends StatelessWidget {
   final ProductModel productModel;
@@ -35,7 +37,10 @@ class productItemByCategory extends StatelessWidget {
       /// list item container widget for shows item imag,item name, price... etc.
       child: Container(
         margin: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
         color: color[Random().nextInt(color.length)],
+        image: DecorationImage(image: NetworkImage(productModel.verticalImageUrl??sampleImageUrl),fit: BoxFit.cover)
+        ),
 
         /// olumn widget for shows widgets vertical alignment
         child: Column(
