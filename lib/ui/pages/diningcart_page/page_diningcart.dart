@@ -7,7 +7,7 @@ import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:flutter/material.dart';
 
-int? orderNumber;
+int? orderId;
 DateTime? orderedTime;
 
 class PageDiningCart extends StatelessWidget {

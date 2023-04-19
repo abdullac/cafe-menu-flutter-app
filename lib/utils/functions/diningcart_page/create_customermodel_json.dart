@@ -16,7 +16,7 @@ Map<String, dynamic> createCustemerModelJson() {
       customerName: NameChairNumber.customerNameEditingController.text,
       isTakeNow: true,
       isOrderConfirmed: true,
-      orderNumber: orderNumber,
+      orderId: orderId,
       orderedTime: orderedTime,
       totalItems: totalItemsQtyAmount["items"],
       totalQty: totalItemsQtyAmount["Qty"],

@@ -6,9 +6,9 @@ part 'customer_model.g.dart';
 @freezed
 class CustomerModel with _$CustomerModel {
   const factory CustomerModel({
+    int? orderId,
     int? customerId,
     String? customerName,
-    int? orderNumber,
     String? positionCode,
     required List<Map<String, dynamic>> productModelOrderList,
     List? additionalOrderList,
@@ -24,6 +24,8 @@ class CustomerModel with _$CustomerModel {
     String? customerFeadback,
     String? customerSuggession,
     bool? recievedAllItems,
+    bool? itemsReady,
+    bool? orderDelevered
   }) = _CustomerModel;
 
   factory CustomerModel.fromJson(Map<String, dynamic> json) =>

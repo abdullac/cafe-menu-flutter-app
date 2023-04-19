@@ -36,6 +36,8 @@ mixin _$ProductModel {
   int? get leftQty => throw _privateConstructorUsedError;
   bool? get isClosed => throw _privateConstructorUsedError;
   bool? get isSelectDiningCart => throw _privateConstructorUsedError;
+  bool? get itemReady => throw _privateConstructorUsedError;
+  bool? get itemDelevered => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,7 +67,9 @@ abstract class $ProductModelCopyWith<$Res> {
       int? availableQty,
       int? leftQty,
       bool? isClosed,
-      bool? isSelectDiningCart});
+      bool? isSelectDiningCart,
+      bool? itemReady,
+      bool? itemDelevered});
 }
 
 /// @nodoc
@@ -97,6 +101,8 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? leftQty = freezed,
     Object? isClosed = freezed,
     Object? isSelectDiningCart = freezed,
+    Object? itemReady = freezed,
+    Object? itemDelevered = freezed,
   }) {
     return _then(_value.copyWith(
       itemId: freezed == itemId
@@ -163,6 +169,14 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.isSelectDiningCart
           : isSelectDiningCart // ignore: cast_nullable_to_non_nullable
               as bool?,
+      itemReady: freezed == itemReady
+          ? _value.itemReady
+          : itemReady // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      itemDelevered: freezed == itemDelevered
+          ? _value.itemDelevered
+          : itemDelevered // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -191,7 +205,9 @@ abstract class _$$_ProductModelCopyWith<$Res>
       int? availableQty,
       int? leftQty,
       bool? isClosed,
-      bool? isSelectDiningCart});
+      bool? isSelectDiningCart,
+      bool? itemReady,
+      bool? itemDelevered});
 }
 
 /// @nodoc
@@ -221,6 +237,8 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? leftQty = freezed,
     Object? isClosed = freezed,
     Object? isSelectDiningCart = freezed,
+    Object? itemReady = freezed,
+    Object? itemDelevered = freezed,
   }) {
     return _then(_$_ProductModel(
       itemId: freezed == itemId
@@ -287,6 +305,14 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.isSelectDiningCart
           : isSelectDiningCart // ignore: cast_nullable_to_non_nullable
               as bool?,
+      itemReady: freezed == itemReady
+          ? _value.itemReady
+          : itemReady // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      itemDelevered: freezed == itemDelevered
+          ? _value.itemDelevered
+          : itemDelevered // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -310,7 +336,9 @@ class _$_ProductModel implements _ProductModel {
       required this.availableQty,
       this.leftQty,
       this.isClosed,
-      this.isSelectDiningCart});
+      this.isSelectDiningCart,
+      this.itemReady,
+      this.itemDelevered});
 
   factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
       _$$_ProductModelFromJson(json);
@@ -347,10 +375,14 @@ class _$_ProductModel implements _ProductModel {
   final bool? isClosed;
   @override
   final bool? isSelectDiningCart;
+  @override
+  final bool? itemReady;
+  @override
+  final bool? itemDelevered;
 
   @override
   String toString() {
-    return 'ProductModel(itemId: $itemId, itemName: $itemName, serialNumber: $serialNumber, verticalImageUrl: $verticalImageUrl, horizontalImageUrl: $horizontalImageUrl, defualtImageUrl: $defualtImageUrl, categoryName: $categoryName, itemPrice: $itemPrice, orderedQty: $orderedQty, recievedTime: $recievedTime, isDiningCart: $isDiningCart, itemType: $itemType, availableQty: $availableQty, leftQty: $leftQty, isClosed: $isClosed, isSelectDiningCart: $isSelectDiningCart)';
+    return 'ProductModel(itemId: $itemId, itemName: $itemName, serialNumber: $serialNumber, verticalImageUrl: $verticalImageUrl, horizontalImageUrl: $horizontalImageUrl, defualtImageUrl: $defualtImageUrl, categoryName: $categoryName, itemPrice: $itemPrice, orderedQty: $orderedQty, recievedTime: $recievedTime, isDiningCart: $isDiningCart, itemType: $itemType, availableQty: $availableQty, leftQty: $leftQty, isClosed: $isClosed, isSelectDiningCart: $isSelectDiningCart, itemReady: $itemReady, itemDelevered: $itemDelevered)';
   }
 
   @override
@@ -387,7 +419,11 @@ class _$_ProductModel implements _ProductModel {
             (identical(other.isClosed, isClosed) ||
                 other.isClosed == isClosed) &&
             (identical(other.isSelectDiningCart, isSelectDiningCart) ||
-                other.isSelectDiningCart == isSelectDiningCart));
+                other.isSelectDiningCart == isSelectDiningCart) &&
+            (identical(other.itemReady, itemReady) ||
+                other.itemReady == itemReady) &&
+            (identical(other.itemDelevered, itemDelevered) ||
+                other.itemDelevered == itemDelevered));
   }
 
   @JsonKey(ignore: true)
@@ -409,7 +445,9 @@ class _$_ProductModel implements _ProductModel {
       availableQty,
       leftQty,
       isClosed,
-      isSelectDiningCart);
+      isSelectDiningCart,
+      itemReady,
+      itemDelevered);
 
   @JsonKey(ignore: true)
   @override
@@ -442,7 +480,9 @@ abstract class _ProductModel implements ProductModel {
       required final int? availableQty,
       final int? leftQty,
       final bool? isClosed,
-      final bool? isSelectDiningCart}) = _$_ProductModel;
+      final bool? isSelectDiningCart,
+      final bool? itemReady,
+      final bool? itemDelevered}) = _$_ProductModel;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$_ProductModel.fromJson;
@@ -479,6 +519,10 @@ abstract class _ProductModel implements ProductModel {
   bool? get isClosed;
   @override
   bool? get isSelectDiningCart;
+  @override
+  bool? get itemReady;
+  @override
+  bool? get itemDelevered;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>

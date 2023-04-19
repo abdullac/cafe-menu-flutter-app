@@ -1,4 +1,4 @@
-int setOrderNumber() {
+int setOrderId() {
   /// create method for get last number from firebase realtime database.
   int? lastOrderNumberFromFirebase = 611 + 1;
 

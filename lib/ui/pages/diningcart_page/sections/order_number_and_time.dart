@@ -30,7 +30,7 @@ class OrderNumberTime extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text("Order no: ${orderNumber ?? ''}"),
+                        Text("Order id: ${orderId ?? ''}"),
                         Text("Time: ${formattedOrderedTime ?? ''}"),
                       ],
                     ),

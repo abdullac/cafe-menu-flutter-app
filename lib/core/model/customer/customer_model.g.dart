@@ -8,9 +8,9 @@ part of 'customer_model.dart';
 
 _$_CustomerModel _$$_CustomerModelFromJson(Map<String, dynamic> json) =>
     _$_CustomerModel(
+      orderId: json['orderId'] as int?,
       customerId: json['customerId'] as int?,
       customerName: json['customerName'] as String?,
-      orderNumber: json['orderNumber'] as int?,
       positionCode: json['positionCode'] as String?,
       productModelOrderList: (json['productModelOrderList'] as List<dynamic>)
           .map((e) => e as Map<String, dynamic>)
@@ -30,13 +30,15 @@ _$_CustomerModel _$$_CustomerModelFromJson(Map<String, dynamic> json) =>
       customerFeadback: json['customerFeadback'] as String?,
       customerSuggession: json['customerSuggession'] as String?,
       recievedAllItems: json['recievedAllItems'] as bool?,
+      itemsReady: json['itemsReady'] as bool?,
+      orderDelevered: json['orderDelevered'] as bool?,
     );
 
 Map<String, dynamic> _$$_CustomerModelToJson(_$_CustomerModel instance) =>
     <String, dynamic>{
+      'orderId': instance.orderId,
       'customerId': instance.customerId,
       'customerName': instance.customerName,
-      'orderNumber': instance.orderNumber,
       'positionCode': instance.positionCode,
       'productModelOrderList': instance.productModelOrderList,
       'additionalOrderList': instance.additionalOrderList,
@@ -52,6 +54,8 @@ Map<String, dynamic> _$$_CustomerModelToJson(_$_CustomerModel instance) =>
       'customerFeadback': instance.customerFeadback,
       'customerSuggession': instance.customerSuggession,
       'recievedAllItems': instance.recievedAllItems,
+      'itemsReady': instance.itemsReady,
+      'orderDelevered': instance.orderDelevered,
     };
 
 const _$OrderTypeEnumMap = {

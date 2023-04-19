@@ -4,7 +4,8 @@ import 'package:cafemenu_app/ui/pages/diningcart_page/sections/customername_and_
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/create_customermodel_json.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/set_order_number.dart';
+import 'package:cafemenu_app/utils/functions/diningcart_page/order_saveto_firebase.dart';
+import 'package:cafemenu_app/utils/functions/diningcart_page/set_order_id.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/set_ordered_time.dart';
 import 'package:flutter/material.dart';
 
@@ -22,10 +23,11 @@ void setDiningCartButtonFunctionality(
               .contains(NameChairNumber.tableOrChairNumberNotifier.value)) {
         print("Please fill Name or select Table/Chair");
       } else {
-        orderNumber = setOrderNumber();
+        orderId = setOrderId();
         orderedTime = setOrderTime();
         final customerModelJson = createCustemerModelJson();
         /////// orderSaveToFireBaseDatabase(customerModelJson); /// important
+        orderSaveToFireBaseDatabase(customerModelJson);
         diningCartButtonNotifier.value =
             DiningCartButtonFunctionality.orderConfirm;
       }

@@ -20,9 +20,9 @@ CustomerModel _$CustomerModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CustomerModel {
+  int? get orderId => throw _privateConstructorUsedError;
   int? get customerId => throw _privateConstructorUsedError;
   String? get customerName => throw _privateConstructorUsedError;
-  int? get orderNumber => throw _privateConstructorUsedError;
   String? get positionCode => throw _privateConstructorUsedError;
   List<Map<String, dynamic>> get productModelOrderList =>
       throw _privateConstructorUsedError;
@@ -39,6 +39,8 @@ mixin _$CustomerModel {
   String? get customerFeadback => throw _privateConstructorUsedError;
   String? get customerSuggession => throw _privateConstructorUsedError;
   bool? get recievedAllItems => throw _privateConstructorUsedError;
+  bool? get itemsReady => throw _privateConstructorUsedError;
+  bool? get orderDelevered => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,9 +55,9 @@ abstract class $CustomerModelCopyWith<$Res> {
       _$CustomerModelCopyWithImpl<$Res, CustomerModel>;
   @useResult
   $Res call(
-      {int? customerId,
+      {int? orderId,
+      int? customerId,
       String? customerName,
-      int? orderNumber,
       String? positionCode,
       List<Map<String, dynamic>> productModelOrderList,
       List<dynamic>? additionalOrderList,
@@ -70,7 +72,9 @@ abstract class $CustomerModelCopyWith<$Res> {
       bool? isOrderConfirmed,
       String? customerFeadback,
       String? customerSuggession,
-      bool? recievedAllItems});
+      bool? recievedAllItems,
+      bool? itemsReady,
+      bool? orderDelevered});
 }
 
 /// @nodoc
@@ -86,9 +90,9 @@ class _$CustomerModelCopyWithImpl<$Res, $Val extends CustomerModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? orderId = freezed,
     Object? customerId = freezed,
     Object? customerName = freezed,
-    Object? orderNumber = freezed,
     Object? positionCode = freezed,
     Object? productModelOrderList = null,
     Object? additionalOrderList = freezed,
@@ -104,8 +108,14 @@ class _$CustomerModelCopyWithImpl<$Res, $Val extends CustomerModel>
     Object? customerFeadback = freezed,
     Object? customerSuggession = freezed,
     Object? recievedAllItems = freezed,
+    Object? itemsReady = freezed,
+    Object? orderDelevered = freezed,
   }) {
     return _then(_value.copyWith(
+      orderId: freezed == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as int?,
       customerId: freezed == customerId
           ? _value.customerId
           : customerId // ignore: cast_nullable_to_non_nullable
@@ -114,10 +124,6 @@ class _$CustomerModelCopyWithImpl<$Res, $Val extends CustomerModel>
           ? _value.customerName
           : customerName // ignore: cast_nullable_to_non_nullable
               as String?,
-      orderNumber: freezed == orderNumber
-          ? _value.orderNumber
-          : orderNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
       positionCode: freezed == positionCode
           ? _value.positionCode
           : positionCode // ignore: cast_nullable_to_non_nullable
@@ -178,6 +184,14 @@ class _$CustomerModelCopyWithImpl<$Res, $Val extends CustomerModel>
           ? _value.recievedAllItems
           : recievedAllItems // ignore: cast_nullable_to_non_nullable
               as bool?,
+      itemsReady: freezed == itemsReady
+          ? _value.itemsReady
+          : itemsReady // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      orderDelevered: freezed == orderDelevered
+          ? _value.orderDelevered
+          : orderDelevered // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -191,9 +205,9 @@ abstract class _$$_CustomerModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? customerId,
+      {int? orderId,
+      int? customerId,
       String? customerName,
-      int? orderNumber,
       String? positionCode,
       List<Map<String, dynamic>> productModelOrderList,
       List<dynamic>? additionalOrderList,
@@ -208,7 +222,9 @@ abstract class _$$_CustomerModelCopyWith<$Res>
       bool? isOrderConfirmed,
       String? customerFeadback,
       String? customerSuggession,
-      bool? recievedAllItems});
+      bool? recievedAllItems,
+      bool? itemsReady,
+      bool? orderDelevered});
 }
 
 /// @nodoc
@@ -222,9 +238,9 @@ class __$$_CustomerModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? orderId = freezed,
     Object? customerId = freezed,
     Object? customerName = freezed,
-    Object? orderNumber = freezed,
     Object? positionCode = freezed,
     Object? productModelOrderList = null,
     Object? additionalOrderList = freezed,
@@ -240,8 +256,14 @@ class __$$_CustomerModelCopyWithImpl<$Res>
     Object? customerFeadback = freezed,
     Object? customerSuggession = freezed,
     Object? recievedAllItems = freezed,
+    Object? itemsReady = freezed,
+    Object? orderDelevered = freezed,
   }) {
     return _then(_$_CustomerModel(
+      orderId: freezed == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as int?,
       customerId: freezed == customerId
           ? _value.customerId
           : customerId // ignore: cast_nullable_to_non_nullable
@@ -250,10 +272,6 @@ class __$$_CustomerModelCopyWithImpl<$Res>
           ? _value.customerName
           : customerName // ignore: cast_nullable_to_non_nullable
               as String?,
-      orderNumber: freezed == orderNumber
-          ? _value.orderNumber
-          : orderNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
       positionCode: freezed == positionCode
           ? _value.positionCode
           : positionCode // ignore: cast_nullable_to_non_nullable
@@ -314,6 +332,14 @@ class __$$_CustomerModelCopyWithImpl<$Res>
           ? _value.recievedAllItems
           : recievedAllItems // ignore: cast_nullable_to_non_nullable
               as bool?,
+      itemsReady: freezed == itemsReady
+          ? _value.itemsReady
+          : itemsReady // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      orderDelevered: freezed == orderDelevered
+          ? _value.orderDelevered
+          : orderDelevered // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -322,9 +348,9 @@ class __$$_CustomerModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CustomerModel implements _CustomerModel {
   const _$_CustomerModel(
-      {this.customerId,
+      {this.orderId,
+      this.customerId,
       this.customerName,
-      this.orderNumber,
       this.positionCode,
       required final List<Map<String, dynamic>> productModelOrderList,
       final List<dynamic>? additionalOrderList,
@@ -339,7 +365,9 @@ class _$_CustomerModel implements _CustomerModel {
       this.isOrderConfirmed,
       this.customerFeadback,
       this.customerSuggession,
-      this.recievedAllItems})
+      this.recievedAllItems,
+      this.itemsReady,
+      this.orderDelevered})
       : _productModelOrderList = productModelOrderList,
         _additionalOrderList = additionalOrderList,
         _runningOrderList = runningOrderList;
@@ -348,11 +376,11 @@ class _$_CustomerModel implements _CustomerModel {
       _$$_CustomerModelFromJson(json);
 
   @override
+  final int? orderId;
+  @override
   final int? customerId;
   @override
   final String? customerName;
-  @override
-  final int? orderNumber;
   @override
   final String? positionCode;
   final List<Map<String, dynamic>> _productModelOrderList;
@@ -408,10 +436,14 @@ class _$_CustomerModel implements _CustomerModel {
   final String? customerSuggession;
   @override
   final bool? recievedAllItems;
+  @override
+  final bool? itemsReady;
+  @override
+  final bool? orderDelevered;
 
   @override
   String toString() {
-    return 'CustomerModel(customerId: $customerId, customerName: $customerName, orderNumber: $orderNumber, positionCode: $positionCode, productModelOrderList: $productModelOrderList, additionalOrderList: $additionalOrderList, runningOrderList: $runningOrderList, orderType: $orderType, totalItems: $totalItems, totalQty: $totalQty, totalAmount: $totalAmount, orderedTime: $orderedTime, isPaid: $isPaid, isTakeNow: $isTakeNow, isOrderConfirmed: $isOrderConfirmed, customerFeadback: $customerFeadback, customerSuggession: $customerSuggession, recievedAllItems: $recievedAllItems)';
+    return 'CustomerModel(orderId: $orderId, customerId: $customerId, customerName: $customerName, positionCode: $positionCode, productModelOrderList: $productModelOrderList, additionalOrderList: $additionalOrderList, runningOrderList: $runningOrderList, orderType: $orderType, totalItems: $totalItems, totalQty: $totalQty, totalAmount: $totalAmount, orderedTime: $orderedTime, isPaid: $isPaid, isTakeNow: $isTakeNow, isOrderConfirmed: $isOrderConfirmed, customerFeadback: $customerFeadback, customerSuggession: $customerSuggession, recievedAllItems: $recievedAllItems, itemsReady: $itemsReady, orderDelevered: $orderDelevered)';
   }
 
   @override
@@ -419,12 +451,11 @@ class _$_CustomerModel implements _CustomerModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CustomerModel &&
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
             (identical(other.customerId, customerId) ||
                 other.customerId == customerId) &&
             (identical(other.customerName, customerName) ||
                 other.customerName == customerName) &&
-            (identical(other.orderNumber, orderNumber) ||
-                other.orderNumber == orderNumber) &&
             (identical(other.positionCode, positionCode) ||
                 other.positionCode == positionCode) &&
             const DeepCollectionEquality()
@@ -453,31 +484,38 @@ class _$_CustomerModel implements _CustomerModel {
             (identical(other.customerSuggession, customerSuggession) ||
                 other.customerSuggession == customerSuggession) &&
             (identical(other.recievedAllItems, recievedAllItems) ||
-                other.recievedAllItems == recievedAllItems));
+                other.recievedAllItems == recievedAllItems) &&
+            (identical(other.itemsReady, itemsReady) ||
+                other.itemsReady == itemsReady) &&
+            (identical(other.orderDelevered, orderDelevered) ||
+                other.orderDelevered == orderDelevered));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      customerId,
-      customerName,
-      orderNumber,
-      positionCode,
-      const DeepCollectionEquality().hash(_productModelOrderList),
-      const DeepCollectionEquality().hash(_additionalOrderList),
-      const DeepCollectionEquality().hash(_runningOrderList),
-      orderType,
-      totalItems,
-      totalQty,
-      totalAmount,
-      orderedTime,
-      isPaid,
-      isTakeNow,
-      isOrderConfirmed,
-      customerFeadback,
-      customerSuggession,
-      recievedAllItems);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        orderId,
+        customerId,
+        customerName,
+        positionCode,
+        const DeepCollectionEquality().hash(_productModelOrderList),
+        const DeepCollectionEquality().hash(_additionalOrderList),
+        const DeepCollectionEquality().hash(_runningOrderList),
+        orderType,
+        totalItems,
+        totalQty,
+        totalAmount,
+        orderedTime,
+        isPaid,
+        isTakeNow,
+        isOrderConfirmed,
+        customerFeadback,
+        customerSuggession,
+        recievedAllItems,
+        itemsReady,
+        orderDelevered
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -495,9 +533,9 @@ class _$_CustomerModel implements _CustomerModel {
 
 abstract class _CustomerModel implements CustomerModel {
   const factory _CustomerModel(
-      {final int? customerId,
+      {final int? orderId,
+      final int? customerId,
       final String? customerName,
-      final int? orderNumber,
       final String? positionCode,
       required final List<Map<String, dynamic>> productModelOrderList,
       final List<dynamic>? additionalOrderList,
@@ -512,17 +550,19 @@ abstract class _CustomerModel implements CustomerModel {
       final bool? isOrderConfirmed,
       final String? customerFeadback,
       final String? customerSuggession,
-      final bool? recievedAllItems}) = _$_CustomerModel;
+      final bool? recievedAllItems,
+      final bool? itemsReady,
+      final bool? orderDelevered}) = _$_CustomerModel;
 
   factory _CustomerModel.fromJson(Map<String, dynamic> json) =
       _$_CustomerModel.fromJson;
 
   @override
+  int? get orderId;
+  @override
   int? get customerId;
   @override
   String? get customerName;
-  @override
-  int? get orderNumber;
   @override
   String? get positionCode;
   @override
@@ -553,6 +593,10 @@ abstract class _CustomerModel implements CustomerModel {
   String? get customerSuggession;
   @override
   bool? get recievedAllItems;
+  @override
+  bool? get itemsReady;
+  @override
+  bool? get orderDelevered;
   @override
   @JsonKey(ignore: true)
   _$$_CustomerModelCopyWith<_$_CustomerModel> get copyWith =>

@@ -1,4 +1,6 @@
-import 'package:cafemenu_app/admin/ui/page_add_item.dart';
+import 'package:cafemenu_app/admin/ui/add_item_page/page_add_item.dart';
+import 'package:cafemenu_app/admin/ui/get_orderitem_page/page_get_orderitem.dart';
+import 'package:cafemenu_app/admin/ui/order_list_page/page_order_list.dart';
 import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
 import 'package:flutter/material.dart';
 
@@ -23,9 +25,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  Scaffold(
-        body: PageHome(),
+      home: Scaffold(
+        // body: PageHome(),
         // body: PageAddItem(),
+        // body: PageGetOrderitem(),
+        body: PageOrderPageView(),
       ),
     );
   }

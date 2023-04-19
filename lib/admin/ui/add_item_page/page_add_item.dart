@@ -155,28 +155,21 @@ addOrUpdateProductModelItemToFireBase(
   final getproductModelListObjet =
       await firebaseRef.child("cafeMenu/menuCard/itemsSample").get();
   // List<int> keyList = [];
-  // int baseIndex = 0;
-  // int tempkey = 0;
-  var lastPositionSnapshort = getproductModelListObjet.children.last.key as String;
-  int newPosition = int.parse(lastPositionSnapshort)+1;
-  // forEach((element) {
+  // int newKey = 0;
+  var lastPositionKeySnapshort = getproductModelListObjet.children.last.key as String;
+  int newPosition = int.parse(lastPositionKeySnapshort)+1;
+  // getproductModelListObjet.children.forEach((element) {
   //   if (element.key != null) {
   //     keyList.add(int.parse(element.key!));
   //   }
-  //   if (keyList.length < 1) {
-  //     for (baseIndex; baseIndex < keyList.length - 1; baseIndex++) {
-  //       for (int subIndex = 1; subIndex < keyList.length; subIndex++) {
+  // });
+  //     for (int baseIndex = 0; baseIndex < keyList.length; baseIndex++) {
+  //       for (int subIndex = baseIndex+1; subIndex < keyList.length; subIndex++) {
   //         if (keyList[baseIndex] < keyList[subIndex]) {
-  //           tempkey = keyList[subIndex]+1;
+  //           newKey = keyList[subIndex]+1;
   //         }
   //       }
   //     }
-  //   } else if (keyList.length == 1) {
-  //     tempkey = keyList[0]+1;
-  //   } else {
-  //     tempkey = 0;
-  //   }
-  // });
   await firebaseRef
       .child("cafeMenu/menuCard/itemsSample/$newPosition")
       .set(productModelJson);
