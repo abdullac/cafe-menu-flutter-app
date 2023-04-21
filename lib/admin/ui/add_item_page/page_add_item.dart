@@ -12,11 +12,15 @@ import 'package:image_picker/image_picker.dart';
 class PageAddItem extends StatelessWidget {
   PageAddItem({Key? key}) : super(key: key);
 
-  TextEditingController itemNameEditingController = TextEditingController();
-  TextEditingController categoryNameEditingController = TextEditingController();
-  TextEditingController priceEditingController = TextEditingController();
-  TextEditingController availableQtyEditingController = TextEditingController();
+  static TextEditingController itemNameEditingController =
+      TextEditingController();
+  static TextEditingController categoryNameEditingController =
+      TextEditingController();
+  static TextEditingController priceEditingController = TextEditingController();
+  static TextEditingController availableQtyEditingController =
+      TextEditingController();
   static ValueNotifier<XFile?> pickedImageNotifier = ValueNotifier(null);
+  static ValueNotifier<bool> isUploadingImageNotifier = ValueNotifier(false);
   static UploadTask? uploadTask;
   static String? firebaseImageUrl;
 
@@ -37,10 +41,11 @@ class PageAddItem extends StatelessWidget {
                   categoryName: categoryNameEditingController.text,
                   price: priceEditingController.text,
                   availableQuantity: availableQtyEditingController.text,
-                  verticalImageUrl:await uploadImagetoFirebaseGetUrl(),
+                  verticalImageUrl: await uploadImagetoFirebaseGetUrl(),
                 );
                 if (productModelJson != null) {
                   await addOrUpdateProductModelItemToFireBase(productModelJson);
+                  Navigator.of(context).pop();
                 } else {
                   print("Somthing Wrong, may be any form field is empty");
                 }
@@ -119,21 +124,36 @@ class PageAddItem extends StatelessWidget {
                             valueListenable: pickedImageNotifier,
                             builder: (context, pickedImage, _) {
                               return pickedImage != null
-                                  ? Stack(
-                                      children: [
-                                        Opacity(
-                                          opacity: 1,
-                                          child: Image.file(
-                                            File(pickedImage.path),
-                                          ),
-                                        ),
-                                        const Center(
-                                          child: CircularProgressIndicator(
-                                            strokeWidth: 2,
-                                          ),
-                                        )
-                                      ],
-                                    )
+                                  ? ValueListenableBuilder(
+                                      valueListenable: isUploadingImageNotifier,
+                                      builder: (context, isUploadingImage, _) {
+                                        return Stack(
+                                          children: [
+                                            Opacity(
+                                              opacity: isUploadingImage == true
+                                                  ? 0.5
+                                                  : 1,
+                                              child: Image.file(
+                                                File(pickedImage.path),
+                                              ),
+                                            ),
+                                            isUploadingImage == true
+                                                ? const Positioned(
+                                                    top: 0,
+                                                    bottom: 0,
+                                                    left: 0,
+                                                    right: 0,
+                                                    child: Center(
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        strokeWidth: 2,
+                                                      ),
+                                                    ),
+                                                  )
+                                                : const SizedBox(),
+                                          ],
+                                        );
+                                      })
                                   : const SizedBox();
                             }),
                       ],
@@ -169,8 +189,12 @@ Future<String?> uploadImagetoFirebaseGetUrl() async {
     PageAddItem.uploadTask = firebaseStorageRef.putFile(imagefile);
   }
   if (PageAddItem.uploadTask != null) {
+    PageAddItem.isUploadingImageNotifier.value = true;
+    PageAddItem.isUploadingImageNotifier.notifyListeners();
     final taskSnapshot = await PageAddItem.uploadTask!.whenComplete(() {});
     PageAddItem.firebaseImageUrl = await taskSnapshot.ref.getDownloadURL();
+    PageAddItem.isUploadingImageNotifier.value = false;
+    PageAddItem.isUploadingImageNotifier.notifyListeners();
     print("fireBaseImageUrl : ${PageAddItem.firebaseImageUrl}");
   }
   return PageAddItem.firebaseImageUrl;
@@ -241,4 +265,11 @@ addOrUpdateProductModelItemToFireBase(
   await firebaseRef
       .child("cafeMenu/menuCard/itemsSample/$newPosition")
       .set(productModelJson);
+}
+
+pageAddItemClearAllTextFields() {
+  PageAddItem.itemNameEditingController.text = "";
+  PageAddItem.categoryNameEditingController.text = "";
+  PageAddItem.priceEditingController.text = "";
+  PageAddItem.availableQtyEditingController.text = "";
 }

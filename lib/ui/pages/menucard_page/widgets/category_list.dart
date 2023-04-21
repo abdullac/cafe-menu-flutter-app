@@ -17,7 +17,7 @@ class CategoryListviewOfProductPageview extends StatelessWidget {
   Widget build(BuildContext context) {
     /// sizedBox widget for set hight of listview
     return SizedBox(
-      height: 200,
+      height: 280,
 
       /// Stack widget for make categoryName top of ListView (pageview)
       /// it makes, no scroll categoryName with listView (pageview)
@@ -25,7 +25,7 @@ class CategoryListviewOfProductPageview extends StatelessWidget {
         children: [
           /// pageview with items by categoryName.
           PageView.builder(
-            itemCount: 5,
+            itemCount: listOfProductmodelByCategory.values.toList()[categoryIndex].length,
             itemBuilder: (context, categoryItemIndex) => productItemByCategory(
               /// convert Map values to values list for make Product Model list by that catgoryName,
               /// and pass item(productModel) to ItemByCategory widget

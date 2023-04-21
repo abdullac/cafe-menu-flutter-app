@@ -1,3 +1,4 @@
+import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
 import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,14 @@ class MenuCardButton extends StatelessWidget {
                 builder: (context) => PageMenuCard(
                       productModelList: productModelList,
                     )));
+          },
+          onLongPress: () {
+            if (PageHome.isAdminButtonNotifier.value == false) {
+              PageHome.isAdminButtonNotifier.value = true;
+            } else {
+              PageHome.isAdminButtonNotifier.value = false;
+            }
+            PageHome.isAdminButtonNotifier.notifyListeners();
           },
           child: const Text("Menu Card"),
         ),

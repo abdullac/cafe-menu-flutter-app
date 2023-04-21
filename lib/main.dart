@@ -1,11 +1,10 @@
-import 'package:cafemenu_app/admin/ui/add_item_page/page_add_item.dart';
-import 'package:cafemenu_app/admin/ui/get_orderitem_page/page_get_orderitem.dart';
-import 'package:cafemenu_app/admin/ui/order_list_page/page_order_list.dart';
 import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,16 +20,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      key: navigatorKey,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        // body: PageHome(),
-        body: PageAddItem(),
-        // body: PageGetOrderitem(),
-        // body: PageOrderListPageView(),
+      home: const Scaffold(
+        body: PageHome(),
       ),
     );
   }
 }
+
+
+        // body: PageHome(),
+        // body: PageAddItem(),
+        // body: PageGetOrderitem(),
+        // body: PageOrderListPageView(),
+        // body: PageAdminSignupOrSignin(),
