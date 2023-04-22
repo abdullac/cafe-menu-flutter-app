@@ -20,8 +20,8 @@ class QtyIncreaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
+    return InkWell(
+      onTap: () {
         // count increase button pressed
         /// call method for increase Qty of ProductModel
         /// and ProductModel add/update to diningCardList
@@ -35,9 +35,16 @@ class QtyIncreaseButton extends StatelessWidget {
           onIncreasePressed!();
         }
       },
-      icon: const Text(
-        "+",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 9),
+        decoration: BoxDecoration(
+            color: Colors.red.withOpacity(0.7),
+            borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
+        child: const Text(
+          "+",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
       ),
     );
   }
@@ -62,19 +69,18 @@ class QtyDecreaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
+    return InkWell(
+      onTap: () {
         // count decrease button pressed
         if (newValue != 0) {
           /// call method for decrease Qty of ProductModel
           /// and ProductModel add/update to diningCardList
           changeSetQtyAndNotifyListener(
-            inreaseOrDecrease: ChangeQty.decrease,
-            valueNotifier: valueNotifier,
-            newValue: newValue,
-            productModel: productModel,
-            removeitemAtQty0: removeitemAtQty0
-          );
+              inreaseOrDecrease: ChangeQty.decrease,
+              valueNotifier: valueNotifier,
+              newValue: newValue,
+              productModel: productModel,
+              removeitemAtQty0: removeitemAtQty0);
           if (onDecreasePressed != null) {
             onDecreasePressed!();
           }
@@ -87,9 +93,16 @@ class QtyDecreaseButton extends StatelessWidget {
         //   removeItemAtQty0FromDiningCartList(newValue, productModel);
         // }
       },
-      icon: const Text(
-        "-",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+        decoration: BoxDecoration(
+            color: Colors.red.withOpacity(0.7),
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(8), bottomLeft: Radius.circular(8))),
+        child: const Text(
+          "-",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
       ),
     );
   }

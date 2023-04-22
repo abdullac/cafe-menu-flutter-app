@@ -28,6 +28,7 @@ class SetQtySetion extends StatelessWidget {
         builder: (context, newValue, _) {
           return Row(
             mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               /// button for Decrease Qty
               QtyDecreaseButton(
@@ -39,10 +40,16 @@ class SetQtySetion extends StatelessWidget {
               ),
 
               /// shows increased/decreased Qty
-              Text(
-                "$newValue",
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              Container(
+        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+        margin: EdgeInsets.symmetric(horizontal: 1),
+        decoration: BoxDecoration(
+            color: Colors.red.withOpacity(0.5),),
+                child: Text(
+                  "$newValue",
+                  style:
+                      const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
               ),
 
               /// button for increase Qty

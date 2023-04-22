@@ -42,39 +42,58 @@ class DiningCartItem extends StatelessWidget {
         height: 150,
         margin: const EdgeInsets.all(5),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            DiningcartListItemSerialNumberAndIsSelectCheckBox(
-              index: index,
-              productModel: productModel,
-              productModellist: productModellist,
-              isSelectNotifier: isSelectNotifier,
-            ),
-             DinngcartListItemImageContainer(productModel: productModel),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  DiningcartListItemCategoryNameAndItemName(
-                      productModel: productModel),
-                  DiningcartListItemPriceAndQty(
-                      productModel: productModel,
-                      setQtyNotifier: setQtyNotifier,
-                      isSelectNotifier: isSelectNotifier),
-                ],
+            Expanded(
+              flex: 1,
+              child: DiningcartListItemSerialNumberAndIsSelectCheckBox(
+                index: index,
+                productModel: productModel,
+                productModellist: productModellist,
+                isSelectNotifier: isSelectNotifier,
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                DiningcartListItemDeleteButton(productModel: productModel),
-                const DiningcartListItemIsRecievedCheckBox(),
-                const Text(
-                  "8:41\nPM",
-                  textAlign: TextAlign.center,
+            Expanded(
+              flex: 3,
+              child: DinngcartListItemImageContainerAndPrice(
+                  productModel: productModel),
+            ),
+            Expanded(
+              flex: 5,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: SizedBox(
+                  // width: 150,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      DiningcartListItemCategoryNameAndItemName(
+                          productModel: productModel),
+                      DiningcartListItemQty(
+                          productModel: productModel,
+                          setQtyNotifier: setQtyNotifier,
+                          isSelectNotifier: isSelectNotifier),
+                    ],
+                  ),
                 ),
-              ],
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    DiningcartListItemDeleteButton(productModel: productModel),
+                    // const DiningcartListItemIsRecievedCheckBox(),
+                    const Text(
+                      "8:41\nPM",
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
             )
           ],
         ),
@@ -83,21 +102,42 @@ class DiningCartItem extends StatelessWidget {
   }
 }
 
-class DinngcartListItemImageContainer extends StatelessWidget {
+class DinngcartListItemImageContainerAndPrice extends StatelessWidget {
   final ProductModel productModel;
-  const DinngcartListItemImageContainer({
+  const DinngcartListItemImageContainerAndPrice({
     super.key,
     required this.productModel,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 140,
-      width: 100,
-      decoration: BoxDecoration(
-          color: Colors.teal[700],
-          image: DecorationImage(image: NetworkImage(productModel.verticalImageUrl??sampleImageUrl),fit: BoxFit.cover)),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Container(
+          height: 90,
+          width: 90,
+          decoration: BoxDecoration(
+              border: Border.all(
+                  color: Colors.grey[300]!.withOpacity(0.7), width: 2.5),
+              shape: BoxShape.circle,
+              color: Colors.teal[700],
+              image: DecorationImage(
+                  image: NetworkImage(
+                      productModel.verticalImageUrl ?? sampleImageUrl),
+                  fit: BoxFit.cover)),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+          margin: const EdgeInsets.only(bottom: 4),
+          decoration: BoxDecoration(
+              color: Colors.red.withOpacity(0.5),
+              borderRadius: const BorderRadius.all(Radius.circular(8))),
+          child: Text(productModel.itemPrice != null
+              ? "₹ ${productModel.itemPrice}/Pc"
+              : "₹ N/A"),
+        ),
+      ],
     );
   }
 }
@@ -124,16 +164,25 @@ class DiningcartListItemSerialNumberAndIsSelectCheckBox
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text("${index + 1}"),
+        Container(
+          padding: EdgeInsets.all(4),
+          decoration: BoxDecoration(
+              color: Colors.red.withOpacity(0.5), shape: BoxShape.circle),
+          child: Text("${index + 1}"),
+        ),
 
         /// is diningCarlList item isSelect
         ValueListenableBuilder(
             valueListenable: isSelectNotifier,
             builder: (context, newValue, _) {
               return Checkbox(
+                fillColor:
+                    MaterialStateProperty.all(Colors.red.withOpacity(0.2)),
+                checkColor: Colors.red,
                 value: newValue,
                 onChanged: (isSelect) {
                   // checkbox on changed (select unselect)
+                  print("Qty${diningCartList[0].orderedQty}");
                   selectOrUnselectItem(
                     productModel: productModel,
                     isSelect: isSelect,
@@ -158,24 +207,52 @@ class DiningcartListItemCategoryNameAndItemName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          productModel.categoryName ?? "Category Name",
-          style: const TextStyle(fontSize: 15),
+    return Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+              bottomRight: Radius.circular(8), topRight: Radius.circular(8)),
+          image: DecorationImage(
+              image:
+                  NetworkImage(productModel.verticalImageUrl ?? sampleImageUrl),
+              fit: BoxFit.cover),
         ),
-        Text(
-          productModel.itemName ?? "Sub category Name",
-          style: const TextStyle(fontSize: 20),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+          decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                  bottomRight: Radius.circular(8),
+                  topRight: Radius.circular(8)),
+              color: Colors.blue.withOpacity(1),
+              gradient: LinearGradient(colors: [
+                Colors.white,
+                Colors.white.withOpacity(0.85),
+                Colors.white.withOpacity(0.8),
+              ])),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                productModel.categoryName ?? "Category Name",
+                style: const TextStyle(fontSize: 15),
+              ),
+              Text(
+                productModel.itemName ?? "Sub category Name",
+                maxLines: 2,
+                overflow: TextOverflow.fade,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
         ),
-      ],
+      ),
     );
   }
 }
 
-class DiningcartListItemPriceAndQty extends StatelessWidget {
-  const DiningcartListItemPriceAndQty({
+class DiningcartListItemQty extends StatelessWidget {
+  const DiningcartListItemQty({
     super.key,
     required this.productModel,
     required this.setQtyNotifier,
@@ -188,27 +265,29 @@ class DiningcartListItemPriceAndQty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(productModel.itemPrice != null
-            ? "₹ ${productModel.itemPrice}/Pc"
-            : "₹ N/A"),
-        SetQtySetion(
-          valueNotifier: setQtyNotifier,
-          productModel: productModel,
-          removeitemAtQty0: false,
-          onIncreasePressed: () {
-            additionalIncreaseOrDecreaseButtonPressed(
-                isSelectNotifier: isSelectNotifier);
-          },
-          onDecreasePressed: () {
-            additionalIncreaseOrDecreaseButtonPressed(
-                isSelectNotifier: isSelectNotifier);
-          },
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.only(top: 12),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SetQtySetion(
+            valueNotifier: setQtyNotifier,
+            productModel: productModel,
+            removeitemAtQty0: false,
+            onIncreasePressed: () {
+              additionalIncreaseOrDecreaseButtonPressed(
+                  isSelectNotifier: isSelectNotifier);
+              PageDiningCart.diningCartListViewNotifier.notifyListeners();
+              print("QtyA ${diningCartList[0].orderedQty}");
+            },
+            onDecreasePressed: () {
+              additionalIncreaseOrDecreaseButtonPressed(
+                  isSelectNotifier: isSelectNotifier);
+            },
+          ),
+        ],
+      ),
     );
   }
 }
@@ -223,15 +302,18 @@ class DiningcartListItemDeleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
+    return InkWell(
+      onTap: () {
         // cart item delete button pressed
         print("deleting progress...");
         deleteItemFromDiningCartList(productModel);
         PageDiningCart.diningCartListViewNotifier.value = diningCartList;
         PageDiningCart.diningCartListViewNotifier.notifyListeners();
       },
-      icon: const Icon(Icons.delete_outline),
+      child: Icon(
+        Icons.delete,
+        color: Colors.red.withOpacity(0.7),
+      ),
     );
   }
 }
@@ -244,6 +326,8 @@ class DiningcartListItemIsRecievedCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Checkbox(
+      fillColor: MaterialStateProperty.all(Colors.red.withOpacity(0.2)),
+      checkColor: Colors.red,
       value: false,
       onChanged: (value) {
         // item recieved checkbox changed

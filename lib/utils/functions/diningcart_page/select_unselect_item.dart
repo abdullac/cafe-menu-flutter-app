@@ -3,15 +3,36 @@ import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/find_total_itemsqtyamount.dart';
 import 'package:flutter/material.dart';
 
+List<ProductModel> unSelectedProductModelList = [];
 
 selectOrUnselectItem(
     {required ProductModel productModel,
     required bool? isSelect,
     required ValueNotifier<bool?> isSelectNotifier}) {
-      
-
   ProductModel productModelTemp =
       productModel.copyWith(isSelectDiningCart: isSelect);
+  // int? positionFromUnSelectedList;
+  // for (var element in unSelectedProductModelList) {
+  //   if (element.itemName == productModelTemp.itemName) {
+  //     positionFromUnSelectedList = unSelectedProductModelList.indexOf(element);
+  //   }
+  // }
+  // if (isSelect == false) {
+  //   if (positionFromUnSelectedList != null) {
+  //     unSelectedProductModelList[positionFromUnSelectedList] = productModelTemp;
+  //   } else {
+  //     unSelectedProductModelList.add(productModelTemp);
+  //   }
+  // } else if (isSelect == true) {
+  //   if (positionFromUnSelectedList != null) {
+  //     productModelTemp = unSelectedProductModelList[positionFromUnSelectedList]
+  //         .copyWith(isSelectDiningCart: isSelect);
+  //   }
+  // }
+
+  ///////////////////////////
+  // ProductModel productModelTemp =
+  //     productModel.copyWith(isSelectDiningCart: isSelect);
 
   int? elementPosition;
   for (var element in diningCartList) {

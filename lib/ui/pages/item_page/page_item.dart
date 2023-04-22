@@ -61,31 +61,77 @@ class PageItem extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
+                color: Colors.white,
                 image: DecorationImage(
+                    opacity: 0.3,
                     image: NetworkImage(
-                        productModel.verticalImageUrl ?? sampleImageUrl),fit: BoxFit.cover)),
+                        productModel.verticalImageUrl ?? sampleImageUrl),
+                    fit: BoxFit.cover)),
+            child: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                image: NetworkImage(
+                    productModel.verticalImageUrl ?? sampleImageUrl),
+              )),
+            ),
           ),
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
               padding: const EdgeInsets.only(top: 20),
-              child: Text(productModel.categoryName ?? "Category Name"),
+              child: Text(
+                productModel.categoryName ?? "Category Name",
+                style: const TextStyle(fontWeight: FontWeight.bold, shadows: [
+                  Shadow(
+                    color: Colors.white,
+                    blurRadius: 25,
+                  ),
+                  Shadow(
+                    color: Colors.white,
+                    blurRadius: 25,
+                  ),
+                ]),
+              ),
             ),
           ),
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
               padding: const EdgeInsets.only(top: 40),
-              child: Text(productModel.itemName ?? "Sub Category Name"),
+              child: Text(
+                productModel.itemName ?? "Sub Category Name",
+                style: const TextStyle(fontWeight: FontWeight.w500, shadows: [
+                  Shadow(
+                    color: Colors.white,
+                    blurRadius: 25,
+                  ),
+                  Shadow(
+                    color: Colors.white,
+                    blurRadius: 25,
+                  ),
+                ]),
+              ),
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.only(bottom: 70),
-              child: Text(productModel.itemPrice != null
-                  ? "₹ ${productModel.itemPrice}/Pc only"
-                  : "₹ N/A"),
+              child: Text(
+                productModel.itemPrice != null
+                    ? "₹ ${productModel.itemPrice}/Pc only"
+                    : "₹ N/A",
+                style: const TextStyle(shadows: [
+                  Shadow(
+                    color: Colors.white,
+                    blurRadius: 25,
+                  ),
+                  Shadow(
+                    color: Colors.white,
+                    blurRadius: 25,
+                  ),
+                ]),
+              ),
             ),
           ),
           Align(

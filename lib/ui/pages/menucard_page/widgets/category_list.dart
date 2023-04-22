@@ -25,7 +25,9 @@ class CategoryListviewOfProductPageview extends StatelessWidget {
         children: [
           /// pageview with items by categoryName.
           PageView.builder(
-            itemCount: listOfProductmodelByCategory.values.toList()[categoryIndex].length,
+            itemCount: listOfProductmodelByCategory.values
+                .toList()[categoryIndex]
+                .length,
             itemBuilder: (context, categoryItemIndex) => productItemByCategory(
               /// convert Map values to values list for make Product Model list by that catgoryName,
               /// and pass item(productModel) to ItemByCategory widget
@@ -43,11 +45,31 @@ class CategoryListviewOfProductPageview extends StatelessWidget {
               /// convert Map keys to key List for give category title(text), top of listview.
               child: Text(
                 listOfProductmodelByCategory.keys.toList()[categoryIndex],
-                style:
-                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        color: Colors.white,
+                        blurRadius: 25,
+                      )
+                    ]),
               ),
             ),
           ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: IconButton(
+              style: ButtonStyle(),
+              onPressed: () {
+                //
+              },
+              icon: Transform.scale(
+                scaleX: -1.25,
+                scaleY: 3,
+                child: Icon(Icons.double_arrow_rounded,color: Colors.red.withOpacity(0.4),)),
+            ),
+          )
         ],
       ),
     );

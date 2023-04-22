@@ -19,23 +19,32 @@ class CountPriceWidgets extends StatelessWidget {
     /// it do for change Ordered Qty
     ProductModel productModelModified =
         modifiedProdectModelByDiningCartList(productModel);
-    return Padding(
-      padding: const EdgeInsets.only(left: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          /// textv widget
-          /// shows price
-          Text("₹ ${productModelModified.itemPrice}/Qty Only"),
-
-          /// shows and manage Qty
-          SetQtySetion(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        /// textv widget
+        /// shows price
+        Text(
+          "₹ ${productModelModified.itemPrice}/Qty Only",
+          style: const TextStyle(shadows: [
+            Shadow(
+              color: Colors.white,
+              blurRadius: 15,
+            )
+          ]),
+        ),
+        const SizedBox(height: 20,),
+        /// shows and manage Qty
+        Padding(
+          padding: const EdgeInsets.only(right: 5),
+          child: SetQtySetion(
             valueNotifier: setQtyNotifier,
             productModel: productModelModified,
             removeitemAtQty0: true,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
