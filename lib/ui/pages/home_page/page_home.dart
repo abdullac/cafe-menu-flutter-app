@@ -19,6 +19,10 @@ class PageHome extends StatelessWidget {
       /// and returned asign to initialProductModelList.
       /// initialProductModelList is List of ProdectModel
       productModelList = await getItemslist();
+      /// if porductModelList is empty, then shows circular progress indicator.
+      /// if porductModelList is not empty, then show meuCard button
+      MenuCardButton.gotoMenuCardButtonNotifier.value =
+          productModelList.isEmpty ? false : true;
     });
     return Scaffold(
       /// Home page background image container

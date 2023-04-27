@@ -2,6 +2,7 @@ import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'firebase_options.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
       key: navigatorKey,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
+        textTheme:  GoogleFonts.pacificoTextTheme(Theme.of(context).textTheme),
       ),
       home: const Scaffold(
         body: PageHome(),
@@ -38,3 +40,7 @@ class MyApp extends StatelessWidget {
         // body: PageGetOrderitem(),
         // body: PageOrderListPageView(),
         // body: PageAdminSignupOrSignin(),
+
+        ///  -  handwriting style
+        /// sacramentoTextTheme 
+        /// pacificoTextTheme

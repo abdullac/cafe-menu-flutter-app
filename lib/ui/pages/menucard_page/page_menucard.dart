@@ -28,15 +28,15 @@ class PageMenuCard extends StatelessWidget {
           preferredSize: Size(100, 60), child: MenuCardPageAppBar()),
 
       /// this ListView is Base listview includes child listViews by CategryName
-      body: ListView.builder(
+      body: ListView.separated(
         itemCount: listOfProductmodelByCategory.length,
-        itemBuilder: (contxt, categoryIndex) => CategoryListviewOfProductPageview(
+        itemBuilder: (contxt, categoryIndex) =>
+            CategoryListviewOfProductPageview(
           categoryIndex: categoryIndex,
           listOfProductmodelByCategory: listOfProductmodelByCategory,
         ),
+        separatorBuilder: (context, index) => const SizedBox(),
       ),
     );
   }
 }
-
-

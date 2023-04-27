@@ -37,10 +37,10 @@ class productItemByCategory extends StatelessWidget {
 
       /// list item container widget for shows item imag,item name, price... etc.
       child: Container(
-        margin: EdgeInsets.all(8),
+        margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(8)),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
             image: DecorationImage(
                 opacity: 0.4,
                 image: NetworkImage(
@@ -48,15 +48,15 @@ class productItemByCategory extends StatelessWidget {
                 ),
                 fit: BoxFit.cover)),
 
-        /// olumn widget for shows widgets vertical alignment
+        /// column widget for shows widgets vertical alignment
         child: Stack(
           children: [
             Positioned(
               left: 10,
               bottom: 10,
               child: Container(
-                height: 200,
-                width: 200,
+                height: 190,
+                width: 190,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey.withOpacity(0.7),
                   width: 7),
@@ -80,10 +80,10 @@ class productItemByCategory extends StatelessWidget {
                     /// text widget
                     /// shows itemName of productModel
                     Padding(
-                      padding: const EdgeInsets.only(top: 35),
+                      padding: const EdgeInsets.only(top: 40),
                       child: Text(
-                        productModel.itemName ?? "Sub CategoryList Name",
-                        style: const TextStyle(fontSize: 20, shadows: [
+                        productModel.itemName ?? "Item Name Not Provided",
+                        style: const TextStyle(fontSize: 20,color: Colors.red, shadows: [
                           Shadow(
                             color: Colors.white,
                             blurRadius: 20,
