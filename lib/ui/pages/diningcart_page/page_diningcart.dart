@@ -27,8 +27,9 @@ class PageDiningCart extends StatelessWidget {
             onPressed: () {
               // appBar back button pressed
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) =>
-                      PageMenuCard(productModelList: productModelList)));
+                  builder: (context) => PageMenuCard(
+                        // productModelList: productModelList,
+                      )));
             },
             icon: const Icon(Icons.arrow_back)),
         title: const Text("Your Dining Cart"),
@@ -48,7 +49,7 @@ class PageDiningCart extends StatelessWidget {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) => PageMenuCard(
-                                    productModelList: productModelList,
+                                    // productModelList: productModelList,
                                   ),
                                 ),
                               );

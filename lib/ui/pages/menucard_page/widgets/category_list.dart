@@ -21,7 +21,7 @@ class CategoryListviewOfProductPageview extends StatelessWidget {
   Widget build(BuildContext context) {
     /// sizedBox widget for set hight of listview
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if(categoryIndex == 0) {
+      if(categoryIndex == 0&& listOfProductmodelByCategory.length>1) {
         paeViewController.animateTo(200.0, duration: const Duration(seconds: 1), curve: Curves.linear);
       }
     });

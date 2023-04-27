@@ -27,8 +27,9 @@ class PageItem extends StatelessWidget {
             // appBar back button pressed
             if (comingPage == ComingPage.menuCard) {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) =>
-                      PageMenuCard(productModelList: productModelList)));
+                  builder: (context) => PageMenuCard(
+                        // productModelList: productModelList,
+                      )));
             } else if (comingPage == ComingPage.diningCart) {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => const PageDiningCart(

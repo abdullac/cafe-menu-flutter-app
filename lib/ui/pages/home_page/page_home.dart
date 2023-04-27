@@ -18,11 +18,9 @@ class PageHome extends StatelessWidget {
       /// menu card items list gets from firebase realtime database using getItemlist(),
       /// and returned asign to initialProductModelList.
       /// initialProductModelList is List of ProdectModel
-      productModelList = await getItemslist();
+      //  productModelList = await getItemslist();
       /// if porductModelList is empty, then shows circular progress indicator.
       /// if porductModelList is not empty, then show meuCard button
-      MenuCardButton.gotoMenuCardButtonNotifier.value =
-          productModelList.isEmpty ? false : true;
     });
     return Scaffold(
       /// Home page background image container
@@ -128,30 +126,30 @@ updateItemsList() {
   });
 }
 
-Future<List<ProductModel>> getItemslist() async {
-  final productItemsPath =
-      fireBaseDatabaseReference.child("cafeMenu/menuCard/itemsSample");
-  final event = await productItemsPath.once(DatabaseEventType.value);
-  final readItemsValues = event.snapshot.value ?? [];
-  final values;
-  if (readItemsValues.runtimeType == List<Object?>) {
-    values = readItemsValues as List;
-  } else {
-    readItemsValues as Map<dynamic, dynamic>;
-    values = readItemsValues.values;
-  }
-  List<ProductModel> listOfProductModel = [];
-  for (var element in values) {
-    if (element != null) {
-      var itemjsonString = jsonEncode(element);
-      var itemJson = jsonDecode(itemjsonString);
-      listOfProductModel.add(ProductModel.fromJson(itemJson));
-    }
-  }
-  // final itemsListJson = jsonEncode(readItemsValues);
-  // final productListModel = ProductListModel(jsonDecode(itemsListJson));
-  return listOfProductModel;
-}
+// Future<List<ProductModel>> getItemslist() async {
+//   final productItemsPath =
+//       fireBaseDatabaseReference.child("cafeMenu/menuCard/itemsSample");
+//   final event = await productItemsPath.once(DatabaseEventType.value);
+//   final readItemsValues = event.snapshot.value ?? [];
+//   final values;
+//   if (readItemsValues.runtimeType == List<Object?>) {
+//     values = readItemsValues as List;
+//   } else {
+//     readItemsValues as Map<dynamic, dynamic>;
+//     values = readItemsValues.values;
+//   }
+//   List<ProductModel> listOfProductModel = [];
+//   for (var element in values) {
+//     if (element != null) {
+//       var itemjsonString = jsonEncode(element);
+//       var itemJson = jsonDecode(itemjsonString);
+//       listOfProductModel.add(ProductModel.fromJson(itemJson));
+//     }
+//   }
+//   // final itemsListJson = jsonEncode(readItemsValues);
+//   // final productListModel = ProductListModel(jsonDecode(itemsListJson));
+//   return listOfProductModel;
+// }
 
 
 //  
