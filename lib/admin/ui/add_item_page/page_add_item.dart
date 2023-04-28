@@ -13,7 +13,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PageAddItem extends StatelessWidget {
-  PageAddItem({Key? key}) : super(key: key);
+  final ProductModel? editItem;
+  const PageAddItem({
+    Key? key,
+    this.editItem,
+  }) : super(key: key);
 
   static TextEditingController itemNameEditingController =
       TextEditingController();
@@ -31,6 +35,15 @@ class PageAddItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (editItem != null) {
+      itemNameEditingController.text = editItem!.itemName ?? '';
+      categoryNameEditingController.text = editItem!.categoryName ?? '';
+      priceEditingController.text =
+          editItem!.itemPrice != null ? editItem!.itemPrice.toString() : '';
+      availableQtyEditingController.text = editItem!.availableQty != null
+          ? editItem!.availableQty.toString()
+          : '';
+    }
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       newItemIdNotifier.value = await getNewItemId();
       log("newItemId ${newItemIdNotifier.value}");
@@ -38,7 +51,7 @@ class PageAddItem extends StatelessWidget {
     });
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Add Item"),
+          title: Text(editItem == null ? "Add Item" : "Edit Item"),
           actions: [
             IconButton(
               onPressed: () async {
@@ -53,7 +66,8 @@ class PageAddItem extends StatelessWidget {
                   verticalImageUrl: await uploadImagetoFirebaseGetUrl(),
                 );
                 if (productModelJson != null) {
-                  await addOrUpdateProductModelItemToFireBase(productModelJson);
+                  await addOrUpdateProductModelItemToFireBase(productModelJson,
+                      editItem: editItem);
                   Navigator.of(context).pop();
                 } else {
                   print("Somthing Wrong, may be any form field is empty");
@@ -73,7 +87,8 @@ class PageAddItem extends StatelessWidget {
                   ValueListenableBuilder(
                       valueListenable: newItemIdNotifier,
                       builder: (context, newItemId, _) {
-                        return Text("ItemId : ${newItemId ?? ''}");
+                        return Text(
+                            "ItemId : ${editItem == null ? newItemId ?? '' : editItem!.itemId ?? ''}");
                       }),
                   const SizedBox(
                     height: 5,
@@ -92,8 +107,11 @@ class PageAddItem extends StatelessWidget {
                   Autocomplete(
                     fieldViewBuilder: (context, textEditingController,
                         focusNode, onFieldSubmitted) {
-                          categoryNameEditingController = textEditingController;
-                          log(categoryNameEditingController.text);
+                      if(editItem != null && editItem!.categoryName != null){
+                        textEditingController.text = editItem!.categoryName!;
+                      }
+                      categoryNameEditingController = textEditingController;
+                      log(categoryNameEditingController.text);
                       return TextField(
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -102,7 +120,7 @@ class PageAddItem extends StatelessWidget {
                         controller: categoryNameEditingController,
                         focusNode: focusNode,
                         onSubmitted: (value) {
-                      log("submtted $value");
+                          log("submtted $value");
                           // categoryNameEditingController.text = value;
                         },
                       );
@@ -123,7 +141,7 @@ class PageAddItem extends StatelessWidget {
                     },
                     onSelected: (String selection) {
                       log("slected $selection");
-                          categoryNameEditingController.text = selection;
+                      categoryNameEditingController.text = selection;
                     },
                   ),
                   const SizedBox(
@@ -175,9 +193,9 @@ class PageAddItem extends StatelessWidget {
                           label: ValueListenableBuilder(
                               valueListenable: pickedImageNotifier,
                               builder: (context, newValue, _) {
-                                return Text(newValue == null
-                                    ? "Add Image"
-                                    : "Change Image");
+                                return Text(newValue != null || editItem != null
+                                    ? "Change Image"
+                                    : "Add Image");
                               }),
                           icon: const Icon(Icons.add_photo_alternate_outlined),
                         ),
@@ -191,13 +209,13 @@ class PageAddItem extends StatelessWidget {
                                         return Stack(
                                           children: [
                                             Opacity(
-                                              opacity: isUploadingImage == true
-                                                  ? 0.5
-                                                  : 1,
-                                              child: Image.file(
-                                                File(pickedImage.path),
-                                              ),
-                                            ),
+                                                opacity:
+                                                    isUploadingImage == true
+                                                        ? 0.5
+                                                        : 1,
+                                                child: Image.file(
+                                                  File(pickedImage.path),
+                                                )),
                                             isUploadingImage == true
                                                 ? const Positioned(
                                                     top: 0,
@@ -215,7 +233,13 @@ class PageAddItem extends StatelessWidget {
                                           ],
                                         );
                                       })
-                                  : const SizedBox();
+                                  : 
+                                  // editItem != null &&
+                                  //         editItem!.verticalImageUrl != null
+                                  //     ? Image.network(
+                                  //         editItem!.verticalImageUrl!)
+                                  //     :
+                                       const SizedBox();
                             }),
                       ],
                     ),
@@ -306,7 +330,12 @@ Map<String, dynamic>? createProdectModelItemJson({
   required String availableQuantity,
   required String? verticalImageUrl,
 }) {
-  log("categoryName $categoryName");
+  log("itemId : $itemId");
+  log("itemName : $itemName");
+  log("categoryName : $categoryName");
+  log("price : $price");
+  log("availableQuantity : $availableQuantity");
+  log("verticalImageUrl : $verticalImageUrl");
   if ([
     itemName,
     categoryName,
@@ -328,8 +357,8 @@ Map<String, dynamic>? createProdectModelItemJson({
   }
 }
 
-addOrUpdateProductModelItemToFireBase(
-    Map<String, dynamic> productModelJson) async {
+addOrUpdateProductModelItemToFireBase(Map<String, dynamic> productModelJson,
+    {ProductModel? editItem}) async {
   DatabaseReference firebaseRef = FirebaseDatabase.instance.ref();
   // dynamic getProductModelListFromFirebase;
   // await firebaseRef.child("cafeMenu/menuCard/itemsSample").get().then((value) {
@@ -340,24 +369,37 @@ addOrUpdateProductModelItemToFireBase(
       await firebaseRef.child("cafeMenu/menuCard/itemsSample").get();
   // List<int> keyList = [];
   // int newKey = 0;
-  var lastPositionKeySnapshort =
-      getproductModelListObjet.children.last.key as String;
-  int newPosition = int.parse(lastPositionKeySnapshort) + 1;
-  // getproductModelListObjet.children.forEach((element) {
-  //   if (element.key != null) {
-  //     keyList.add(int.parse(element.key!));
-  //   }
-  // });
-  //     for (int baseIndex = 0; baseIndex < keyList.length; baseIndex++) {
-  //       for (int subIndex = baseIndex+1; subIndex < keyList.length; subIndex++) {
-  //         if (keyList[baseIndex] < keyList[subIndex]) {
-  //           newKey = keyList[subIndex]+1;
-  //         }
-  //       }
-  //     }
-  await firebaseRef
-      .child("cafeMenu/menuCard/itemsSample/$newPosition")
-      .set(productModelJson);
+  if (editItem == null) {
+    var lastPositionKeySnapshort =
+        getproductModelListObjet.children.last.key as String;
+    int newPosition = int.parse(lastPositionKeySnapshort) + 1;
+    // getproductModelListObjet.children.forEach((element) {
+    //   if (element.key != null) {
+    //     keyList.add(int.parse(element.key!));
+    //   }
+    // });
+    //     for (int baseIndex = 0; baseIndex < keyList.length; baseIndex++) {
+    //       for (int subIndex = baseIndex+1; subIndex < keyList.length; subIndex++) {
+    //         if (keyList[baseIndex] < keyList[subIndex]) {
+    //           newKey = keyList[subIndex]+1;
+    //         }
+    //       }
+    //     }
+    await firebaseRef
+        .child("cafeMenu/menuCard/itemsSample/$newPosition")
+        .set(productModelJson);
+  } else {
+    for (var element in getproductModelListObjet.children) {
+      ProductModel produtmodel =
+          ProductModel.fromJson(jsonDecode(jsonEncode(element.value)));
+      if (produtmodel.itemId == editItem.itemId && element.key != null) {
+        await firebaseRef
+            .child("cafeMenu/menuCard/itemsSample/${element.key}")
+            .update(productModelJson);
+        log("edit element.key ${element.key}");
+      }
+    }
+  }
 }
 
 pageAddItemClearAllTextFields() {
