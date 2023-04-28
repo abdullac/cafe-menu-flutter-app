@@ -71,11 +71,10 @@ class PageAddItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ValueListenableBuilder(
-                    valueListenable: newItemIdNotifier,
-                    builder: (context,newItemId,_) {
-                      return Text("ItemId : ${newItemId??''}");
-                    }
-                  ),
+                      valueListenable: newItemIdNotifier,
+                      builder: (context, newItemId, _) {
+                        return Text("ItemId : ${newItemId ?? ''}");
+                      }),
                   const SizedBox(
                     height: 5,
                   ),
@@ -89,13 +88,55 @@ class PageAddItem extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  TextField(
-                    controller: categoryNameEditingController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "Category Name",
-                    ),
+                  /////////////////////////
+                  Autocomplete(
+                    fieldViewBuilder: (context, textEditingController,
+                        focusNode, onFieldSubmitted) {
+                          categoryNameEditingController = textEditingController;
+                          log(categoryNameEditingController.text);
+                      return TextField(
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "Category Name",
+                        ),
+                        controller: categoryNameEditingController,
+                        focusNode: focusNode,
+                        onSubmitted: (value) {
+                      log("submtted $value");
+                          // categoryNameEditingController.text = value;
+                        },
+                      );
+                    },
+                    optionsBuilder: (TextEditingValue textEditingValue) {
+                      if (textEditingValue.text == "") {
+                        return const Iterable<String>.empty();
+                      } else {
+                        List<String> matches = <String>[];
+                        matches.addAll(categoryNameList);
+                        matches.retainWhere((element) {
+                          return element
+                              .toLowerCase()
+                              .contains(textEditingValue.text.toLowerCase());
+                        });
+                        return matches;
+                      }
+                    },
+                    onSelected: (String selection) {
+                      log("slected $selection");
+                          categoryNameEditingController.text = selection;
+                    },
                   ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  /////////////////////////
+                  // TextField(
+                  //   controller: categoryNameEditingController,
+                  //   decoration: const InputDecoration(
+                  //     border: OutlineInputBorder(),
+                  //     hintText: "Category Name",
+                  //   ),
+                  // ),
                   ////  Category type(platr/glass) - DropdownButton
                   const SizedBox(
                     height: 5,
@@ -132,13 +173,12 @@ class PageAddItem extends StatelessWidget {
                             getImageFromDevice();
                           },
                           label: ValueListenableBuilder(
-                            valueListenable: pickedImageNotifier,
-                            builder: (context,newValue,_) {
-                              return Text(newValue == null 
-                              ? "Add Image"
-                              : "Change Image");
-                            }
-                          ),
+                              valueListenable: pickedImageNotifier,
+                              builder: (context, newValue, _) {
+                                return Text(newValue == null
+                                    ? "Add Image"
+                                    : "Change Image");
+                              }),
                           icon: const Icon(Icons.add_photo_alternate_outlined),
                         ),
                         ValueListenableBuilder(
@@ -222,27 +262,39 @@ Future<String?> uploadImagetoFirebaseGetUrl() async {
   return PageAddItem.firebaseImageUrl;
 }
 
-Future<int> getNewItemId() async {
-  /// get all itemId s Or last itemId from firbase
+List<int> itemIdList = [];
+List<String> categoryNameList = [];
+
+Future<void> getALlItemIdANdCategorynames() async {
   DatabaseReference firebaseRef = FirebaseDatabase.instance.ref();
   final snapshot =
       await firebaseRef.child("cafeMenu/menuCard/itemsSample").get();
-  List<int> itemIdList = [];
   for (var element in snapshot.children) {
     ProductModel productModel =
         ProductModel.fromJson(jsonDecode(jsonEncode(element.value!)));
+    // add to itemIdList
     if (productModel.itemId != null) {
       itemIdList.add(productModel.itemId!);
     }
+    // add to categoryNameList
+    if (productModel.categoryName != null) {
+      categoryNameList.add(productModel.categoryName!);
+    }
     log(productModel.toString());
   }
+}
+
+Future<int> getNewItemId() async {
+  /// get all itemId s Or last itemId from firbase
+  await getALlItemIdANdCategorynames();
+
   /// create new itemId
   int? largestItemId;
-  if(itemIdList.isNotEmpty){
-    largestItemId =itemIdList.reduce(math.max);
+  if (itemIdList.isNotEmpty) {
+    largestItemId = itemIdList.reduce(math.max);
   }
   log("large id $largestItemId");
-  int newItemId = (largestItemId??math.Random().nextInt(100) + -150 )+1;
+  int newItemId = (largestItemId ?? math.Random().nextInt(100) + -150) + 1;
   return newItemId;
 }
 
@@ -254,13 +306,14 @@ Map<String, dynamic>? createProdectModelItemJson({
   required String availableQuantity,
   required String? verticalImageUrl,
 }) {
+  log("categoryName $categoryName");
   if ([
     itemName,
     categoryName,
     price,
     availableQuantity,
   ].contains("")) {
-    print("please fill all Fields");
+    log("please fill all Fields");
     return null;
   } else {
     return ProductModel(

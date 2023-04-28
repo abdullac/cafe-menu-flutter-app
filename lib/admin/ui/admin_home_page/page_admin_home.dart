@@ -1,6 +1,7 @@
 import 'package:cafemenu_app/admin/ui/add_item_page/page_add_item.dart';
 import 'package:cafemenu_app/admin/ui/admin_login_page/page_admin_login.dart';
 import 'package:cafemenu_app/admin/ui/order_list_page/page_order_list.dart';
+import 'package:cafemenu_app/admin/ui/view_all_items_page/page_view_all_items.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -42,6 +43,14 @@ class PageAdminHome extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => PageAddItem()));
               },
               child: const Text("Add Item"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                // Add Item Button pressed
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => PageViewAllItems()));
+              },
+              child: const Text("View All Items"),
             ),
           ],
         ),
