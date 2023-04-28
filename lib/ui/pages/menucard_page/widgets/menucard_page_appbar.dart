@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cafemenu_app/ui/pages/diningcart_page/page_diningcart.dart';
 import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/diningcart_button.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
@@ -25,7 +27,7 @@ class MenuCardPageAppBar extends StatelessWidget {
               // goto dining cart page button pressed
               /// page Navigate to PageDiningCart by pushReplacement with diningCartList.
               /// diningCartList is List of selected ProductModel from initialProductModelList
-
+              
               DiningCartButton.diningCartButtonNotifier.value = null;
               DiningCartButton.diningCartButtonNotifier.notifyListeners();
               Navigator.of(context).pushReplacement(MaterialPageRoute(

@@ -81,7 +81,7 @@ class PageItem extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Text(
-                productModel.categoryName ?? "Category Name",
+                productModel.categoryName ?? "Category Name N/A",
                 style: const TextStyle(fontWeight: FontWeight.bold, shadows: [
                   Shadow(
                     color: Colors.white,
@@ -100,7 +100,7 @@ class PageItem extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 40),
               child: Text(
-                productModel.itemName ?? "Sub Category Name",
+                productModel.itemName ?? "Item Name N/A",
                 style: const TextStyle(fontWeight: FontWeight.w500, shadows: [
                   Shadow(
                     color: Colors.white,

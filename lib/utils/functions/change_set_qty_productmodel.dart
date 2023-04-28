@@ -28,7 +28,7 @@ void changeSetQtyAndNotifyListener({
   /// iterate diningCartList for find current position of that ProdutModel position.
   int? elementPosition;
   for (var element in diningCartList) {
-    if (element.itemName == productModel.itemName) {
+    if (element.itemId == productModel.itemId) {
       elementPosition = diningCartList.indexOf(element);
       break;
     }

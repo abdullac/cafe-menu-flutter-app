@@ -22,7 +22,8 @@ class ProductModel with _$ProductModel {
     bool? isClosed,
     bool? isSelectDiningCart,
     bool? itemReady,
-    bool? itemDelevered
+    bool? itemDelevered,
+    String? infoToCustomer,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>

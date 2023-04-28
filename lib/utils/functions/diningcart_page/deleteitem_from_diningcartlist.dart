@@ -4,13 +4,13 @@ import 'package:cafemenu_app/utils/constants/lists.dart';
 
 
 deleteItemFromDiningCartList(ProductModel productModel) {
-  String? itemNameTemp = productModel.itemName;
-  if (itemNameTemp == null) {
+  int? itemIdTemp = productModel.itemId;
+  if (itemIdTemp == null) {
     print("C'nt delete Item");
   } else {
     int? itemPosition;
     for (var element in diningCartList) {
-      if (element.itemName == itemNameTemp) {
+      if (element.itemId == itemIdTemp) {
         itemPosition = diningCartList.indexOf(element);
         break;
       }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/ui/pages/diningcart_page/page_diningcart.dart';
 import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/menucard_page/productmodel_list_by_category.dart';
@@ -34,30 +35,16 @@ class PageMenuCard extends StatelessWidget {
         stream: productItemsPath.onValue,
         builder: (context, snapshot) {
           if (snapshot.data != null) {
-            // log("onValue - ${snapshot.data!.snapshot.value}");
-            final readItemsValues = snapshot.data!.snapshot.value ?? [];
-            final values;
-            if (readItemsValues.runtimeType == List<Object?>) {
-              values = readItemsValues as List;
-            } else {
-              readItemsValues as Map<dynamic, dynamic>;
-              values = readItemsValues.values;
-            }
-            List<ProductModel> listOfProductModel = [];
-            for (var element in values) {
-              if (element != null) {
-                var itemjsonString = jsonEncode(element);
-                var itemJson = jsonDecode(itemjsonString);
-                listOfProductModel.add(ProductModel.fromJson(itemJson));
-              }
-            }
+            List<ProductModel> listOfProductModel =
+                getItemsListByStreamBuilder(snapshot);
+            diningCartListByStreamBuilder(listOfProductModel);
             productModelList = listOfProductModel;
           }
           ///////////////////////////////
-    /// method for making productModel list by categoryNames
-    Map<String, List<ProductModel>> listOfProductmodelByCategory =
-        // productmodelListByCategory(productModelListt);
-        productmodelListByCategory(productModelList);
+          /// method for making productModel list by categoryNames
+          Map<String, List<ProductModel>> listOfProductmodelByCategory =
+              // productmodelListByCategory(productModelListt);
+              productmodelListByCategory(productModelList);
           return Scaffold(
             /// appBar with goto DiningCart page button
             appBar: const PreferredSize(
@@ -76,5 +63,60 @@ class PageMenuCard extends StatelessWidget {
             ),
           );
         });
+  }
+}
+
+List<ProductModel> getItemsListByStreamBuilder(
+    AsyncSnapshot<DatabaseEvent> snapshot) {
+  // log("onValue - ${snapshot.data!.snapshot.value}");
+  final readItemsValues = snapshot.data!.snapshot.value ?? [];
+  final values;
+  if (readItemsValues.runtimeType == List<Object?>) {
+    values = readItemsValues as List;
+  } else {
+    readItemsValues as Map<dynamic, dynamic>;
+    values = readItemsValues.values;
+  }
+  List<ProductModel> listOfProductModel = [];
+  for (var element in values) {
+    if (element != null) {
+      var itemjsonString = jsonEncode(element);
+      var itemJson = jsonDecode(itemjsonString);
+      listOfProductModel.add(ProductModel.fromJson(itemJson));
+    }
+  }
+  return listOfProductModel;
+}
+
+void diningCartListByStreamBuilder(List<ProductModel> listOfProductModel) {
+  for (var menuCardItemByStreamBuilder in listOfProductModel) {
+    for (var diningCartItem in diningCartList) {
+      if (diningCartItem.itemId == menuCardItemByStreamBuilder.itemId) {
+        if (![
+              diningCartItem.orderedQty,
+              menuCardItemByStreamBuilder.availableQty
+            ].contains(null) &&
+            diningCartItem.orderedQty! >
+                menuCardItemByStreamBuilder.availableQty!) {
+          int indexTemp = diningCartList.indexOf(diningCartItem);
+          ProductModel productModelTemp = diningCartItem.copyWith(
+              orderedQty: menuCardItemByStreamBuilder.availableQty!,
+              infoToCustomer:
+                  "Sorry, only ${menuCardItemByStreamBuilder.availableQty!} Qty available.");
+          diningCartList[indexTemp] = productModelTemp;
+        } else if (![
+              diningCartItem.orderedQty,
+              menuCardItemByStreamBuilder.availableQty
+            ].contains(null) &&
+            diningCartItem.orderedQty! <=
+                menuCardItemByStreamBuilder.availableQty!) {
+          int indexTemp = diningCartList.indexOf(diningCartItem);
+          ProductModel productModelTemp = diningCartItem.copyWith(
+              infoToCustomer:
+                  "${menuCardItemByStreamBuilder.availableQty!} Qty available.");
+          diningCartList[indexTemp] = productModelTemp;
+        }
+      }
+    }
   }
 }

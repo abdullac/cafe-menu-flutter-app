@@ -36,7 +36,7 @@ selectOrUnselectItem(
 
   int? elementPosition;
   for (var element in diningCartList) {
-    if (element.itemName == productModelTemp.itemName) {
+    if (element.itemId == productModelTemp.itemId) {
       elementPosition = diningCartList.indexOf(element);
       break;
     }

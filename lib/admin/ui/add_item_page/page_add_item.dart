@@ -1,4 +1,7 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
@@ -24,9 +27,15 @@ class PageAddItem extends StatelessWidget {
   static UploadTask? uploadTask;
   static String? firebaseImageUrl;
 
+  static ValueNotifier<int?> newItemIdNotifier = ValueNotifier(null);
+
   @override
   Widget build(BuildContext context) {
-    int newItemId = getNewItemId();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      newItemIdNotifier.value = await getNewItemId();
+      log("newItemId ${newItemIdNotifier.value}");
+      newItemIdNotifier.notifyListeners();
+    });
     return Scaffold(
         appBar: AppBar(
           title: const Text("Add Item"),
@@ -36,7 +45,7 @@ class PageAddItem extends StatelessWidget {
                 // AddItem page appbar add button
                 Map<String, dynamic>? productModelJson =
                     createProdectModelItemJson(
-                  itemId: newItemId.toString(),
+                  itemId: newItemIdNotifier.value.toString(),
                   itemName: itemNameEditingController.text,
                   categoryName: categoryNameEditingController.text,
                   price: priceEditingController.text,
@@ -61,7 +70,12 @@ class PageAddItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("ItemId : $newItemId"),
+                  ValueListenableBuilder(
+                    valueListenable: newItemIdNotifier,
+                    builder: (context,newItemId,_) {
+                      return Text("ItemId : ${newItemId??''}");
+                    }
+                  ),
                   const SizedBox(
                     height: 5,
                   ),
@@ -117,7 +131,14 @@ class PageAddItem extends StatelessWidget {
                             // verticalImage & get Url
                             getImageFromDevice();
                           },
-                          label: const Text("Add Image"),
+                          label: ValueListenableBuilder(
+                            valueListenable: pickedImageNotifier,
+                            builder: (context,newValue,_) {
+                              return Text(newValue == null 
+                              ? "Add Image"
+                              : "Change Image");
+                            }
+                          ),
                           icon: const Icon(Icons.add_photo_alternate_outlined),
                         ),
                         ValueListenableBuilder(
@@ -174,6 +195,7 @@ Future<void> getImageFromDevice() async {
   if (PageAddItem.pickedImageNotifier.value != null) {
     print("picked image ${PageAddItem.pickedImageNotifier.value!.name}");
   } else {
+    PageAddItem.pickedImageNotifier.value = null;
     print("picked image null");
   }
 }
@@ -200,10 +222,28 @@ Future<String?> uploadImagetoFirebaseGetUrl() async {
   return PageAddItem.firebaseImageUrl;
 }
 
-int getNewItemId() {
+Future<int> getNewItemId() async {
   /// get all itemId s Or last itemId from firbase
-  /// reate new itemId
-  return 555;
+  DatabaseReference firebaseRef = FirebaseDatabase.instance.ref();
+  final snapshot =
+      await firebaseRef.child("cafeMenu/menuCard/itemsSample").get();
+  List<int> itemIdList = [];
+  for (var element in snapshot.children) {
+    ProductModel productModel =
+        ProductModel.fromJson(jsonDecode(jsonEncode(element.value!)));
+    if (productModel.itemId != null) {
+      itemIdList.add(productModel.itemId!);
+    }
+    log(productModel.toString());
+  }
+  /// create new itemId
+  int? largestItemId;
+  if(itemIdList.isNotEmpty){
+    largestItemId =itemIdList.reduce(math.max);
+  }
+  log("large id $largestItemId");
+  int newItemId = (largestItemId??math.Random().nextInt(100) + -150 )+1;
+  return newItemId;
 }
 
 Map<String, dynamic>? createProdectModelItemJson({

@@ -11,7 +11,7 @@ void removeItemAtQty0FromDiningCartList(int newValue, ProductModel productModel)
     /// itrate diningCartList for find position of that Productmodel
     /// and remove productmodel from diningCartList if gets(contains) elementPosition
     for (var element in diningCartList) {
-      if (element.itemName == productModel.itemName) {
+      if (element.itemId == productModel.itemId) {
         elementPosition = diningCartList.indexOf(element);
         break;
       }

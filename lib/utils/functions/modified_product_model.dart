@@ -5,7 +5,7 @@ import 'package:cafemenu_app/utils/constants/lists.dart';
 ProductModel modifiedProdectModelByDiningCartList(ProductModel productModel) {
     ProductModel productModelModified = productModel;
     for (var element in diningCartList) {
-      if (element.itemName == productModel.itemName) {
+      if (element.itemId == productModel.itemId) {
         int elementPosition = diningCartList.indexOf(element);
         productModelModified = diningCartList[elementPosition];
       }

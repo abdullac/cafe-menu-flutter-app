@@ -69,6 +69,7 @@ class DiningCartItem extends StatelessWidget {
                     children: [
                       DiningcartListItemCategoryNameAndItemName(
                           productModel: productModel),
+                      InfoToCustomer(productModel: productModel),
                       DiningcartListItemQty(
                           productModel: productModel,
                           setQtyNotifier: setQtyNotifier,
@@ -218,6 +219,7 @@ class DiningcartListItemCategoryNameAndItemName extends StatelessWidget {
               fit: BoxFit.cover),
         ),
         child: Container(
+          width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
           decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
@@ -240,8 +242,12 @@ class DiningcartListItemCategoryNameAndItemName extends StatelessWidget {
                 productModel.itemName ?? "Sub category Name",
                 maxLines: 2,
                 overflow: TextOverflow.fade,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: productModel.itemName != null &&
+                            productModel.itemName!.length > 15
+                        ? 12
+                        : 20,
+                    fontWeight: FontWeight.w500),
               ),
             ],
           ),
@@ -332,6 +338,24 @@ class DiningcartListItemIsRecievedCheckBox extends StatelessWidget {
       onChanged: (value) {
         // item recieved checkbox changed
       },
+    );
+  }
+}
+
+class InfoToCustomer extends StatelessWidget {
+  final ProductModel productModel;
+  const InfoToCustomer({
+    super.key,
+    required this.productModel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(
+        productModel.infoToCustomer??"",
+        style: TextStyle(fontSize: 10, color: Colors.red),
+      ),
     );
   }
 }
