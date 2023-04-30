@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.red,
-        textTheme:  GoogleFonts.pacificoTextTheme(Theme.of(context).textTheme),
+        textTheme:  GoogleFonts.kalamTextTheme(Theme.of(context).textTheme),
       ),
       home: const Scaffold(
         body: PageHome(),

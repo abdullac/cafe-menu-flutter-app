@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 
 int? orderId;
 DateTime? orderedTime;
+String? positionCode;
 
 class PageDiningCart extends StatelessWidget {
   // final List<ProductModel> diningCartList;
@@ -21,7 +22,7 @@ class PageDiningCart extends StatelessWidget {
     // required this.diningCartList,
   }) : super(key: key);
 
-  static ValueNotifier diningCartListViewNotifier = ValueNotifier("_value");
+  static ValueNotifier diningCartListViewNotifier = ValueNotifier(null);
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +99,7 @@ class PageDiningCart extends StatelessWidget {
                                       TotalItemQtyAmount(
                                           diningCartList: diningCartList),
                                       NameChairNumber(),
-                                      const OrderNumberTime(),
+                                      const OrderIdAndTime(),
                                       const DiningCartButton(),
                                     ],
                                   ),

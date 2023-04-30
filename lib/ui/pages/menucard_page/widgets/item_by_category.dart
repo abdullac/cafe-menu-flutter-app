@@ -7,7 +7,8 @@ import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 
 String sampleImageUrl =
-    "https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2FtcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80";
+"https://www.xtrafondos.com/wallpapers/vertical/cafeteria-en-el-invierno-durante-la-noche-arte-digital-6563.jpg";
+    // "https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2FtcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80";
 
 /// this widget is builder item(productModel) widget of Listview by categoryName
 class productItemByCategory extends StatelessWidget {

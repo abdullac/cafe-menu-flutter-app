@@ -9,8 +9,8 @@ import 'package:cafemenu_app/utils/functions/diningcart_page/set_order_id.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/set_ordered_time.dart';
 import 'package:flutter/material.dart';
 
-void setDiningCartButtonFunctionality(
-    ValueNotifier<DiningCartButtonFunctionality?> diningCartButtonNotifier) {
+Future<void> setDiningCartButtonFunctionality(
+    ValueNotifier<DiningCartButtonFunctionality?> diningCartButtonNotifier) async {
   switch (diningCartButtonNotifier.value) {
     case null:
       takeNowButtonPressed();
@@ -23,13 +23,15 @@ void setDiningCartButtonFunctionality(
               .contains(NameChairNumber.tableOrChairNumberNotifier.value)) {
         print("Please fill Name or select Table/Chair");
       } else {
-        orderId = setOrderId();
+        orderId = await setOrderId();
         orderedTime = setOrderTime();
+        positionCode = NameChairNumber.tableOrChairNumberNotifier.value;
         final customerModelJson = createCustemerModelJson();
         /////// orderSaveToFireBaseDatabase(customerModelJson); /// important
         orderSaveToFireBaseDatabase(customerModelJson);
         diningCartButtonNotifier.value =
             DiningCartButtonFunctionality.orderConfirm;
+        PageDiningCart.diningCartListViewNotifier.value = "oredredList";
       }
       break;
 

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:cafemenu_app/core/model/customer/customer_model.dart';
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -16,39 +17,42 @@ class PageOrderListPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      // await getOrderedListFromFireBase();
+      await getOrderedListFromFireBase();
     });
     return ValueListenableBuilder(
         valueListenable: orderedListNotifier,
         builder: (context, newValue, _) {
           return Scaffold(
-            appBar: AppBar(
-              actions: [
-                ElevatedButton(
-                  onPressed: () {
-                    // appBar done Button pressed
-                  },
-                  child: const Text("Done"),
-                ),
-              ],
-            ),
-            body: SafeArea(
-                child: PageView.builder(
-              itemCount: orderedListFromFireBase.length,
-              itemBuilder: (context, pageViewItemIndex) {
-                return AllOrderedItems(
-                  pageViewItemIndex: pageViewItemIndex,
+                  appBar: AppBar(
+                    actions: [
+                      ElevatedButton(
+                        onPressed: () {
+                          // appBar done Button pressed
+                        },
+                        child: const Text("Done"),
+                      ),
+                    ],
+                  ),
+                  body: SafeArea(
+                      child: newValue.isEmpty
+              ? Center(
+                  child: Text("Order List Empty"),
+                )
+              : PageView.builder(
+                    itemCount: orderedListFromFireBase.length,
+                    itemBuilder: (context, pageViewItemIndex) {
+                      return AllOrderedItems(
+                        pageViewItemIndex: pageViewItemIndex,
+                      );
+                    },
+                  )),
                 );
-              },
-            )),
-          );
         });
   }
 }
 
 /// getOrderList(CustomerModelList/ orders -> orderList in from firebase)
 // List<CustomerModel> OrderedList = [];
-List<String> orderedList = ["fgfg", "fgf", "gfd", "gdfg", "gdfg"];
 
 class AllOrderedItems extends StatelessWidget {
   final int pageViewItemIndex;
@@ -114,6 +118,7 @@ class AllOrderedItems extends StatelessWidget {
                 return OrderedItem(
                   orderedItemProductModelList: orderedItemProductModelList,
                   productItemListViewIndex: productItemListViewIndex,
+                  customermodel: orderedListFromFireBase[pageViewItemIndex],
                 );
               },
             ),
@@ -169,11 +174,15 @@ Future<void> getOrderedListFromFireBase() async {
 class OrderedItem extends StatelessWidget {
   final List<ProductModel> orderedItemProductModelList;
   final int productItemListViewIndex;
+  final CustomerModel customermodel;
   const OrderedItem({
     super.key,
     required this.orderedItemProductModelList,
     required this.productItemListViewIndex,
+    required this.customermodel,
   });
+
+  static ValueNotifier<String?> readyOrDeliveredNotifier = ValueNotifier(null);
 
   @override
   Widget build(BuildContext context) {
@@ -184,6 +193,14 @@ class OrderedItem extends StatelessWidget {
       itemType =
           orderedProdutmodelItem.itemType == ItemType.plate ? 'Plate' : 'Glass';
     }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      readyOrDeliveredNotifier.value = orderedProdutmodelItem.itemReady == true
+          ? "ready"
+          : orderedProdutmodelItem.itemDelevered == true
+              ? "delivered"
+              : null;
+    });
+
     return Padding(
       padding: const EdgeInsets.all(1.0),
       child: Row(
@@ -203,11 +220,38 @@ class OrderedItem extends StatelessWidget {
           FieldItemText(flex: 15, fieldText: itemType ?? 'N/A'),
           Expanded(
             flex: 15,
-            child: ElevatedButton(
-                onPressed: () {
-                  /// ready Button
-                },
-                child: const Text("Rdy/\nDlvrd")),
+            child: ValueListenableBuilder(
+                valueListenable: readyOrDeliveredNotifier,
+                builder: (context, newValue, _) {
+                  return ElevatedButton(
+                      onPressed: () async {
+                        /// ready Button
+                        if (newValue == null) {
+                          orderedItemReady(
+                              ordredItems: customermodel,
+                              readyItem: orderedProdutmodelItem);
+                        } else if (newValue == 'ready') {
+                          orderedItemDelivered(
+                            ordredItems: customermodel,
+                            deliveredItem: orderedProdutmodelItem,
+                          );
+                        } else {
+                          log("readyOrDeliveredNotifier.value = $newValue");
+                        }
+                        await getOrderedListFromFireBase();
+                        PageOrderListPageView.orderedListNotifier.value =
+                            orderedListFromFireBase;
+                        PageOrderListPageView.orderedListNotifier
+                            .notifyListeners();
+                      },
+                      child: Text(newValue == null
+                          ? "Ready"
+                          : newValue == "ready"
+                              ? "Delivered"
+                              : newValue == "delivered"
+                                  ? "Ok"
+                                  : "..."));
+                }),
           )
         ],
       ),
@@ -239,5 +283,88 @@ class FieldItemText extends StatelessWidget {
                 fontWeight: isBold == true ? FontWeight.bold : FontWeight.w400),
           ),
         ));
+  }
+}
+
+Future orderedItemReady(
+    {required CustomerModel ordredItems,
+    required ProductModel readyItem}) async {
+  DatabaseReference firebaseRef = FirebaseDatabase.instance.ref();
+  final orderListSnapShot =
+      await firebaseRef.child("cafeMenu/orders/orderList").get();
+  String? getOrderListKey;
+  String? getOrderedItemKey;
+  for (var orderedListSnapshotlement in orderListSnapShot.children) {
+    CustomerModel customerModel = CustomerModel.fromJson(
+        jsonDecode(jsonEncode(orderedListSnapshotlement.value)));
+    if (ordredItems.orderId == customerModel.orderId) {
+      getOrderListKey = orderedListSnapshotlement.key;
+
+      final orderedItemsSnapShot = await firebaseRef
+          .child(
+              "cafeMenu/orders/orderList/$getOrderListKey/productModelOrderList")
+          .get();
+      List<ProductModel> productModelList = [];
+
+      for (var productModelElement in orderedItemsSnapShot.children) {
+        ProductModel productModel = ProductModel.fromJson(
+            jsonDecode(jsonEncode(productModelElement.value)));
+
+        if (readyItem.itemId == productModel.itemId) {
+          getOrderedItemKey = productModelElement.key;
+          ProductModel newProductModel = readyItem.copyWith(itemReady: true);
+          log(getOrderedItemKey.toString());
+          await firebaseRef
+              .child(
+                  "cafeMenu/orders/orderList/$getOrderListKey/productModelOrderList/$getOrderedItemKey")
+              .update(newProductModel.toJson());
+          OrderedItem.readyOrDeliveredNotifier.value = "ready";
+          OrderedItem.readyOrDeliveredNotifier.notifyListeners();
+        }
+      }
+    }
+  }
+}
+
+Future orderedItemDelivered(
+    {required CustomerModel ordredItems,
+    required ProductModel deliveredItem}) async {
+  DateTime recievedTime = DateTime.now();
+  DatabaseReference firebaseRef = FirebaseDatabase.instance.ref();
+  final orderListSnapShot =
+      await firebaseRef.child("cafeMenu/orders/orderList").get();
+  String? getOrderListKey;
+  String? getOrderedItemKey;
+  for (var orderedListSnapshotlement in orderListSnapShot.children) {
+    CustomerModel customerModel = CustomerModel.fromJson(
+        jsonDecode(jsonEncode(orderedListSnapshotlement.value)));
+    if (ordredItems.orderId == customerModel.orderId) {
+      getOrderListKey = orderedListSnapshotlement.key;
+
+      final orderedItemsSnapShot = await firebaseRef
+          .child(
+              "cafeMenu/orders/orderList/$getOrderListKey/productModelOrderList")
+          .get();
+      List<ProductModel> productModelList = [];
+
+      for (var productModelElement in orderedItemsSnapShot.children) {
+        ProductModel productModel = ProductModel.fromJson(
+            jsonDecode(jsonEncode(productModelElement.value)));
+
+        if (deliveredItem.itemId == productModel.itemId) {
+          getOrderedItemKey = productModelElement.key;
+          ProductModel newProductModel =
+              deliveredItem.copyWith(itemDelevered: true);
+          log(getOrderedItemKey.toString());
+          await firebaseRef
+              .child(
+                  "cafeMenu/orders/orderList/$getOrderListKey/productModelOrderList/$getOrderedItemKey")
+              // .update(newProductModel.toJson());
+              .update({"itemDelevered": true, "recievedTime": "$recievedTime"});
+          OrderedItem.readyOrDeliveredNotifier.value = "delivered";
+          OrderedItem.readyOrDeliveredNotifier.notifyListeners();
+        }
+      }
+    }
   }
 }

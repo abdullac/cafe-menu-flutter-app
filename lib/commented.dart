@@ -9,6 +9,7 @@
 // }
 
 import 'package:cafemenu_app/core/model/customer/customer_model.dart';
+import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -154,3 +155,103 @@ class ObjRealTimeDataBaseFirebase extends StatelessWidget {
 
 
 // {"menuCard":{"category":{"categoryType":{"plate":["Shaway","Shawarma","Broast","Burger","Sandwitch","Snack"]}}}}
+
+
+/////////////////////////////////
+///
+//////////////////////////////////////////
+
+DatabaseReference fireBaseDatabaseReference = FirebaseDatabase.instance.ref();
+
+setItemsList() {
+  final pM = const ProductModel(
+          itemId: 501,
+          itemName: "Shaway Qr",
+          categoryName: "Shaway",
+          itemPrice: 99,
+          itemType: ItemType.plate,
+          availableQty: 24)
+      .toJson();
+  final pMt = const ProductModel(
+          itemId: 504,
+          itemName: "Shawarma Roll",
+          categoryName: "Shawarma",
+          itemPrice: 79,
+          itemType: ItemType.plate,
+          availableQty: 100)
+      .toJson();
+  final pMr = const ProductModel(
+          itemId: 504,
+          itemName: "Shawarma Roll",
+          categoryName: "Shawarma",
+          itemPrice: 79,
+          itemType: ItemType.plate,
+          availableQty: 100)
+      .toJson();
+  final pMg = const ProductModel(
+          itemId: 502,
+          itemName: "Shaway Hf",
+          categoryName: "Shaway",
+          itemPrice: 189,
+          itemType: ItemType.plate,
+          availableQty: 27)
+      .toJson();
+
+  fireBaseDatabaseReference.child("cafeMenu/menuCard/").set({
+    "itemsSample": [pM, pMt, pMr, pMg]
+  });
+}
+
+updateItemsList() {
+  final pM = const ProductModel(
+          itemId: 501,
+          itemName: "Qr Shaway",
+          categoryName: "Shaway",
+          itemPrice: 99,
+          itemType: ItemType.plate,
+          availableQty: 24)
+      .toJson();
+  final pMt = const ProductModel(
+          itemId: 504,
+          itemName: "Shawarma Roll",
+          categoryName: "Shawarma",
+          itemPrice: 79,
+          itemType: ItemType.plate,
+          availableQty: 100)
+      .toJson();
+
+  fireBaseDatabaseReference.child("cafeMenu/menuCard/").update({
+    "itemsSample": [pM, pMt]
+  });
+}
+
+// Future<List<ProductModel>> getItemslist() async {
+//   final productItemsPath =
+//       fireBaseDatabaseReference.child("cafeMenu/menuCard/itemsSample");
+//   final event = await productItemsPath.once(DatabaseEventType.value);
+//   final readItemsValues = event.snapshot.value ?? [];
+//   final values;
+//   if (readItemsValues.runtimeType == List<Object?>) {
+//     values = readItemsValues as List;
+//   } else {
+//     readItemsValues as Map<dynamic, dynamic>;
+//     values = readItemsValues.values;
+//   }
+//   List<ProductModel> listOfProductModel = [];
+//   for (var element in values) {
+//     if (element != null) {
+//       var itemjsonString = jsonEncode(element);
+//       var itemJson = jsonDecode(itemjsonString);
+//       listOfProductModel.add(ProductModel.fromJson(itemJson));
+//     }
+//   }
+//   // final itemsListJson = jsonEncode(readItemsValues);
+//   // final productListModel = ProductListModel(jsonDecode(itemsListJson));
+//   return listOfProductModel;
+// }
+
+
+//  
+// "Price" : 189, "categoryName" : "Shaway", "itemId" : 156 ,"itemName" :"Hf Shaway", "itemType" :ItemType.plate
+
+/////////////////////////////////////////

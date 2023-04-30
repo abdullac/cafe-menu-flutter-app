@@ -4,8 +4,8 @@ import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class OrderNumberTime extends StatelessWidget {
-  const OrderNumberTime({
+class OrderIdAndTime extends StatelessWidget {
+  const OrderIdAndTime({
     super.key,
   });
 
