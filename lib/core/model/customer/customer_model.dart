@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'customer_model.freezed.dart';
 part 'customer_model.g.dart';
 
+/// orderModel
 @freezed
 class CustomerModel with _$CustomerModel {
   const factory CustomerModel({
@@ -11,6 +12,7 @@ class CustomerModel with _$CustomerModel {
     String? customerName,
     String? positionCode,
     required List<Map<String, dynamic>> productModelOrderList,
+    /// availableItemModelOrderList
     List? additionalOrderList,
     List? runningOrderList,
     OrderType? orderType,

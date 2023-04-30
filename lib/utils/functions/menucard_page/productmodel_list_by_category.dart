@@ -1,35 +1,38 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 
-/// this method for making Map for create lists by CategoryNames from productModelList
-/// Map keys are categoryName, Map values are List of ProductModel by that key name
-/// productmodelsByCategoryMap is Map of Lists by categoryNames
-Map<String, List<ProductModel>> productmodelListByCategory(
-    List<ProductModel> productModelList) {
-  Map<String, List<ProductModel>> productmodelsByCategoryMap = {};
+/// this method for making Map for create lists by CategoryNames from availableItemList
+/// Map keys are categoryName, Map values are List of availableItem by that key name
+/// availableItemsByCategoryMap is Map of Lists by categoryNames
+Map<String, List<ProductModel>> makeAvailableItemsListByCategoryMap(
+    List<ProductModel> availableItemList) {
+  /// declare empty Map availableItemsByCategoryMap.
+  Map<String, List<ProductModel>> availableItemsByCategoryMap = {};
 
-  /// iter produtModelist for gets Product models
-  for (var productModel in productModelList) {
-    /// gets CategoryName from each produtModel while iteration
+  /// iter availableItemList for gets Product s
+  for (var availableItem in availableItemList) {
+    /// gets CategoryName from each availableItem while iteration
     /// some times categoryName may null
-    if (productModel.categoryName != null) {
-      /// checking each productModel by categoryName for contains Map key match with categoryName in productmodelsByCategoryMap
-      if (productmodelsByCategoryMap.containsKey(productModel.categoryName)) {
-        /// if Map key with category name already contains in productmodelsByCategoryMap,
-        /// then this productModel add to List of ProductModel by that categoryName key in productmodelsByCategoryMap
-        productmodelsByCategoryMap[productModel.categoryName]!
-            .add(productModel);
+    if (availableItem.categoryName != null) {
+      /// checking each availableItem by categoryName 
+      /// for contains Map key match with categoryName in availableItemByCategoryMap
+      if (availableItemsByCategoryMap.containsKey(availableItem.categoryName)) {
+        /// if Map key with category name already contains in availableItemsByCategoryMap,
+        /// then this availableItem add to 
+        /// List of availableItem by that categoryName key in availableItemsByCategoryMap
+        availableItemsByCategoryMap[availableItem.categoryName]!
+            .add(availableItem);
       } else {
         /// some times categoryName may null
-        if (productModel.categoryName != null) {
+        if (availableItem.categoryName != null) {
           /// if not contains Map key with CategoryName
-          /// then create new Map key with this categoryname in productmodelsByCategoryMap
-          ///  and make value this productModel to that Map key
-          productmodelsByCategoryMap[productModel.categoryName!] = [
-            productModel
+          /// then create new Map key with this categoryname in availableItemsByCategoryMap
+          ///  and make value this availableItem to that Map key
+          availableItemsByCategoryMap[availableItem.categoryName!] = [
+            availableItem
           ];
         }
       }
     }
   }
-  return productmodelsByCategoryMap;
+  return availableItemsByCategoryMap;
 }

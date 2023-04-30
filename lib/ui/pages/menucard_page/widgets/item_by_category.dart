@@ -1,21 +1,16 @@
-import 'dart:math';
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/item_page/page_item.dart';
 import 'package:cafemenu_app/ui/pages/menucard_page/widgets/count_price_widgets.dart';
-import 'package:cafemenu_app/utils/constants/colors.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
+import 'package:cafemenu_app/utils/constants/image_links.dart';
 import 'package:flutter/material.dart';
 
-String sampleImageUrl =
-"https://www.xtrafondos.com/wallpapers/vertical/cafeteria-en-el-invierno-durante-la-noche-arte-digital-6563.jpg";
-    // "https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2FtcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80";
-
-/// this widget is builder item(productModel) widget of Listview by categoryName
-class productItemByCategory extends StatelessWidget {
-  final ProductModel productModel;
-  const productItemByCategory({
+/// this widget is itembuilder for availableItem widget of pageView by categoryName
+class AvailableItemByCategory extends StatelessWidget {
+  final ProductModel availableItem;
+  const AvailableItemByCategory({
     super.key,
-    required this.productModel,
+    required this.availableItem,
   });
 
   @override
@@ -24,47 +19,51 @@ class productItemByCategory extends StatelessWidget {
     return InkWell(
       onTap: () {
         // catyegory item image taped
-        /// Navigate to pageItem with productModel by pushReplacement when tap list item.
+        /// Navigate to pageItem with availableItem by pushReplacement when tap list item.
         /// and pass current page info(page info is before navigate page info)
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => PageItem(
-              productModel: productModel,
+              availableItem: availableItem,
               comingPage: ComingPage.menuCard,
             ),
           ),
         );
       },
 
-      /// list item container widget for shows item imag,item name, price... etc.
+      /// list item container widget for shows item image,item name, price... etc.
       child: Container(
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: const BorderRadius.all(Radius.circular(8)),
+
+            /// background image
             image: DecorationImage(
                 opacity: 0.4,
                 image: NetworkImage(
-                  productModel.verticalImageUrl ?? sampleImageUrl,
+                  availableItem.verticalImageUrl ?? sampleImageUrl,
                 ),
                 fit: BoxFit.cover)),
 
-        /// column widget for shows widgets vertical alignment
+        /// Stack widget for shows availableItem details forground
         child: Stack(
           children: [
             Positioned(
               left: 10,
               bottom: 10,
+
+              /// container for round forground image with border
               child: Container(
                 height: 190,
                 width: 190,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.withOpacity(0.7),
-                  width: 7),
+                  border:
+                      Border.all(color: Colors.grey.withOpacity(0.7), width: 7),
                   shape: BoxShape.circle,
                   image: DecorationImage(
                       image: NetworkImage(
-                        productModel.verticalImageUrl ?? sampleImageUrl,
+                        availableItem.verticalImageUrl ?? sampleImageUrl,
                       ),
                       fit: BoxFit.cover),
                 ),
@@ -73,35 +72,41 @@ class productItemByCategory extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                padding: const EdgeInsets.only(right: 15,bottom: 15),
+                padding: const EdgeInsets.only(right: 15, bottom: 15),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     /// text widget
-                    /// shows itemName of productModel
+                    /// shows itemName of availableItem
                     Padding(
                       padding: const EdgeInsets.only(top: 40),
                       child: Text(
-                        productModel.itemName ?? "Item Name Not Provided",
-                        style: const TextStyle(fontSize: 20,color: Colors.red, shadows: [
-                          Shadow(
-                            color: Colors.white,
-                            blurRadius: 20,
-                          )
-                        ]),
+                        availableItem.itemName ?? "N/A",
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.red,
+                          /// blur shadows for highlite text
+                          shadows: [
+                            Shadow(
+                              color: Colors.white,
+                              blurRadius: 20,
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                          
+
                     /// text widget
-                    /// shows leftQty(available item quantity) of productModel
-                    /// or availability(closed or not) ProductModel.
+                    /// shows leftQty(available item quantity) of availableItem
+                    /// or availability(closed or not) availableItem.
                     Text(
-                      productModel.isClosed == null && productModel.leftQty == null
+                      availableItem.isClosed == null &&
+                              availableItem.leftQty == null
                           ? ""
-                          : productModel.leftQty != null
-                              ? "Left ${productModel.leftQty} only"
-                              : productModel.isClosed == true
+                          : availableItem.leftQty != null
+                              ? "Left ${availableItem.leftQty} only"
+                              : availableItem.isClosed == true
                                   ? "Closed"
                                   : "",
                       style: TextStyle(
@@ -109,10 +114,10 @@ class productItemByCategory extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.purple.withOpacity(0.5)),
                     ),
-                          
+
                     /// show price and manage Qty widgets in Row
-                    CountPriceWidgets(
-                      productModel: productModel,
+                    QtyPriceWidgets(
+                      availableItem: availableItem,
                     ),
                   ],
                 ),

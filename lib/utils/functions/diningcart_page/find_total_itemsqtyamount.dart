@@ -1,11 +1,10 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/diningcart_page/sections/total_items_qty_amount.dart';
 import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/diningcart_button.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/diningcart_item.dart';
-import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:flutter/material.dart';
 
+///diningCartPage setQty inrease/decrease button pressed additional function
 additionalIncreaseOrDecreaseButtonPressed(
     {required ValueNotifier<bool?> isSelectNotifier}) {
   changeDiningCartTotal();
@@ -14,6 +13,7 @@ additionalIncreaseOrDecreaseButtonPressed(
   }
 }
 
+/// change diningCaart totel when inrease/decrease button pressed
 changeDiningCartTotal() {
   TotalItemQtyAmount.diningCartTotalNotifier.value = findTotalItemsQtyAmount();
   TotalItemQtyAmount.diningCartTotalNotifier.notifyListeners();
@@ -21,24 +21,19 @@ changeDiningCartTotal() {
   DiningCartButton.diningCartButtonNotifier.notifyListeners();
 }
 
+/// findTotalItemsQtyAmount when change item ccount, isSelect, delete
 Map<String, dynamic> findTotalItemsQtyAmount() {
   Map<String, dynamic> findTotalItemsQtyAmountTemp = {
     "items": 0,
     "Qty": 0,
     "amount": 0.0,
   };
-  // findTotalItemsQtyAmountTemp["items"] = diningCartList.length;
-  // print(
-  //     "findTotalItemsQtyAmountTemp['items'] ${findTotalItemsQtyAmountTemp["items"]}");
   for (var element in diningCartList) {
     findTotalItemsQtyAmountTemp["items"] += findTotalItems(element);
     findTotalItemsQtyAmountTemp["Qty"] += findTotalOrderedQty(element);
     findTotalItemsQtyAmountTemp["amount"] += findTotalAmount(element);
   }
 
-  print(findTotalItemsQtyAmountTemp["items"]);
-  print(findTotalItemsQtyAmountTemp["Qty"]);
-  print(findTotalItemsQtyAmountTemp["amount"]);
   return findTotalItemsQtyAmountTemp;
 }
 
@@ -75,11 +70,3 @@ double findTotalAmount(ProductModel element) {
     }
   }
 }
-
-// if (element.orderedQty != null) {
-//       findTotalItemsQtyAmountTemp["Qty"] += element.orderedQty!;
-//       if (element.itemPrice != null) {
-//         findTotalItemsQtyAmountTemp["amount"] +=
-//             (element.orderedQty!).toDouble() * (element.itemPrice!);
-//       }
-//     }

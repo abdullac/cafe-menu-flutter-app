@@ -1,122 +1,70 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/page_diningcart.dart';
-import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
+import 'package:cafemenu_app/firebase_backend.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
+import 'package:cafemenu_app/utils/functions/diningcart_page/make_diningcart_list.dart';
+import 'package:cafemenu_app/utils/functions/menucard_page/get_availableitems_list.dart';
 import 'package:cafemenu_app/utils/functions/menucard_page/productmodel_list_by_category.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-
 import 'widgets/category_list.dart';
 import 'widgets/menucard_page_appbar.dart';
 
-/// This Page widget shows items(list of ProductModel)
+/// this widget is like a screen/page for shows available items.
+/// This Page shows items(list of ProductModel)
 /// this is the listView page.
-/// base listview is vertial for shows by CategoryName.
-/// another listView is horizontal for shows products by eah category
+/// each listView items Contains horizontal Pageview by items category name.
+/// pageview items shows items(available items)by their cateegory name.
 class PageMenuCard extends StatelessWidget {
-  /// list of items(ProductModel) from realtime database
-  // final List<ProductModel> productModelListt;
+  /// list of items(ProductModel/available items) from realtime database
   const PageMenuCard({
     Key? key,
-    // required this.productModelListt,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ////////////////////////
-    DatabaseReference fireBaseDatabaseReference =
-        FirebaseDatabase.instance.ref();
-    final productItemsPath =
-        fireBaseDatabaseReference.child("cafeMenu/menuCard/itemsSample");
+    /// mwnuCard page created with Stream builder for rebuild widget/page
+    /// when get any change in available items of firebase database backend
     return StreamBuilder(
-        stream: productItemsPath.onValue,
-        builder: (context, snapshot) {
-          if (snapshot.data != null) {
-            List<ProductModel> listOfProductModel =
-                getItemsListByStreamBuilder(snapshot);
-            diningCartListByStreamBuilder(listOfProductModel);
-            productModelList = listOfProductModel;
-          }
-          ///////////////////////////////
-          /// method for making productModel list by categoryNames
-          Map<String, List<ProductModel>> listOfProductmodelByCategory =
-              // productmodelListByCategory(productModelListt);
-              productmodelListByCategory(productModelList);
-          return Scaffold(
-            /// appBar with goto DiningCart page button
-            appBar: const PreferredSize(
-                preferredSize: Size(100, 60), child: MenuCardPageAppBar()),
+      /// get reference and child path from Firebasebackend class
+      /// for get event from database with stream of sytream builder.
+      stream: FirebaseBackend.availableItemsChildRef().onValue,
+      builder: (context, snapshot) {
+        if (snapshot.data != null) {
+          /// get list of available Items by stream builder snapshot
+          getAvailableItemsListByStreamBuilder(snapshot);
 
-            /// this ListView is Base listview includes child listViews by CategryName
-            body: ListView.separated(
-              itemCount: listOfProductmodelByCategory.length,
-              itemBuilder: (contxt, categoryIndex) {
-                return CategoryListviewOfProductPageview(
-                  categoryIndex: categoryIndex,
-                  listOfProductmodelByCategory: listOfProductmodelByCategory,
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(),
-            ),
-          );
-        });
-  }
-}
-
-List<ProductModel> getItemsListByStreamBuilder(
-    AsyncSnapshot<DatabaseEvent> snapshot) {
-  // log("onValue - ${snapshot.data!.snapshot.value}");
-  final readItemsValues = snapshot.data!.snapshot.value ?? [];
-  final values;
-  if (readItemsValues.runtimeType == List<Object?>) {
-    values = readItemsValues as List;
-  } else {
-    readItemsValues as Map<dynamic, dynamic>;
-    values = readItemsValues.values;
-  }
-  List<ProductModel> listOfProductModel = [];
-  for (var element in values) {
-    if (element != null) {
-      var itemjsonString = jsonEncode(element);
-      var itemJson = jsonDecode(itemjsonString);
-      listOfProductModel.add(ProductModel.fromJson(itemJson));
-    }
-  }
-  return listOfProductModel;
-}
-
-void diningCartListByStreamBuilder(List<ProductModel> listOfProductModel) {
-  for (var menuCardItemByStreamBuilder in listOfProductModel) {
-    for (var diningCartItem in diningCartList) {
-      if (diningCartItem.itemId == menuCardItemByStreamBuilder.itemId) {
-        if (![
-              diningCartItem.orderedQty,
-              menuCardItemByStreamBuilder.availableQty
-            ].contains(null) &&
-            diningCartItem.orderedQty! >
-                menuCardItemByStreamBuilder.availableQty!) {
-          int indexTemp = diningCartList.indexOf(diningCartItem);
-          ProductModel productModelTemp = diningCartItem.copyWith(
-              orderedQty: menuCardItemByStreamBuilder.availableQty!,
-              infoToCustomer:
-                  "Sorry, only ${menuCardItemByStreamBuilder.availableQty!} Qty available.");
-          diningCartList[indexTemp] = productModelTemp;
-        } else if (![
-              diningCartItem.orderedQty,
-              menuCardItemByStreamBuilder.availableQty
-            ].contains(null) &&
-            diningCartItem.orderedQty! <=
-                menuCardItemByStreamBuilder.availableQty!) {
-          int indexTemp = diningCartList.indexOf(diningCartItem);
-          ProductModel productModelTemp = diningCartItem.copyWith(
-              infoToCustomer:
-                  "${menuCardItemByStreamBuilder.availableQty!} Qty available.");
-          diningCartList[indexTemp] = productModelTemp;
+          /// make/set diningCart List when streamBuilder build widget
+          /// diningCart list is cart List(order items list) of customer/user.
+          makeDiningCartListByStreamBuilder(availableItemsList);
         }
-      }
-    }
+
+        /// method for making AvalableItemModel Map by categoryNames.
+        /// Map key is category name,
+        /// Map value is list of availableItems By that categoryName.
+        Map<String, List<ProductModel>> availableItemsListByCategoryMap =
+            makeAvailableItemsListByCategoryMap(availableItemsList);
+        return Scaffold(
+          /// appBar with goto DiningCart page button
+          appBar: const PreferredSize(
+            preferredSize: Size(100, 60),
+            child: MenuCardPageAppBar(),
+          ),
+
+          /// this is a ListView contains Horizontal Pageview by CategryName
+          body: ListView.separated(
+            /// listview length is CategoryNames length
+            itemCount: availableItemsListByCategoryMap.length,
+            itemBuilder: (contxt, categoryIndex) {
+              /// ListView item builder is
+              /// pageview of availableItems by categoryName
+              return PageviewOfAvailableitemsByCategoryname(
+                categoryIndex: categoryIndex,
+                availableItemsListByCategoryMap: availableItemsListByCategoryMap,
+              );
+            },
+            separatorBuilder: (context, index) => const SizedBox(),
+          ),
+        );
+      },
+    );
   }
 }
