@@ -46,7 +46,7 @@ class DiningcartListItemSerialNumberAndIsSelectCheckBox
               onChanged: (isSelect) {
                 // checkbox onChanged (select unselect)
                 selectOrUnselectItem(
-                  productModel: diningCartItem,
+                  diningCartItem: diningCartItem,
                   isSelect: isSelect,
                   isSelectNotifier: isSelectNotifier,
                 );

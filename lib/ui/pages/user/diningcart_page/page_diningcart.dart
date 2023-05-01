@@ -96,16 +96,22 @@ class PageDiningCart extends StatelessWidget {
                           ),
                           Align(
                             alignment: Alignment.bottomCenter,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                /// total items, quantity, amount.
-                                TotalItemQtyAmount(
-                                    diningCartList: diningCartList),
-                                NameChairNumber(),
-                                const OrderIdAndTime(),
-                                const DiningCartButton(),
-                              ],
+                            child: Container(color: Colors.red[200],
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  /// total items, quantity, amount.
+                                  TotalItemQtyAmount(
+                                      diningCartList: diningCartList),
+                                  /// name and positionCode
+                                  NameAndPositionCode(),
+                                  /// OrderId and ordered time
+                                  const OrderIdAndTime(),
+                                  /// diningCart button for deffrent functionality
+                                  /// takeNow order, confirmOrder,..
+                                  const DiningCartButton(),
+                                ],
+                              ),
                             ),
                           ),
                         ],

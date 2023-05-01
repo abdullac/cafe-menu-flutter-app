@@ -1,6 +1,6 @@
-import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 
+/// change diningCart button text when changed diningCartButton functionality.
 String setDiningCartButtonTitle(DiningCartButtonFunctionality? buttonValue) {
   return buttonValue == null
       ? "Take Now"

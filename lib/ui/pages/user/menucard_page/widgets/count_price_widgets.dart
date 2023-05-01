@@ -1,5 +1,5 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/utils/functions/set_qty_section.dart';
+import 'package:cafemenu_app/ui/shared/widgets/set_qty_section.dart';
 import 'package:cafemenu_app/utils/functions/modified_product_model.dart';
 import 'package:flutter/material.dart';
 

@@ -5,7 +5,7 @@ import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcartlit
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/imagecontainer_and_price.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/info_to_customer.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/serialnumber_and_selectchackbox.dart';
-import 'package:cafemenu_app/ui/pages/user/item_page/page_item.dart';
+import 'package:cafemenu_app/ui/shared/pages/item_page/page_item.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +50,7 @@ class DiningCartItem extends StatelessWidget {
 
       /// this container for setheight and margin for diningCartItem of diningCartList.
       child: Container(
-        height: 150,
+        height: 155,
         margin: const EdgeInsets.all(5),
         child: Row(
           children: [

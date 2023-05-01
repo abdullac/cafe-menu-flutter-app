@@ -9,8 +9,14 @@ class FirebaseBackend {
   static DatabaseReference availableItemsChildRef() {
     return databaseRef.child("cafeMenu/menuCard/itemsSample");
   }
+
   /// orderedList reference
-  static DatabaseReference orderedListChildRef() {
-    return FirebaseDatabase.instance.ref("cafeMenu/orders/orderList");
+  static DatabaseReference orderedListChildRef([String? endChild]) {
+    if (endChild != null) {
+      return FirebaseDatabase.instance
+          .ref("cafeMenu/orders/orderList/$endChild");
+    } else {
+      return FirebaseDatabase.instance.ref("cafeMenu/orders/orderList");
+    }
   }
 }

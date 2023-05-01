@@ -1,23 +1,23 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:math' as math;
-
 import 'package:cafemenu_app/core/model/customer/customer_model.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cafemenu_app/firebase_backend.dart';
 
+/// create method for get last orderId from firebase realtime database.
 Future<int> setOrderId() async {
-  /// create method for get last number from firebase realtime database.
-  DatabaseReference firebaseRef = FirebaseDatabase.instance.ref();
+  /// get ordered list snapshot from firebase
   final ordersListSnapshot =
-      await firebaseRef.child("cafeMenu/orders/orderList").get();
+      await FirebaseBackend.orderedListChildRef().get();
+  /// get all orderId and addd to a list while iter orderedList with convert to availableItemModel
   List<int> orderIdList = [];
-  for (var element in ordersListSnapshot.children) {
-    CustomerModel customerModel =
-        CustomerModel.fromJson(jsonDecode(jsonEncode(element.value)));
-    if (customerModel.orderId != null) {
-      orderIdList.add(customerModel.orderId!);
+  for (var orderedItemSnapshot in ordersListSnapshot.children) {
+    CustomerModel orderedItem =
+        CustomerModel.fromJson(jsonDecode(jsonEncode(orderedItemSnapshot.value)));
+    if (orderedItem.orderId != null) {
+      orderIdList.add(orderedItem.orderId!);
     }
   }
+  /// find latest/Large orderId and reate new orderId
   int? largeOrderId;
   if (orderIdList.isNotEmpty) {
     largeOrderId = orderIdList.reduce(math.max);
@@ -26,6 +26,6 @@ Future<int> setOrderId() async {
   }
   int newOrderId = largeOrderId + 1;
 
-  /// set new order number to irebase realtime database.
+  /// set new orderId to irebase realtime database.
   return newOrderId;
 }

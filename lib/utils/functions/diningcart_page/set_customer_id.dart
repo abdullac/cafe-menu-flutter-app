@@ -1,4 +1,5 @@
-
+/// this method for set unique customerId,
+/// for special/personalized porpose.
 int setCustometId() {
   /// get last customer id number from firebase.
   /// create new ustomer id number.

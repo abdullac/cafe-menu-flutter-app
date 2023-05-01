@@ -3,53 +3,34 @@ import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/find_total_itemsqtyamount.dart';
 import 'package:flutter/material.dart';
 
-List<ProductModel> unSelectedProductModelList = [];
-
+/// method for select or unselect item from diningCartList when tap select checkBox
 selectOrUnselectItem(
-    {required ProductModel productModel,
+    {required ProductModel diningCartItem,
     required bool? isSelect,
     required ValueNotifier<bool?> isSelectNotifier}) {
-  ProductModel productModelTemp =
-      productModel.copyWith(isSelectDiningCart: isSelect);
-  // int? positionFromUnSelectedList;
-  // for (var element in unSelectedProductModelList) {
-  //   if (element.itemName == productModelTemp.itemName) {
-  //     positionFromUnSelectedList = unSelectedProductModelList.indexOf(element);
-  //   }
-  // }
-  // if (isSelect == false) {
-  //   if (positionFromUnSelectedList != null) {
-  //     unSelectedProductModelList[positionFromUnSelectedList] = productModelTemp;
-  //   } else {
-  //     unSelectedProductModelList.add(productModelTemp);
-  //   }
-  // } else if (isSelect == true) {
-  //   if (positionFromUnSelectedList != null) {
-  //     productModelTemp = unSelectedProductModelList[positionFromUnSelectedList]
-  //         .copyWith(isSelectDiningCart: isSelect);
-  //   }
-  // }
+      /// modify diningCart item after tap on select checkBox
+  ProductModel modifiedDiningCartItem =
+      diningCartItem.copyWith(isSelectDiningCart: isSelect);
 
-  ///////////////////////////
-  // ProductModel productModelTemp =
-  //     productModel.copyWith(isSelectDiningCart: isSelect);
-
+  /// get this item index from diningCartList
   int? elementPosition;
-  for (var element in diningCartList) {
-    if (element.itemId == productModelTemp.itemId) {
-      elementPosition = diningCartList.indexOf(element);
+  for (var diningCartItem in diningCartList) {
+    if (diningCartItem.itemId == modifiedDiningCartItem.itemId) {
+      elementPosition = diningCartList.indexOf(diningCartItem);
       break;
     }
   }
+  /// update or add this modified item to diningCartList.
   if (elementPosition != null) {
-    diningCartList[elementPosition] = productModelTemp;
+    diningCartList[elementPosition] = modifiedDiningCartItem;
   } else {
-    diningCartList.add(productModelTemp);
+    diningCartList.add(modifiedDiningCartItem);
   }
-
+  /// notify select checkBox notifier for change checkbox ui
   if (isSelect != null) {
     isSelectNotifier.value = isSelect;
     isSelectNotifier.notifyListeners();
   }
+  /// change total items,qty,amount after diningCart List hanged 
   changeDiningCartTotal();
 }

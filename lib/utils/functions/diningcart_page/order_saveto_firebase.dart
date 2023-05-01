@@ -1,18 +1,23 @@
+import 'package:cafemenu_app/firebase_backend.dart';
+import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-orderSaveToFireBaseDatabase(Map<String, dynamic> customerModelJson) async {
-  DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
-
+/// method for save Orde rModel json to firebase Database.
+orderSaveToFireBaseDatabase(Map<String, dynamic> orderModelJson) async {
+  /// get already orderListSnapshot from firbase database for get latest firebase Key and create new Key,
+  /// becuase, firebase save/update data as json(Map), not as List.
   DataSnapshot getOrderListSnapshot =
-      await databaseRef.child("cafeMenu/orders/orderList").get();
+      await FirebaseBackend.orderedListChildRef().get();
+  /// already orderlist convert to list
   var getOrderListSnapshotByList = getOrderListSnapshot.children.toList();
-
+  /// iter already orderList and get all Key
   List<int> orderListKeys = [];
-  for (var element in getOrderListSnapshotByList) {
-    if (element.key != null) {
-      orderListKeys.add(int.parse(element.key!));
+  for (var orderItemSnapshot in getOrderListSnapshotByList) {
+    if (orderItemSnapshot.key != null) {
+      orderListKeys.add(int.parse(orderItemSnapshot.key!));
     }
   }
+  /// iter and Match all Keys for find latest key and create new Key
   int newKey = 0;
   for (int baseIndex = 0; baseIndex < orderListKeys.length - 1; baseIndex++) {
     for (int subIndex = baseIndex + 1;
@@ -24,9 +29,8 @@ orderSaveToFireBaseDatabase(Map<String, dynamic> customerModelJson) async {
     }
   }
 
-  await databaseRef
-      .child("cafeMenu/orders/orderList/$newKey")
-      .update(customerModelJson);
-  print("saving...");
-  // fireBaseDatabaseReference.child("cafeMenu/menuCard/").set({"itemsSample": [pM, pMt, pMr, pMg]});
+  /// update(save) orderId to fireBase database with new Key.
+  showSnackBar("Your Order Confirming...");
+  await FirebaseBackend.orderedListChildRef("$newKey").update(orderModelJson);
+  showSnackBar("Your Order Confirmed...");
 }

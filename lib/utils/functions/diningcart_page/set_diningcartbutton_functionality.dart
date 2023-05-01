@@ -1,37 +1,55 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/customername_and_chairnumber.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
-import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/create_customermodel_json.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/order_saveto_firebase.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/set_order_id.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/set_ordered_time.dart';
+import 'package:cafemenu_app/utils/functions/diningcart_page/takenow_order.dart';
 import 'package:flutter/material.dart';
 
+/// method for hange diningCart button fuctionality.
 Future<void> setDiningCartButtonFunctionality(
-    ValueNotifier<DiningCartButtonFunctionality?> diningCartButtonNotifier) async {
+    ValueNotifier<DiningCartButtonFunctionality?>
+        diningCartButtonNotifier) async {
   switch (diningCartButtonNotifier.value) {
+    /// button press for takeNow order
     case null:
-      takeNowButtonPressed();
+
+      /// method for filter and avoid 0 orderedQty items and notfy for rebuild diningCArt widgets.
+      buttonPressedForTakeNow();
       diningCartButtonNotifier.value = DiningCartButtonFunctionality.takeNow;
       break;
+
+    /// button pressed for confirmOrder
     case DiningCartButtonFunctionality.takeNow:
-      String customerName = NameChairNumber.customerNameEditingController.text;
+
+      /// get name from name textField and get PositionCode,
+      /// make order and save to fireBase using orderSaveToFireBaseDatabase method.
+      String customerName =
+          NameAndPositionCode.customerNameEditingController.text;
       if (customerName.isEmpty ||
           [null, "-1"]
-              .contains(NameChairNumber.tableOrChairNumberNotifier.value)) {
+              .contains(NameAndPositionCode.tableOrChairNumberNotifier.value)) {
         print("Please fill Name or select Table/Chair");
       } else {
         orderId = await setOrderId();
         orderedTime = setOrderTime();
-        positionCode = NameChairNumber.tableOrChairNumberNotifier.value;
-        final customerModelJson = createCustemerModelJson();
-        /////// orderSaveToFireBaseDatabase(customerModelJson); /// important
-        orderSaveToFireBaseDatabase(customerModelJson);
+        positionCode = NameAndPositionCode.tableOrChairNumberNotifier.value;
+
+        /// method for make orderModel json before save to firebase databasse.
+        final orderModelJson = createOrderModelJson();
+
+        /// method for save ordermodel json to firebase database.
+        orderSaveToFireBaseDatabase(orderModelJson);
+
+        /// change notifiers value.
         diningCartButtonNotifier.value =
             DiningCartButtonFunctionality.orderConfirm;
+
+        /// diningCartListViewNotifier value cange to  "oredredList" for
+        /// diningCart widgets change to show orderedList and more..
         PageDiningCart.diningCartListViewNotifier.value = "oredredList";
       }
       break;
@@ -59,17 +77,3 @@ Future<void> setDiningCartButtonFunctionality(
 //     case DiningCartButtonFunctionality.confirmRunningOrder:
 //       //
 //       break;
-
-takeNowButtonPressed() {
-  print("diningCartList before takeNow: ${diningCartList}");
-  List<ProductModel> diningCartListTemp = [];
-  for (var element in diningCartList) {
-    if (![null, 0].contains(element.orderedQty) &&
-        element.isSelectDiningCart != false) {
-      diningCartListTemp.add(element);
-    }
-  }
-  diningCartList = diningCartListTemp;
-  print("diningCartList after takeNow: ${diningCartList}");
-  PageDiningCart.diningCartListViewNotifier.notifyListeners();
-}

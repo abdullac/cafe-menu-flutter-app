@@ -1,5 +1,5 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/user/item_page/page_item.dart';
+import 'package:cafemenu_app/ui/shared/pages/item_page/page_item.dart';
 import 'package:cafemenu_app/ui/pages/user/menucard_page/widgets/count_price_widgets.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/image_links.dart';

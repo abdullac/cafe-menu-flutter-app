@@ -1,6 +1,7 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/functions/change_set_qty_productmodel.dart';
+import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:flutter/material.dart';
 
 /// this widget is increase(+) Qty button(Container with InkWell).
@@ -22,17 +23,22 @@ class QtyIncreaseButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // count increase button pressed
-        /// call method for increase Qty of availableItem
-        /// and availableItem add/update to diningCardList
-        changeSetQtyAndNotifyListener(
-          inreaseOrDecrease: ChangeQty.increase,
-          valueNotifier: valueNotifier,
-          newQtyValue: newQtyValue,
-          availableItem: availableItem,
-        );
-        if (onIncreasePressed != null) {
-          onIncreasePressed!();
+        if (![valueNotifier.value, availableItem.availableQty].contains(null) &&
+            valueNotifier.value! >= availableItem.availableQty!){
+              showSnackBar("Maximum available Quantity is ${availableItem.availableQty!}");
+            }else {
+          // count increase button pressed
+          /// call method for increase Qty of availableItem
+          /// and availableItem add/update to diningCardList
+          changeSetQtyAndNotifyListener(
+            inreaseOrDecrease: ChangeQty.increase,
+            valueNotifier: valueNotifier,
+            newQtyValue: newQtyValue,
+            availableItem: availableItem,
+          );
+          if (onIncreasePressed != null) {
+            onIncreasePressed!();
+          }
         }
       },
       child: Container(

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -16,11 +15,11 @@ import 'package:flutter/material.dart';
   /// because, the variable allAvailableItems may be List if availableItemsSnapshotValues lenghth  gratyerthan or equal 2.
   /// the variable allAvailableItems may be Map if availableItemsSnapshotValues lenghth  lesthan 2.
   final Iterable allAvailableItems;
-  List<ProductModel> listOfProductModel = [];
+  List<ProductModel> listOfAvailableItem = [];
 
   /// check availableItemsSnapshotValues is null
-  /// listOfProductModel will be empty if availableItemsSnapshotValues is null,
-  /// listOfProductModel will be add available items if availableItemsSnapshotValues is not null,
+  /// listOfAvailableItem will be empty if availableItemsSnapshotValues is null,
+  /// listOfAvailableItem will be add available items if availableItemsSnapshotValues is not null,
   if (availableItemsSnapshotValues != null) {
     /// check availableItemsSnapshotValues as List or Map.
     if (availableItemsSnapshotValues.runtimeType == List<Object?>) {
@@ -37,13 +36,13 @@ import 'package:flutter/material.dart';
     for (var availableItem in allAvailableItems) {
       if (availableItem != null) {
         /// each available items convert to jsonString, jsonMap, and AvailableItem,
-        /// and add to listOfProductModel
-        listOfProductModel
+        /// and add to listOfAvailableItem
+        listOfAvailableItem
             .add(ProductModel.fromJson(jsonDecode(jsonEncode(availableItem))));
       }
     }
   }
 
-  /// this listOfProductModel to availableItemsList.
-  availableItemsList = listOfProductModel;
+  /// this listOfAvailableItem to availableItemsList.
+  availableItemsList = listOfAvailableItem;
 }

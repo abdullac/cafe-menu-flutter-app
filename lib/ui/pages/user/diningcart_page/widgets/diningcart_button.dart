@@ -3,13 +3,15 @@ import 'package:cafemenu_app/utils/functions/diningcart_page/set_diningcartbutto
 import 'package:cafemenu_app/utils/functions/diningcart_page/set_diningcartbutton_title.dart';
 import 'package:flutter/material.dart';
 
+/// this is button widget for  takeNow order or confirmOrder
 class DiningCartButton extends StatelessWidget {
   const DiningCartButton({
     super.key,
   });
 
-  static ValueNotifier<DiningCartButtonFunctionality?> diningCartButtonNotifier =
-      ValueNotifier(null);
+  /// diningCartButtonNotifier for change button text/functionality takenow,confirmOrder.
+  static ValueNotifier<DiningCartButtonFunctionality?>
+      diningCartButtonNotifier = ValueNotifier(null);
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -18,12 +20,13 @@ class DiningCartButton extends StatelessWidget {
         setDiningCartButtonFunctionality(diningCartButtonNotifier);
       },
       child: ValueListenableBuilder(
-          valueListenable: diningCartButtonNotifier,
-          builder: (context, buttonValue, _) {
-            return Text(setDiningCartButtonTitle(buttonValue));
-          }),
+        valueListenable: diningCartButtonNotifier,
+        builder: (context, buttonValue, _) {
+          /// button text.
+          /// method setDiningCartButtonTitle for change button text when changed button functionalty.
+          return Text(setDiningCartButtonTitle(buttonValue));
+        },
+      ),
     );
   }
 }
-
-

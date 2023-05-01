@@ -22,5 +22,4 @@ updateProductModelToDiningCartList(
     diningCartList.add(productModel.copyWith(
         orderedQty: orderedQty, isSelectDiningCart: isSelect));
   }
-  print("isSelcet $isSelect");
 }
