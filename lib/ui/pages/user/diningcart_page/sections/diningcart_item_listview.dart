@@ -1,6 +1,6 @@
-import 'package:cafemenu_app/ui/pages/diningcart_page/page_diningcart.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/sections/ordered_listview.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/diningcart_item.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/ordered_listview.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcart_item.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:flutter/material.dart';
 

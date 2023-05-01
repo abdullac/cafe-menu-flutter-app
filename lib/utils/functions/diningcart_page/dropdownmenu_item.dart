@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/ui/pages/diningcart_page/page_diningcart.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 

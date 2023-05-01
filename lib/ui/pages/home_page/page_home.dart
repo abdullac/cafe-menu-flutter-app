@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/admin/ui/admin_login_page/page_admin_login.dart';
+import 'package:cafemenu_app/ui/pages/admin/admin_login_page/page_admin_login.dart';
 import 'package:cafemenu_app/ui/pages/home_page/widgets/menu_card_button.dart';
 import 'package:cafemenu_app/utils/constants/colors.dart';
 import 'package:cafemenu_app/utils/constants/image_links.dart';
@@ -64,7 +64,7 @@ class PageHome extends StatelessWidget {
                                 ),
                               );
                             },
-                            icon: const Icon(Icons.person),
+                            icon: const Icon(Icons.person,color: Colors.red,size: 40,),
                           );
                   }),
             ],

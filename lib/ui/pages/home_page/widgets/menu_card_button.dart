@@ -1,5 +1,5 @@
 import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
-import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
+import 'package:cafemenu_app/ui/pages/user/menucard_page/page_menucard.dart';
 import 'package:flutter/material.dart';
 
 /// this is Elevated button widget for go to menucardPage

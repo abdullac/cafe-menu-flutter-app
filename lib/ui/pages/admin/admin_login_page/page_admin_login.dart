@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/admin/ui/admin_home_page/page_admin_home.dart';
+import 'package:cafemenu_app/ui/pages/admin/admin_home_page/page_admin_home.dart';
 import 'package:cafemenu_app/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';

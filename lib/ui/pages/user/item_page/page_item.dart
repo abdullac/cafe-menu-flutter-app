@@ -1,7 +1,7 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/page_diningcart.dart';
-import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
-import 'package:cafemenu_app/ui/pages/menucard_page/widgets/item_by_category.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
+import 'package:cafemenu_app/ui/pages/user/menucard_page/page_menucard.dart';
+import 'package:cafemenu_app/ui/pages/user/menucard_page/widgets/item_by_category.dart';
 import 'package:cafemenu_app/utils/constants/image_links.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/deleteitem_from_diningcartlist.dart';
 import 'package:cafemenu_app/utils/functions/set_qty_section.dart';

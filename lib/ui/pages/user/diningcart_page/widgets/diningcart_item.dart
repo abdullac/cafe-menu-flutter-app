@@ -1,11 +1,11 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/categoryname_and_itemname.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/diningcartlist_item_quandity.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/diningcartlitem_delete_button.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/imagecontainer_and_price.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/info_to_customer.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/serialnumber_and_selectchackbox.dart';
-import 'package:cafemenu_app/ui/pages/item_page/page_item.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/categoryname_and_itemname.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcartlist_item_quandity.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcartlitem_delete_button.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/imagecontainer_and_price.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/info_to_customer.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/serialnumber_and_selectchackbox.dart';
+import 'package:cafemenu_app/ui/pages/user/item_page/page_item.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:flutter/material.dart';
 

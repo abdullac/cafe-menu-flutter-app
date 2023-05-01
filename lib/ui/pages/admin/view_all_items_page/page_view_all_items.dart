@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:cafemenu_app/admin/ui/add_item_page/page_add_item.dart';
+import 'package:cafemenu_app/ui/pages/admin/add_item_page/page_add_item.dart';
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/menucard_page/widgets/item_by_category.dart';
+import 'package:cafemenu_app/ui/pages/user/menucard_page/widgets/item_by_category.dart';
 import 'package:cafemenu_app/utils/constants/image_links.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';

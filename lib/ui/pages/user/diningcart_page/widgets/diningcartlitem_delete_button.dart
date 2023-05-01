@@ -1,5 +1,5 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/page_diningcart.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/deleteitem_from_diningcartlist.dart';
 import 'package:flutter/material.dart';

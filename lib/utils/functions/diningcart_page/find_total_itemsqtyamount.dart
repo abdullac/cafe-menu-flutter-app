@@ -1,6 +1,6 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/sections/total_items_qty_amount.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/diningcart_button.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/total_items_qty_amount.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcart_button.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:flutter/material.dart';
 

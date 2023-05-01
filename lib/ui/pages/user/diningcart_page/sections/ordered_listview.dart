@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:cafemenu_app/core/model/customer/customer_model.dart';
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/firebase_backend.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/sections/ordered_list_item.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/ordered_list_item.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';

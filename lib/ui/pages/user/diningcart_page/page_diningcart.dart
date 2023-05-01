@@ -1,10 +1,10 @@
 import 'package:cafemenu_app/firebase_backend.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/sections/customername_and_chairnumber.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/sections/diningcart_item_listview.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/sections/order_number_and_time.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/sections/total_items_qty_amount.dart';
-import 'package:cafemenu_app/ui/pages/diningcart_page/widgets/diningcart_button.dart';
-import 'package:cafemenu_app/ui/pages/menucard_page/page_menucard.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/customername_and_chairnumber.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/diningcart_item_listview.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/order_number_and_time.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/total_items_qty_amount.dart';
+import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcart_button.dart';
+import 'package:cafemenu_app/ui/pages/user/menucard_page/page_menucard.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/diningcart_page/make_diningcart_list.dart';
 import 'package:cafemenu_app/utils/functions/menucard_page/get_availableitems_list.dart';
@@ -26,7 +26,7 @@ class PageDiningCart extends StatelessWidget {
         leading: IconButton(
             onPressed: () {
               // appBar back button pressed
-              /// pushReplacement to pageMenuCard
+              /// pushReplacement to pageMenuCard 
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                   builder: (context) => const PageMenuCard(),

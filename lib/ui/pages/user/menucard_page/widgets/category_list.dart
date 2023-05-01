@@ -1,5 +1,5 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/menucard_page/widgets/item_by_category.dart';
+import 'package:cafemenu_app/ui/pages/user/menucard_page/widgets/item_by_category.dart';
 import 'package:flutter/material.dart';
 
 /// this is pageview by categoryName of availableItemModelList.
