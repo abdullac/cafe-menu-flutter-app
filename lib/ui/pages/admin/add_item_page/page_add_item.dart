@@ -2,23 +2,22 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'dart:math' as math;
-
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
-// import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class PageAddItem extends StatelessWidget {
+/// this widget/Screen for add or update Item to firebase AvailableItemList
+class PageAddOrEditItem extends StatelessWidget {
   final ProductModel? editItem;
-  const PageAddItem({
+  const PageAddOrEditItem({
     Key? key,
     this.editItem,
   }) : super(key: key);
 
+  /// text editing controllers for controll text field texts.
   static TextEditingController itemNameEditingController =
       TextEditingController();
   static TextEditingController categoryNameEditingController =
@@ -26,15 +25,20 @@ class PageAddItem extends StatelessWidget {
   static TextEditingController priceEditingController = TextEditingController();
   static TextEditingController availableQtyEditingController =
       TextEditingController();
+      /// Notifier for desplay image after pik from device.
   static ValueNotifier<XFile?> pickedImageNotifier = ValueNotifier(null);
+      /// notifier for show circleProgeress while upload image to firebase.
   static ValueNotifier<bool> isUploadingImageNotifier = ValueNotifier(false);
+  /// uploadTask for image upload to firebase
   static UploadTask? uploadTask;
+  /// get image url from firebase after upload image to firebase
   static String? firebaseImageUrl;
-
+  /// notifier for hange item id text ui after get new itemId
   static ValueNotifier<int?> newItemIdNotifier = ValueNotifier(null);
 
   @override
   Widget build(BuildContext context) {
+    /// change textfields texts using editing controllers if any availableItem edit.
     if (editItem != null) {
       itemNameEditingController.text = editItem!.itemName ?? '';
       categoryNameEditingController.text = editItem!.categoryName ?? '';
@@ -45,19 +49,22 @@ class PageAddItem extends StatelessWidget {
           : '';
     }
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      /// method for get newitemId, and notfy litener for change ui.
       newItemIdNotifier.value = await getNewItemId();
-      log("newItemId ${newItemIdNotifier.value}");
       newItemIdNotifier.notifyListeners();
     });
     return Scaffold(
+      /// appBar,
         appBar: AppBar(
+      /// appBar title change as edit item or add item
           title: Text(editItem == null ? "Add Item" : "Edit Item"),
           actions: [
             IconButton(
               onPressed: () async {
                 // AddItem page appbar add button
-                Map<String, dynamic>? productModelJson =
-                    createProdectModelItemJson(
+                /// metod for create new/edited availableItem json with PageAddOrEditItem Details.
+                Map<String, dynamic>? AvailableItemModelJson =
+                    createAvailableItemJson(
                   itemId: newItemIdNotifier.value.toString(),
                   itemName: itemNameEditingController.text,
                   categoryName: categoryNameEditingController.text,
@@ -65,12 +72,14 @@ class PageAddItem extends StatelessWidget {
                   availableQuantity: availableQtyEditingController.text,
                   verticalImageUrl: await uploadImagetoFirebaseGetUrl(),
                 );
-                if (productModelJson != null) {
-                  await addOrUpdateProductModelItemToFireBase(productModelJson,
+                if (AvailableItemModelJson != null) {
+                  /// method for AvailableItemModelJson add/edit to firebase database 
+                  await addOrUpdateAvailableItemToFireBase(AvailableItemModelJson,
                       editItem: editItem);
+                  /// go back page after add/update to firebase
                   Navigator.of(context).pop();
                 } else {
-                  print("Somthing Wrong, may be any form field is empty");
+                  showSnackBar("Somthing Wrong, may be any form field is empty");
                 }
               },
               icon: const Icon(Icons.add),
@@ -107,7 +116,7 @@ class PageAddItem extends StatelessWidget {
                   Autocomplete(
                     fieldViewBuilder: (context, textEditingController,
                         focusNode, onFieldSubmitted) {
-                      if(editItem != null && editItem!.categoryName != null){
+                      if (editItem != null && editItem!.categoryName != null) {
                         textEditingController.text = editItem!.categoryName!;
                       }
                       categoryNameEditingController = textEditingController;
@@ -233,13 +242,13 @@ class PageAddItem extends StatelessWidget {
                                           ],
                                         );
                                       })
-                                  : 
+                                  :
                                   // editItem != null &&
                                   //         editItem!.verticalImageUrl != null
                                   //     ? Image.network(
                                   //         editItem!.verticalImageUrl!)
                                   //     :
-                                       const SizedBox();
+                                  const SizedBox();
                             }),
                       ],
                     ),
@@ -254,36 +263,36 @@ class PageAddItem extends StatelessWidget {
 
 Future<void> getImageFromDevice() async {
   final imagePicker = ImagePicker();
-  PageAddItem.pickedImageNotifier.value =
+  PageAddOrEditItem.pickedImageNotifier.value =
       await imagePicker.pickImage(source: ImageSource.gallery);
-  if (PageAddItem.pickedImageNotifier.value != null) {
-    print("picked image ${PageAddItem.pickedImageNotifier.value!.name}");
+  if (PageAddOrEditItem.pickedImageNotifier.value != null) {
+    print("picked image ${PageAddOrEditItem.pickedImageNotifier.value!.name}");
   } else {
-    PageAddItem.pickedImageNotifier.value = null;
+    PageAddOrEditItem.pickedImageNotifier.value = null;
     print("picked image null");
   }
 }
 
 Future<String?> uploadImagetoFirebaseGetUrl() async {
-  if (PageAddItem.pickedImageNotifier.value != null) {
+  if (PageAddOrEditItem.pickedImageNotifier.value != null) {
     final imagePath =
-        "files/images/cafeMenu/${PageAddItem.pickedImageNotifier.value!.name}";
-    final imagefile = File(PageAddItem.pickedImageNotifier.value!.path);
+        "files/images/cafeMenu/${PageAddOrEditItem.pickedImageNotifier.value!.name}";
+    final imagefile = File(PageAddOrEditItem.pickedImageNotifier.value!.path);
 
     Reference firebaseStorageRef =
         FirebaseStorage.instance.ref().child(imagePath);
-    PageAddItem.uploadTask = firebaseStorageRef.putFile(imagefile);
+    PageAddOrEditItem.uploadTask = firebaseStorageRef.putFile(imagefile);
   }
-  if (PageAddItem.uploadTask != null) {
-    PageAddItem.isUploadingImageNotifier.value = true;
-    PageAddItem.isUploadingImageNotifier.notifyListeners();
-    final taskSnapshot = await PageAddItem.uploadTask!.whenComplete(() {});
-    PageAddItem.firebaseImageUrl = await taskSnapshot.ref.getDownloadURL();
-    PageAddItem.isUploadingImageNotifier.value = false;
-    PageAddItem.isUploadingImageNotifier.notifyListeners();
-    print("fireBaseImageUrl : ${PageAddItem.firebaseImageUrl}");
+  if (PageAddOrEditItem.uploadTask != null) {
+    PageAddOrEditItem.isUploadingImageNotifier.value = true;
+    PageAddOrEditItem.isUploadingImageNotifier.notifyListeners();
+    final taskSnapshot = await PageAddOrEditItem.uploadTask!.whenComplete(() {});
+    PageAddOrEditItem.firebaseImageUrl = await taskSnapshot.ref.getDownloadURL();
+    PageAddOrEditItem.isUploadingImageNotifier.value = false;
+    PageAddOrEditItem.isUploadingImageNotifier.notifyListeners();
+    print("fireBaseImageUrl : ${PageAddOrEditItem.firebaseImageUrl}");
   }
-  return PageAddItem.firebaseImageUrl;
+  return PageAddOrEditItem.firebaseImageUrl;
 }
 
 List<int> itemIdList = [];
@@ -322,7 +331,7 @@ Future<int> getNewItemId() async {
   return newItemId;
 }
 
-Map<String, dynamic>? createProdectModelItemJson({
+Map<String, dynamic>? createAvailableItemJson({
   required String itemId,
   required String itemName,
   required String categoryName,
@@ -357,7 +366,7 @@ Map<String, dynamic>? createProdectModelItemJson({
   }
 }
 
-addOrUpdateProductModelItemToFireBase(Map<String, dynamic> productModelJson,
+addOrUpdateAvailableItemToFireBase(Map<String, dynamic> productModelJson,
     {ProductModel? editItem}) async {
   DatabaseReference firebaseRef = FirebaseDatabase.instance.ref();
   // dynamic getProductModelListFromFirebase;
@@ -403,8 +412,8 @@ addOrUpdateProductModelItemToFireBase(Map<String, dynamic> productModelJson,
 }
 
 pageAddItemClearAllTextFields() {
-  PageAddItem.itemNameEditingController.text = "";
-  PageAddItem.categoryNameEditingController.text = "";
-  PageAddItem.priceEditingController.text = "";
-  PageAddItem.availableQtyEditingController.text = "";
+  PageAddOrEditItem.itemNameEditingController.text = "";
+  PageAddOrEditItem.categoryNameEditingController.text = "";
+  PageAddOrEditItem.priceEditingController.text = "";
+  PageAddOrEditItem.availableQtyEditingController.text = "";
 }

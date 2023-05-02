@@ -19,4 +19,14 @@ class FirebaseBackend {
       return FirebaseDatabase.instance.ref("cafeMenu/orders/orderList");
     }
   }
+
+  /// main admin refereence
+  static DatabaseReference mainAminChildRef() {
+    return databaseRef.child("cafeMenu/admin/mainAdmin");
+  }
+
+  static DatabaseReference orderedItemsListChildRef(String? orderedListKey) {
+    return databaseRef.child(
+        "cafeMenu/orders/orderList/$orderedListKey/productModelOrderList");
+  }
 }

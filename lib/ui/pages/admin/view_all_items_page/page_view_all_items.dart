@@ -136,6 +136,6 @@ Future deleteItemFromDataBase(int? itemId) async {
 
 editItemToDatabase(BuildContext context, ProductModel productModel) {
   Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-    return PageAddItem(editItem: productModel,);
+    return PageAddOrEditItem(editItem: productModel,);
   }));
 }

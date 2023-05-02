@@ -12,7 +12,7 @@ class CustomerModel with _$CustomerModel {
     String? customerName,
     String? positionCode,
     required List<Map<String, dynamic>> productModelOrderList,
-    /// availableItemModelOrderList
+    /// availableItemModelOrderedItemsList
     List? additionalOrderList,
     List? runningOrderList,
     OrderType? orderType,

@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/ui/pages/admin/admin_login_page/page_admin_login.dart';
+import 'package:cafemenu_app/ui/pages/admin/admin_auth_page/page_admin_auth.dart';
 import 'package:cafemenu_app/ui/pages/home_page/widgets/menu_card_button.dart';
 import 'package:cafemenu_app/utils/constants/colors.dart';
 import 'package:cafemenu_app/utils/constants/image_links.dart';
@@ -60,7 +60,7 @@ class PageHome extends StatelessWidget {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      const PageAdminAuthorization(),
+                                      const PageAdminAuth(),
                                 ),
                               );
                             },

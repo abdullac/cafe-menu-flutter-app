@@ -29,3 +29,10 @@ enum DiningCartButtonFunctionality {
   // cancelOrder,
   // payAmount
 }
+
+/// admin side. register or sign in and mainAdmin or sub admin
+enum AuthentiationType {
+  registerMainAdmin,
+  registerSubAdmin,
+  signInAdmin,
+}

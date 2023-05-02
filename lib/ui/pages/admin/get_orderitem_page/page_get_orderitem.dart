@@ -103,7 +103,7 @@ class PageGetOrderitem extends StatelessWidget {
 
             ///
 
-            /// vertial image
+            /// vertical image
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
