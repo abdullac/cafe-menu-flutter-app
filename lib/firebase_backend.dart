@@ -1,9 +1,13 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 /// this class for get referense of firebase database backend
 class FirebaseBackend {
   /// firebase databadse reference
   static DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
+
+  /// firebase storege reference
+  static Reference storageRef = FirebaseStorage.instance.ref();
 
   /// available Items reference
   static DatabaseReference availableItemsChildRef() {
@@ -25,8 +29,14 @@ class FirebaseBackend {
     return databaseRef.child("cafeMenu/admin/mainAdmin");
   }
 
+  /// orderedList reference
   static DatabaseReference orderedItemsListChildRef(String? orderedListKey) {
     return databaseRef.child(
         "cafeMenu/orders/orderList/$orderedListKey/productModelOrderList");
+  }
+
+  /// image storage reference
+  static Reference imageStorageRef(String imagePathWithImageName) {
+    return FirebaseBackend.storageRef.child(imagePathWithImageName);
   }
 }
