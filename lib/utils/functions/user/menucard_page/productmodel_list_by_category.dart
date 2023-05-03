@@ -3,10 +3,10 @@ import 'package:cafemenu_app/core/model/product/product_model.dart';
 /// this method for making Map for create lists by CategoryNames from availableItemList
 /// Map keys are categoryName, Map values are List of availableItem by that key name
 /// availableItemsByCategoryMap is Map of Lists by categoryNames
-Map<String, List<ProductModel>> makeAvailableItemsListByCategoryMap(
-    List<ProductModel> availableItemList) {
+Map<String, List<AvailableItemModel>> makeAvailableItemsListByCategoryMap(
+    List<AvailableItemModel> availableItemList) {
   /// declare empty Map availableItemsByCategoryMap.
-  Map<String, List<ProductModel>> availableItemsByCategoryMap = {};
+  Map<String, List<AvailableItemModel>> availableItemsByCategoryMap = {};
 
   /// iter availableItemList for gets Product s
   for (var availableItem in availableItemList) {

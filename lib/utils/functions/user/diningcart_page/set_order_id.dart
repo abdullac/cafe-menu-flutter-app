@@ -11,8 +11,8 @@ Future<int> setOrderId() async {
   /// get all orderId and addd to a list while iter orderedList with convert to availableItemModel
   List<int> orderIdList = [];
   for (var orderedItemSnapshot in ordersListSnapshot.children) {
-    CustomerModel orderedItem =
-        CustomerModel.fromJson(jsonDecode(jsonEncode(orderedItemSnapshot.value)));
+    OrderModel orderedItem =
+        OrderModel.fromJson(jsonDecode(jsonEncode(orderedItemSnapshot.value)));
     if (orderedItem.orderId != null) {
       orderIdList.add(orderedItem.orderId!);
     }

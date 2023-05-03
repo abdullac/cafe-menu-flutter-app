@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 /// this widget is itemBuilder(diningCartItem) of diningartList.
 class DiningCartItem extends StatelessWidget {
   final int index;
-  final List<ProductModel> diningCartItemsList;
+  final List<AvailableItemModel> diningCartItemsList;
   const DiningCartItem({
     super.key,
     required this.index,
@@ -32,7 +32,7 @@ class DiningCartItem extends StatelessWidget {
     ValueNotifier<int?> setQtyNotifier = ValueNotifier(null);
 
     /// get diningCartItem from diningCartItemsList using
-    ProductModel diningCartItem = diningCartItemsList[index];
+    AvailableItemModel diningCartItem = diningCartItemsList[index];
     return InkWell(
       onTap: () {
         // cart item image taped

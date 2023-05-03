@@ -2,7 +2,7 @@ import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 
 updateProductModelToDiningCartList(
-    ProductModel productModel, int orderedQty, bool isSelect) {
+    AvailableItemModel productModel, int orderedQty, bool isSelect) {
   /// int elementPosition for gets current position of that ProdutModel from diningCartList. temporary usage
   /// iterate diningCartList for find current position of that ProdutModel position.
   int? elementPosition;

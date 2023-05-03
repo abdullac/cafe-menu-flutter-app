@@ -10,9 +10,9 @@ import 'package:flutter/material.dart';
 
 /// this is itembuilder of Listview for shows each orderd item by a custmor
 class OrderedItem extends StatelessWidget {
-  final List<ProductModel> orderedItemList;
+  final List<AvailableItemModel> orderedItemList;
   final int orderedListViewItemIndex;
-  final CustomerModel orderModel;
+  final OrderModel orderModel;
   final AsyncSnapshot<DatabaseEvent> snapshot;
   const OrderedItem({
     super.key,
@@ -25,7 +25,7 @@ class OrderedItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// get orderedItem from orderedItem List using listview item Index.
-    ProductModel orderedProdutmodelItem =
+    AvailableItemModel orderedProdutmodelItem =
         orderedItemList[orderedListViewItemIndex];
 
     /// ordered itemType convert to String.

@@ -14,18 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
+AvailableItemModel _$AvailableItemModelFromJson(Map<String, dynamic> json) {
   return _ProductModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ProductModel {
+mixin _$AvailableItemModel {
   int? get itemId => throw _privateConstructorUsedError;
   String? get itemName => throw _privateConstructorUsedError;
   int? get serialNumber => throw _privateConstructorUsedError;
-  String? get verticalImageUrl => throw _privateConstructorUsedError;
-  String? get horizontalImageUrl => throw _privateConstructorUsedError;
-  String? get defualtImageUrl => throw _privateConstructorUsedError;
+  String? get verticalImageUrl =>
+      throw _privateConstructorUsedError; // String? horizontalImageUrl,
+// String? defualtImageUrl,
   String? get categoryName => throw _privateConstructorUsedError;
   double? get itemPrice => throw _privateConstructorUsedError;
   int? get orderedQty => throw _privateConstructorUsedError;
@@ -42,23 +42,21 @@ mixin _$ProductModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProductModelCopyWith<ProductModel> get copyWith =>
+  $AvailableItemModelCopyWith<AvailableItemModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProductModelCopyWith<$Res> {
-  factory $ProductModelCopyWith(
-          ProductModel value, $Res Function(ProductModel) then) =
-      _$ProductModelCopyWithImpl<$Res, ProductModel>;
+abstract class $AvailableItemModelCopyWith<$Res> {
+  factory $AvailableItemModelCopyWith(
+          AvailableItemModel value, $Res Function(AvailableItemModel) then) =
+      _$AvailableItemModelCopyWithImpl<$Res, AvailableItemModel>;
   @useResult
   $Res call(
       {int? itemId,
       String? itemName,
       int? serialNumber,
       String? verticalImageUrl,
-      String? horizontalImageUrl,
-      String? defualtImageUrl,
       String? categoryName,
       double? itemPrice,
       int? orderedQty,
@@ -75,9 +73,9 @@ abstract class $ProductModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
-    implements $ProductModelCopyWith<$Res> {
-  _$ProductModelCopyWithImpl(this._value, this._then);
+class _$AvailableItemModelCopyWithImpl<$Res, $Val extends AvailableItemModel>
+    implements $AvailableItemModelCopyWith<$Res> {
+  _$AvailableItemModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -91,8 +89,6 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? itemName = freezed,
     Object? serialNumber = freezed,
     Object? verticalImageUrl = freezed,
-    Object? horizontalImageUrl = freezed,
-    Object? defualtImageUrl = freezed,
     Object? categoryName = freezed,
     Object? itemPrice = freezed,
     Object? orderedQty = freezed,
@@ -123,14 +119,6 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       verticalImageUrl: freezed == verticalImageUrl
           ? _value.verticalImageUrl
           : verticalImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      horizontalImageUrl: freezed == horizontalImageUrl
-          ? _value.horizontalImageUrl
-          : horizontalImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      defualtImageUrl: freezed == defualtImageUrl
-          ? _value.defualtImageUrl
-          : defualtImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       categoryName: freezed == categoryName
           ? _value.categoryName
@@ -190,7 +178,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
 
 /// @nodoc
 abstract class _$$_ProductModelCopyWith<$Res>
-    implements $ProductModelCopyWith<$Res> {
+    implements $AvailableItemModelCopyWith<$Res> {
   factory _$$_ProductModelCopyWith(
           _$_ProductModel value, $Res Function(_$_ProductModel) then) =
       __$$_ProductModelCopyWithImpl<$Res>;
@@ -201,8 +189,6 @@ abstract class _$$_ProductModelCopyWith<$Res>
       String? itemName,
       int? serialNumber,
       String? verticalImageUrl,
-      String? horizontalImageUrl,
-      String? defualtImageUrl,
       String? categoryName,
       double? itemPrice,
       int? orderedQty,
@@ -220,7 +206,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
 
 /// @nodoc
 class __$$_ProductModelCopyWithImpl<$Res>
-    extends _$ProductModelCopyWithImpl<$Res, _$_ProductModel>
+    extends _$AvailableItemModelCopyWithImpl<$Res, _$_ProductModel>
     implements _$$_ProductModelCopyWith<$Res> {
   __$$_ProductModelCopyWithImpl(
       _$_ProductModel _value, $Res Function(_$_ProductModel) _then)
@@ -233,8 +219,6 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? itemName = freezed,
     Object? serialNumber = freezed,
     Object? verticalImageUrl = freezed,
-    Object? horizontalImageUrl = freezed,
-    Object? defualtImageUrl = freezed,
     Object? categoryName = freezed,
     Object? itemPrice = freezed,
     Object? orderedQty = freezed,
@@ -265,14 +249,6 @@ class __$$_ProductModelCopyWithImpl<$Res>
       verticalImageUrl: freezed == verticalImageUrl
           ? _value.verticalImageUrl
           : verticalImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      horizontalImageUrl: freezed == horizontalImageUrl
-          ? _value.horizontalImageUrl
-          : horizontalImageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      defualtImageUrl: freezed == defualtImageUrl
-          ? _value.defualtImageUrl
-          : defualtImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       categoryName: freezed == categoryName
           ? _value.categoryName
@@ -338,8 +314,6 @@ class _$_ProductModel implements _ProductModel {
       required this.itemName,
       this.serialNumber,
       this.verticalImageUrl,
-      this.horizontalImageUrl,
-      this.defualtImageUrl,
       required this.categoryName,
       required this.itemPrice,
       this.orderedQty,
@@ -365,10 +339,8 @@ class _$_ProductModel implements _ProductModel {
   final int? serialNumber;
   @override
   final String? verticalImageUrl;
-  @override
-  final String? horizontalImageUrl;
-  @override
-  final String? defualtImageUrl;
+// String? horizontalImageUrl,
+// String? defualtImageUrl,
   @override
   final String? categoryName;
   @override
@@ -398,7 +370,7 @@ class _$_ProductModel implements _ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(itemId: $itemId, itemName: $itemName, serialNumber: $serialNumber, verticalImageUrl: $verticalImageUrl, horizontalImageUrl: $horizontalImageUrl, defualtImageUrl: $defualtImageUrl, categoryName: $categoryName, itemPrice: $itemPrice, orderedQty: $orderedQty, recievedTime: $recievedTime, isDiningCart: $isDiningCart, itemType: $itemType, availableQty: $availableQty, leftQty: $leftQty, isClosed: $isClosed, isSelectDiningCart: $isSelectDiningCart, itemReady: $itemReady, itemDelevered: $itemDelevered, infoToCustomer: $infoToCustomer)';
+    return 'AvailableItemModel(itemId: $itemId, itemName: $itemName, serialNumber: $serialNumber, verticalImageUrl: $verticalImageUrl, categoryName: $categoryName, itemPrice: $itemPrice, orderedQty: $orderedQty, recievedTime: $recievedTime, isDiningCart: $isDiningCart, itemType: $itemType, availableQty: $availableQty, leftQty: $leftQty, isClosed: $isClosed, isSelectDiningCart: $isSelectDiningCart, itemReady: $itemReady, itemDelevered: $itemDelevered, infoToCustomer: $infoToCustomer)';
   }
 
   @override
@@ -413,10 +385,6 @@ class _$_ProductModel implements _ProductModel {
                 other.serialNumber == serialNumber) &&
             (identical(other.verticalImageUrl, verticalImageUrl) ||
                 other.verticalImageUrl == verticalImageUrl) &&
-            (identical(other.horizontalImageUrl, horizontalImageUrl) ||
-                other.horizontalImageUrl == horizontalImageUrl) &&
-            (identical(other.defualtImageUrl, defualtImageUrl) ||
-                other.defualtImageUrl == defualtImageUrl) &&
             (identical(other.categoryName, categoryName) ||
                 other.categoryName == categoryName) &&
             (identical(other.itemPrice, itemPrice) ||
@@ -446,28 +414,25 @@ class _$_ProductModel implements _ProductModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        itemId,
-        itemName,
-        serialNumber,
-        verticalImageUrl,
-        horizontalImageUrl,
-        defualtImageUrl,
-        categoryName,
-        itemPrice,
-        orderedQty,
-        recievedTime,
-        isDiningCart,
-        itemType,
-        availableQty,
-        leftQty,
-        isClosed,
-        isSelectDiningCart,
-        itemReady,
-        itemDelevered,
-        infoToCustomer
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      itemId,
+      itemName,
+      serialNumber,
+      verticalImageUrl,
+      categoryName,
+      itemPrice,
+      orderedQty,
+      recievedTime,
+      isDiningCart,
+      itemType,
+      availableQty,
+      leftQty,
+      isClosed,
+      isSelectDiningCart,
+      itemReady,
+      itemDelevered,
+      infoToCustomer);
 
   @JsonKey(ignore: true)
   @override
@@ -483,14 +448,12 @@ class _$_ProductModel implements _ProductModel {
   }
 }
 
-abstract class _ProductModel implements ProductModel {
+abstract class _ProductModel implements AvailableItemModel {
   const factory _ProductModel(
       {required final int? itemId,
       required final String? itemName,
       final int? serialNumber,
       final String? verticalImageUrl,
-      final String? horizontalImageUrl,
-      final String? defualtImageUrl,
       required final String? categoryName,
       required final double? itemPrice,
       final int? orderedQty,
@@ -516,11 +479,8 @@ abstract class _ProductModel implements ProductModel {
   int? get serialNumber;
   @override
   String? get verticalImageUrl;
-  @override
-  String? get horizontalImageUrl;
-  @override
-  String? get defualtImageUrl;
-  @override
+  @override // String? horizontalImageUrl,
+// String? defualtImageUrl,
   String? get categoryName;
   @override
   double? get itemPrice;

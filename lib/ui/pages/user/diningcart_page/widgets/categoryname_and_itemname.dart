@@ -9,7 +9,7 @@ class DiningcartListItemCategoryNameAndItemName extends StatelessWidget {
     required this.diningCartItem,
   });
 
-  final ProductModel diningCartItem;
+  final AvailableItemModel diningCartItem;
 
   @override
   Widget build(BuildContext context) {

@@ -2,10 +2,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'product_model.freezed.dart';
 part 'product_model.g.dart';
 
-///  AvailableItem
+///  AvailableItemModel
 @freezed
-class ProductModel with _$ProductModel {
-  const factory ProductModel({
+class AvailableItemModel with _$AvailableItemModel {
+  const factory AvailableItemModel({
     required int? itemId,
     required String? itemName,
     int? serialNumber,
@@ -27,8 +27,8 @@ class ProductModel with _$ProductModel {
     String? infoToCustomer,
   }) = _ProductModel;
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) =>
-      _$ProductModelFromJson(json);
+  factory AvailableItemModel.fromJson(Map<String, dynamic> json) =>
+      _$AvailableItemModelFromJson(json);
 }
 
 enum ItemType {

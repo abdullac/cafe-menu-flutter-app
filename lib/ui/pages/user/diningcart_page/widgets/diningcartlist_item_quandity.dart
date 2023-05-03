@@ -1,6 +1,6 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/find_total_itemsqtyamount.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/find_total_itemsqtyamount.dart';
 import 'package:cafemenu_app/ui/shared/widgets/set_qty_section.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class DiningcartListItemQty extends StatelessWidget {
   });
 
   /// for update diningCartItem when press increase or decrease button
-  final ProductModel diningCartItem;
+  final AvailableItemModel diningCartItem;
 
   /// for change Qty value/text
   final ValueNotifier<int?> setQtyNotifier;

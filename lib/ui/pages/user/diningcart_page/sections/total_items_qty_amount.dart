@@ -1,10 +1,10 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/find_total_itemsqtyamount.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/find_total_itemsqtyamount.dart';
 import 'package:flutter/material.dart';
 
 /// this widget shows total items quantity amount
 class TotalItemQtyAmount extends StatelessWidget {
-  final List<ProductModel> diningCartList;
+  final List<AvailableItemModel> diningCartList;
   const TotalItemQtyAmount({
     super.key,
     required this.diningCartList,

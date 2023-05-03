@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 /// this is row widget includes show price and Qty widget
 class QtyPriceWidgets extends StatelessWidget {
-  final ProductModel availableItem;
+  final AvailableItemModel availableItem;
   const QtyPriceWidgets({
     super.key,
     required this.availableItem,
@@ -18,7 +18,7 @@ class QtyPriceWidgets extends StatelessWidget {
 
     /// method for modify availableItem if this availableItem has include in diningCartList
     /// it do for change Ordered Qty
-    ProductModel availableItemModified =
+    AvailableItemModel availableItemModified =
         modifiedProdectModelByDiningCartList(availableItem);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

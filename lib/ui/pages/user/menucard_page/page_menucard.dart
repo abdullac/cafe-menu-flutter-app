@@ -1,9 +1,9 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/firebase_backend.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/make_diningcart_list.dart';
-import 'package:cafemenu_app/utils/functions/menucard_page/get_availableitems_list.dart';
-import 'package:cafemenu_app/utils/functions/menucard_page/productmodel_list_by_category.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/make_diningcart_list.dart';
+import 'package:cafemenu_app/utils/functions/user/menucard_page/get_availableitems_list.dart';
+import 'package:cafemenu_app/utils/functions/user/menucard_page/productmodel_list_by_category.dart';
 import 'package:flutter/material.dart';
 import 'widgets/category_list.dart';
 import 'widgets/menucard_page_appbar.dart';
@@ -40,7 +40,7 @@ class PageMenuCard extends StatelessWidget {
         /// method for making AvalableItemModel Map by categoryNames.
         /// Map key is category name,
         /// Map value is list of availableItems By that categoryName.
-        Map<String, List<ProductModel>> availableItemsListByCategoryMap =
+        Map<String, List<AvailableItemModel>> availableItemsListByCategoryMap =
             makeAvailableItemsListByCategoryMap(availableItemsList);
         return Scaffold(
           /// appBar with goto DiningCart page button

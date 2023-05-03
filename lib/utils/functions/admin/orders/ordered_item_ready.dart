@@ -5,7 +5,7 @@ import 'package:cafemenu_app/firebase_backend.dart';
 
 /// method for item ready value change to true when pressed button
 Future orderedItemReady(
-    {required CustomerModel order, required ProductModel readyItem}) async {
+    {required OrderModel order, required AvailableItemModel readyItem}) async {
   /// get firebase orderedList snapshot child path
   final orderListSnapShot = await FirebaseBackend.orderedListChildRef().get();
   String? getOrderListKey;
@@ -14,7 +14,7 @@ Future orderedItemReady(
   /// iter orederd list snapshot for get orderListKey
   for (var orderedListSnapshotlement in orderListSnapShot.children) {
     /// item snapshot convert to orderModel
-    CustomerModel orderModel = CustomerModel.fromJson(
+    OrderModel orderModel = OrderModel.fromJson(
         jsonDecode(jsonEncode(orderedListSnapshotlement.value)));
 
     /// match this orderedItem orderId with snapshot ordered item orderId,
@@ -29,14 +29,14 @@ Future orderedItemReady(
       /// iter ordered items list snapshot for get orderedItem firebase key
       for (var orderedItemSnapshot in orderedItemsListSnapShot.children) {
         /// convert to availableItemModel for get itemId
-        ProductModel orderedItem = ProductModel.fromJson(
+        AvailableItemModel orderedItem = AvailableItemModel.fromJson(
             jsonDecode(jsonEncode(orderedItemSnapshot.value)));
         if (readyItem.itemId == orderedItem.itemId) {
           /// get itemId
           getOrderedItemKey = orderedItemSnapshot.key;
 
           /// modify orderedItem for channg ItemReady to true.
-          ProductModel orderedItemModified =
+          AvailableItemModel orderedItemModified =
               readyItem.copyWith(itemReady: true);
 
           /// update to firebase.

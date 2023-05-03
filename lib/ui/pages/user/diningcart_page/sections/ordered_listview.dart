@@ -22,7 +22,7 @@ class OrderedListView extends StatelessWidget {
       stream: FirebaseBackend.orderedListChildRef().onValue,
       builder: (context, snapshot) {
         /// declared empty orderedItemsList(List of availableItem) by one(this) customer/user.
-        List<ProductModel> orderedItemsList = [];
+        List<AvailableItemModel> orderedItemsList = [];
 
         /// declare iterable variable for get all orderedList snapshot from databaseReference.
         Iterable<DataSnapshot> allOrederedListSnapshot;
@@ -33,7 +33,7 @@ class OrderedListView extends StatelessWidget {
           /// iter allOrederedListSnapshot with forLoop for get each order item
           /// and convert to OrderModel
           for (var orderItemSnapshotElement in allOrederedListSnapshot) {
-            CustomerModel orderModel = CustomerModel.fromJson(
+            OrderModel orderModel = OrderModel.fromJson(
               jsonDecode(
                 jsonEncode(orderItemSnapshotElement.value),
               ),
@@ -43,8 +43,8 @@ class OrderedListView extends StatelessWidget {
             /// if true then, get list of ordereditem Map (productModelOrderList) from order item.
             /// and iter with forLoop for get ordered item and convert to AvailableItemModel.
             if (orderModel.orderId == orderId) {
-              for (var orderedItemMap in orderModel.productModelOrderList) {
-                ProductModel orderedItem = ProductModel.fromJson(
+              for (var orderedItemMap in orderModel.orderedAvailableItemModelList) {
+                AvailableItemModel orderedItem = AvailableItemModel.fromJson(
                   jsonDecode(
                     jsonEncode(orderedItemMap),
                   ),

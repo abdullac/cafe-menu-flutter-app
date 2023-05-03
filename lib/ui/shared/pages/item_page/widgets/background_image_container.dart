@@ -10,7 +10,7 @@ class BackgroundAndForGroundImageContainer extends StatelessWidget {
     required this.availableItem,
   });
 
-  final ProductModel availableItem;
+  final AvailableItemModel availableItem;
 
   @override
   Widget build(BuildContext context) {

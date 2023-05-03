@@ -15,7 +15,7 @@ class PickImageFromDeviceButton extends StatelessWidget {
   });
 
   final ValueNotifier<XFile?> pickedImageNotifier;
-  final ProductModel? editItem;
+  final AvailableItemModel? editItem;
   final ValueNotifier<bool> isUploadingImageNotifier;
 
   @override

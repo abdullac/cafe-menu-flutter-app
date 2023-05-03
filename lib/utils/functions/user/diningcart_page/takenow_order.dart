@@ -6,7 +6,7 @@ import 'package:cafemenu_app/utils/constants/lists.dart';
 /// filter dingCart list when press takeNow button,
 /// avoid items with 0 orederedQty.
 buttonPressedForTakeNow() {
-  List<ProductModel> diningCartListTemp = [];
+  List<AvailableItemModel> diningCartListTemp = [];
   /// loop diningCart list,
   /// get and add to diningCartListTemp if not 0 orderedQty items
   for (var diningCartItem in diningCartList) {

@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
   /// because, the variable allAvailableItems may be List if availableItemsSnapshotValues lenghth  gratyerthan or equal 2.
   /// the variable allAvailableItems may be Map if availableItemsSnapshotValues lenghth  lesthan 2.
   final Iterable allAvailableItems;
-  List<ProductModel> listOfAvailableItem = [];
+  List<AvailableItemModel> listOfAvailableItem = [];
 
   /// check availableItemsSnapshotValues is null
   /// listOfAvailableItem will be empty if availableItemsSnapshotValues is null,
@@ -38,7 +38,7 @@ import 'package:flutter/material.dart';
         /// each available items convert to jsonString, jsonMap, and AvailableItem,
         /// and add to listOfAvailableItem
         listOfAvailableItem
-            .add(ProductModel.fromJson(jsonDecode(jsonEncode(availableItem))));
+            .add(AvailableItemModel.fromJson(jsonDecode(jsonEncode(availableItem))));
       }
     }
   }

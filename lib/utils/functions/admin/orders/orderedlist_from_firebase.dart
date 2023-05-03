@@ -23,7 +23,7 @@ getOrderedListFromFireBase(
     for (var orderModelsnapshot in orderedListSnapshot.children) {
       if (orderModelsnapshot.key != null) {
         /// convert orderModelsnapshot to orderModel
-        CustomerModel orderModel = CustomerModel.fromJson(
+        OrderModel orderModel = OrderModel.fromJson(
             jsonDecode(jsonEncode(orderModelsnapshot.value)));
 
         /// add each orderModel to orderedListFromFireBase

@@ -21,7 +21,7 @@ class OrderByCustomer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// get orderModel(ordered by one customer) from orderedList.
-    CustomerModel orderModel = orderedListFromFireBase[pageViewItemIndex];
+    OrderModel orderModel = orderedListFromFireBase[pageViewItemIndex];
 
     /// get formatedand orderedTime as String.
     String? formattedTime;
@@ -31,12 +31,12 @@ class OrderByCustomer extends StatelessWidget {
     }
 
     /// list for add orderedItems of this customer.
-    List<ProductModel> orderedItemList = [];
+    List<AvailableItemModel> orderedItemList = [];
 
     /// get each orderdItem from orderedItemList iterly,
     /// and add each item to orderedItemList.
-    for (var orderedItem in orderModel.productModelOrderList) {
-      orderedItemList.add(ProductModel.fromJson(orderedItem));
+    for (var orderedItem in orderModel.orderedAvailableItemModelList) {
+      orderedItemList.add(AvailableItemModel.fromJson(orderedItem));
     }
 
     return Padding(

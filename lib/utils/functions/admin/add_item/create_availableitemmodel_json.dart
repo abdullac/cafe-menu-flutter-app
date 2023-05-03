@@ -21,7 +21,7 @@ Map<String, dynamic>? createAvailableItemModelJson({
     return null;
   } else {
     /// create json and return
-    return ProductModel(
+    return AvailableItemModel(
             itemId: int.parse(itemId),
             itemName: itemName,
             categoryName: categoryName,

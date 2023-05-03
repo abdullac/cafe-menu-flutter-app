@@ -1,19 +1,16 @@
-import 'dart:developer';
 import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/ui/pages/admin/add_item_page/widgets/additem_page_appbar.dart';
+import 'package:cafemenu_app/ui/pages/admin/add_item_page/widgets/categoryname_auto_textfield.dart';
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/widgets/pick_imagefromdevice_button.dart';
 import 'package:cafemenu_app/utils/constants/space.dart';
-import 'package:cafemenu_app/utils/functions/admin/add_item/add_update_availableitem.dart';
-import 'package:cafemenu_app/utils/functions/admin/add_item/create_availableitemmodel_json.dart';
 import 'package:cafemenu_app/utils/functions/admin/add_item/get_new_itemid.dart';
-import 'package:cafemenu_app/utils/functions/admin/add_item/uploadimage_and_geturl.dart';
-import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 /// this widget/Screen for add or update Item to firebase AvailableItemList
 class PageAddOrEditItem extends StatelessWidget {
-  final ProductModel? editItem;
+  final AvailableItemModel? editItem;
   const PageAddOrEditItem({
     Key? key,
     this.editItem,
@@ -70,39 +67,9 @@ class PageAddOrEditItem extends StatelessWidget {
     );
     return Scaffold(
       /// appBar,
-      appBar: AppBar(
-        /// appBar title change as edit item or add item
-        title: Text(editItem == null ? "Add Item" : "Edit Item"),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              // AddItem page appbar add button
-              /// metod for create new/edited availableItem json with PageAddOrEditItem Details.
-              Map<String, dynamic>? AvailableItemModelJson =
-                  createAvailableItemModelJson(
-                itemId: newItemIdNotifier.value.toString(),
-                itemName: itemNameEditingController.text,
-                categoryName: categoryNameEditingController.text,
-                price: priceEditingController.text,
-                availableQuantity: availableQtyEditingController.text,
-                verticalImageUrl: await uploadImagetoFirebaseGetUrl(),
-              );
-              if (AvailableItemModelJson != null) {
-                /// method for AvailableItemModelJson add/edit to firebase database
-                await addOrUpdateAvailableItemToFireBase(AvailableItemModelJson,
-                    editItem: editItem);
-
-                /// go back page after add/update to firebase
-                Navigator.of(context).pop();
-              } else {
-                /// show error message
-                showSnackBar("Somthing Wrong, may be any form field is empty");
-              }
-            },
-            icon: const Icon(Icons.add),
-          ),
-        ],
-      ),
+      appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 60),
+          child: AddItemPageAppbar(editItem: editItem)),
       body: SafeArea(
         /// scrollview for avoid widget overflow
         child: SingleChildScrollView(
@@ -134,47 +101,7 @@ class PageAddOrEditItem extends StatelessWidget {
                 spaceH5,
 
                 /// categoryName textFeild with autoComplete.
-                Autocomplete(
-                  fieldViewBuilder: (context, textEditingController, focusNode,
-                      onFieldSubmitted) {
-                    if (editItem != null && editItem!.categoryName != null) {
-                      textEditingController.text = editItem!.categoryName!;
-                    }
-                    categoryNameEditingController = textEditingController;
-                    log(categoryNameEditingController.text);
-
-                    /// cateegoryName textFeild
-                    return TextField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Category Name",
-                      ),
-                      controller: categoryNameEditingController,
-                      focusNode: focusNode,
-                      onSubmitted: (value) {
-                        log("submtted $value");
-                      },
-                    );
-                  },
-                  optionsBuilder: (TextEditingValue textEditingValue) {
-                    if (textEditingValue.text == "") {
-                      return const Iterable<String>.empty();
-                    } else {
-                      List<String> matches = <String>[];
-                      matches.addAll(categoryNameList);
-                      matches.retainWhere((element) {
-                        return element
-                            .toLowerCase()
-                            .contains(textEditingValue.text.toLowerCase());
-                      });
-                      return matches;
-                    }
-                  },
-                  onSelected: (String selection) {
-                    log("slected $selection");
-                    categoryNameEditingController.text = selection;
-                  },
-                ),
+                const CategoryNameAutoTextField(),
                 spaceH5,
 
                 /// Price textField

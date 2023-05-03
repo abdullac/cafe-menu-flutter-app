@@ -1,6 +1,6 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
-import 'package:cafemenu_app/utils/functions/change_set_qty_productmodel.dart';
+import 'package:cafemenu_app/utils/functions/user/change_set_qty_productmodel.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class QtyIncreaseButton extends StatelessWidget {
   });
 
   final ValueNotifier<int?> valueNotifier;
-  final ProductModel availableItem;
+  final AvailableItemModel availableItem;
   final int newQtyValue;
   final void Function()? onIncreasePressed;
 

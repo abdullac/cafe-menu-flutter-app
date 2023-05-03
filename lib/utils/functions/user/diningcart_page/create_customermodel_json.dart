@@ -3,7 +3,7 @@ import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/customername
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/total_items_qty_amount.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/set_customer_id.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_customer_id.dart';
 
 /// method for make json of orderModel
 Map<String, dynamic> createOrderModelJson() {
@@ -18,8 +18,8 @@ Map<String, dynamic> createOrderModelJson() {
   final totalItemsQtyAmount = TotalItemQtyAmount.diningCartTotalNotifier.value;
 
   /// convet orderModel to json for save to firebase database.
-  CustomerModel orderModel = CustomerModel(
-      productModelOrderList: diningCartitemJsonList,
+  OrderModel orderModel = OrderModel(
+      orderedAvailableItemModelList: diningCartitemJsonList,
       customerId: setCustometId(),
       customerName: NameAndPositionCode.customerNameEditingController.text,
       isTakeNow: true,

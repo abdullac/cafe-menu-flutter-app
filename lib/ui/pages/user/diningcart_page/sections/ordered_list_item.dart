@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 /// this is item builder of ordered item ListView
 class OrderedListItem extends StatelessWidget {
-  final ProductModel orderedItem;
+  final AvailableItemModel orderedItem;
   const OrderedListItem({
     super.key,
     required this.orderedItem,

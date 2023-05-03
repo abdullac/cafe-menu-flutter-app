@@ -1,7 +1,7 @@
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcart_button.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/show_confirmed_position.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/dropdownmenu_item.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/dropdownmenu_item.dart';
 import 'package:flutter/material.dart';
 
 /// this widget shows customer name and Position code

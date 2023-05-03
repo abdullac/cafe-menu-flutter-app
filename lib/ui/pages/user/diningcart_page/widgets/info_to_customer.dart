@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 /// thi widget for any information to customer/user such as item quanity warnimg
 class InfoToCustomer extends StatelessWidget {
-  final ProductModel diningCartItem;
+  final AvailableItemModel diningCartItem;
   const InfoToCustomer({
     super.key,
     required this.diningCartItem,

@@ -12,9 +12,10 @@ _$_CustomerModel _$$_CustomerModelFromJson(Map<String, dynamic> json) =>
       customerId: json['customerId'] as int?,
       customerName: json['customerName'] as String?,
       positionCode: json['positionCode'] as String?,
-      productModelOrderList: (json['productModelOrderList'] as List<dynamic>)
-          .map((e) => e as Map<String, dynamic>)
-          .toList(),
+      orderedAvailableItemModelList:
+          (json['orderedAvailableItemModelList'] as List<dynamic>)
+              .map((e) => e as Map<String, dynamic>)
+              .toList(),
       additionalOrderList: json['additionalOrderList'] as List<dynamic>?,
       runningOrderList: json['runningOrderList'] as List<dynamic>?,
       orderType: $enumDecodeNullable(_$OrderTypeEnumMap, json['orderType']),
@@ -40,7 +41,7 @@ Map<String, dynamic> _$$_CustomerModelToJson(_$_CustomerModel instance) =>
       'customerId': instance.customerId,
       'customerName': instance.customerName,
       'positionCode': instance.positionCode,
-      'productModelOrderList': instance.productModelOrderList,
+      'orderedAvailableItemModelList': instance.orderedAvailableItemModelList,
       'additionalOrderList': instance.additionalOrderList,
       'runningOrderList': instance.runningOrderList,
       'orderType': _$OrderTypeEnumMap[instance.orderType],

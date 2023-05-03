@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 /// this widget is Page/screen for show selected(One) availableItem/diningCart item
 class PageItem extends StatelessWidget {
-  final ProductModel availableItem;
+  final AvailableItemModel availableItem;
   /// comingPage is enum for identify coms from wich page/screen,
   /// for go back to previous page if press back button.
   final ComingPage comingPage;

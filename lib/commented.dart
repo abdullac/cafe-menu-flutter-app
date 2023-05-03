@@ -132,8 +132,8 @@ class ObjRealTimeDataBaseFirebase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CustomerModel cM =
-        const CustomerModel(productModelOrderList: [
+    OrderModel cM =
+        const OrderModel(orderedAvailableItemModelList: [
           // "sampleList", "sampleListY"
           ]);
     var cmJson = cM.toJson();
@@ -164,7 +164,7 @@ class ObjRealTimeDataBaseFirebase extends StatelessWidget {
 DatabaseReference fireBaseDatabaseReference = FirebaseDatabase.instance.ref();
 
 setItemsList() {
-  final pM = const ProductModel(
+  final pM = const AvailableItemModel(
           itemId: 501,
           itemName: "Shaway Qr",
           categoryName: "Shaway",
@@ -172,7 +172,7 @@ setItemsList() {
           itemType: ItemType.plate,
           availableQty: 24)
       .toJson();
-  final pMt = const ProductModel(
+  final pMt = const AvailableItemModel(
           itemId: 504,
           itemName: "Shawarma Roll",
           categoryName: "Shawarma",
@@ -180,7 +180,7 @@ setItemsList() {
           itemType: ItemType.plate,
           availableQty: 100)
       .toJson();
-  final pMr = const ProductModel(
+  final pMr = const AvailableItemModel(
           itemId: 504,
           itemName: "Shawarma Roll",
           categoryName: "Shawarma",
@@ -188,7 +188,7 @@ setItemsList() {
           itemType: ItemType.plate,
           availableQty: 100)
       .toJson();
-  final pMg = const ProductModel(
+  final pMg = const AvailableItemModel(
           itemId: 502,
           itemName: "Shaway Hf",
           categoryName: "Shaway",
@@ -203,7 +203,7 @@ setItemsList() {
 }
 
 updateItemsList() {
-  final pM = const ProductModel(
+  final pM = const AvailableItemModel(
           itemId: 501,
           itemName: "Qr Shaway",
           categoryName: "Shaway",
@@ -211,7 +211,7 @@ updateItemsList() {
           itemType: ItemType.plate,
           availableQty: 24)
       .toJson();
-  final pMt = const ProductModel(
+  final pMt = const AvailableItemModel(
           itemId: 504,
           itemName: "Shawarma Roll",
           categoryName: "Shawarma",
@@ -225,7 +225,7 @@ updateItemsList() {
   });
 }
 
-// Future<List<ProductModel>> getItemslist() async {
+// Future<List<AvailableItemModel>> getItemslist() async {
 //   final productItemsPath =
 //       fireBaseDatabaseReference.child("cafeMenu/menuCard/itemsSample");
 //   final event = await productItemsPath.once(DatabaseEventType.value);
@@ -237,12 +237,12 @@ updateItemsList() {
 //     readItemsValues as Map<dynamic, dynamic>;
 //     values = readItemsValues.values;
 //   }
-//   List<ProductModel> listOfProductModel = [];
+//   List<AvailableItemModel> listOfProductModel = [];
 //   for (var element in values) {
 //     if (element != null) {
 //       var itemjsonString = jsonEncode(element);
 //       var itemJson = jsonDecode(itemjsonString);
-//       listOfProductModel.add(ProductModel.fromJson(itemJson));
+//       listOfProductModel.add(AvailableItemModel.fromJson(itemJson));
 //     }
 //   }
 //   // final itemsListJson = jsonEncode(readItemsValues);

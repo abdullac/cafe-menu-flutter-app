@@ -2,7 +2,7 @@ import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
 import 'package:cafemenu_app/ui/pages/user/menucard_page/page_menucard.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/deleteitem_from_diningcartlist.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/deleteitem_from_diningcartlist.dart';
 import 'package:flutter/material.dart';
 
 /// this is appBar of PageItem widget
@@ -14,7 +14,7 @@ class ItemPageAppBar extends StatelessWidget {
   });
 
   final ComingPage comingPage;
-  final ProductModel availableItem;
+  final AvailableItemModel availableItem;
 
   @override
   Widget build(BuildContext context) {

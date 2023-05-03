@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 /// this widget is itembuilder for availableItem widget of pageView by categoryName
 class AvailableItemByCategory extends StatelessWidget {
-  final ProductModel availableItem;
+  final AvailableItemModel availableItem;
   const AvailableItemByCategory({
     super.key,
     required this.availableItem,

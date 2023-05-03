@@ -38,7 +38,7 @@ Map<String, dynamic> findTotalItemsQtyAmount() {
 }
 
 /// find total items count
-int findTotalItems(ProductModel element) {
+int findTotalItems(AvailableItemModel element) {
   if ([null, 0].contains(element.orderedQty) ||
       element.isSelectDiningCart == false) {
     return 0;
@@ -48,7 +48,7 @@ int findTotalItems(ProductModel element) {
 }
 
 ///find total ordered Qty
-int findTotalOrderedQty(ProductModel element) {
+int findTotalOrderedQty(AvailableItemModel element) {
   if ([null, 0].contains(element.orderedQty) ||
       element.isSelectDiningCart == false) {
     return 0;
@@ -58,7 +58,7 @@ int findTotalOrderedQty(ProductModel element) {
 }
 
 /// find total amount
-double findTotalAmount(ProductModel element) {
+double findTotalAmount(AvailableItemModel element) {
   if ([null, 0].contains(element.orderedQty) ||
       element.isSelectDiningCart == false) {
     return 0;

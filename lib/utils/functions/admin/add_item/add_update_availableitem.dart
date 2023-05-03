@@ -5,7 +5,7 @@ import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 
 /// method for add or upload availableItem to firebase database
 addOrUpdateAvailableItemToFireBase(Map<String, dynamic> availableItemModelJson,
-    {ProductModel? editItem}) async {
+    {AvailableItemModel? editItem}) async {
   /// get available item snapshot from firebase database
   final availableItemModelListSnapshot =
       await FirebaseBackend.availableItemsChildRef().get();
@@ -27,7 +27,7 @@ addOrUpdateAvailableItemToFireBase(Map<String, dynamic> availableItemModelJson,
     for (var availableItemSnapshot in availableItemModelListSnapshot.children) {
       /// each availableitemSnapshot convert to availableItemModel for find itemId,
       /// and match itemIds
-      ProductModel availableItemModel = ProductModel.fromJson(
+      AvailableItemModel availableItemModel = AvailableItemModel.fromJson(
           jsonDecode(jsonEncode(availableItemSnapshot.value)));
       if (availableItemModel.itemId == editItem.itemId &&
           availableItemSnapshot.key != null) {

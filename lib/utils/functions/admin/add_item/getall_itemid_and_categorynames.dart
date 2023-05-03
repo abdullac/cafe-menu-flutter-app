@@ -9,7 +9,7 @@ Future<void> getALlItemIdAndCategorynames() async {
   final availableItemsSnapshot =
       await firebaseRef.child("cafeMenu/menuCard/itemsSample").get();
   for (var availableItemSnapshot in availableItemsSnapshot.children) {
-    ProductModel availableItemModel = ProductModel.fromJson(
+    AvailableItemModel availableItemModel = AvailableItemModel.fromJson(
         jsonDecode(jsonEncode(availableItemSnapshot.value!)));
     // add to itemIdList
     if (availableItemModel.itemId != null) {

@@ -6,8 +6,8 @@ import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/total_items_
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcart_button.dart';
 import 'package:cafemenu_app/ui/pages/user/menucard_page/page_menucard.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/make_diningcart_list.dart';
-import 'package:cafemenu_app/utils/functions/menucard_page/get_availableitems_list.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/make_diningcart_list.dart';
+import 'package:cafemenu_app/utils/functions/user/menucard_page/get_availableitems_list.dart';
 import 'package:flutter/material.dart';
 
 /// this widgeet is a page/screen for shows list of DiningCartItem(selected available item by user/customer)

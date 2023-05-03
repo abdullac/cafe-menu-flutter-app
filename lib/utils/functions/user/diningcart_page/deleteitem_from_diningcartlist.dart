@@ -3,7 +3,7 @@ import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 
 /// this method for delete diningCart item from diningCartList
-deleteItemFromDiningCartList(ProductModel diningCartItem) {
+deleteItemFromDiningCartList(AvailableItemModel diningCartItem) {
   int? itemIdTemp = diningCartItem.itemId;
   /// if itemis null
   if (itemIdTemp == null) {
@@ -20,7 +20,7 @@ deleteItemFromDiningCartList(ProductModel diningCartItem) {
     }
     if (itemPosition != null) {
       /// remove itemfrom diningCart list
-      ProductModel deletedItem = diningCartList.removeAt(itemPosition);
+      AvailableItemModel deletedItem = diningCartList.removeAt(itemPosition);
       showSnackBar("${deletedItem.itemName} removed from Your Dining Cart");
     } else {
       /// if cannot find item

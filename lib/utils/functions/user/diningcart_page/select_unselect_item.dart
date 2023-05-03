@@ -1,15 +1,15 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/find_total_itemsqtyamount.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/find_total_itemsqtyamount.dart';
 import 'package:flutter/material.dart';
 
 /// method for select or unselect item from diningCartList when tap select checkBox
 selectOrUnselectItem(
-    {required ProductModel diningCartItem,
+    {required AvailableItemModel diningCartItem,
     required bool? isSelect,
     required ValueNotifier<bool?> isSelectNotifier}) {
       /// modify diningCart item after tap on select checkBox
-  ProductModel modifiedDiningCartItem =
+  AvailableItemModel modifiedDiningCartItem =
       diningCartItem.copyWith(isSelectDiningCart: isSelect);
 
   /// get this item index from diningCartList

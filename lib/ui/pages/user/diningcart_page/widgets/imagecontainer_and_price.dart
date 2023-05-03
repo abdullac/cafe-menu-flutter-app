@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 /// this widget shows itemImage and Price
 class DinngcartListItemImageContainerAndPrice extends StatelessWidget {
-  final ProductModel diningCartItem;
+  final AvailableItemModel diningCartItem;
   const DinngcartListItemImageContainerAndPrice({
     super.key,
     required this.diningCartItem,

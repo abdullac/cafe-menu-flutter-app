@@ -3,7 +3,7 @@ import 'package:cafemenu_app/core/model/product/product_model.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 
 void makeDiningCartListByStreamBuilder(
-    List<ProductModel> listOfAvailableItems) {
+    List<AvailableItemModel> listOfAvailableItems) {
   /// listOfAvailableItems looping with diningCartList nested looping for get each available item and diningCart Item,
   /// and match both using their itemIds for get any updates from available item of same diningCart item,
   /// modify orderedQty and infoToCustomer of diningCart item if available Qty of availableItem lessthan ordered Qty of diningCart item.
@@ -17,7 +17,7 @@ void makeDiningCartListByStreamBuilder(
           int indexTemp = diningCartList.indexOf(diningCartItem);
 
           /// modify diningCartItem using copyWith
-          ProductModel diningCartItemTemp = diningCartItem.copyWith(
+          AvailableItemModel diningCartItemTemp = diningCartItem.copyWith(
               orderedQty: availableItem.availableQty!,
               infoToCustomer:
                   "Sorry, only ${availableItem.availableQty!} Qty available.");
@@ -34,7 +34,7 @@ void makeDiningCartListByStreamBuilder(
           int indexTemp = diningCartList.indexOf(diningCartItem);
 
           /// modify diningCartItem using copyWith
-          ProductModel diningCartItemTemp = diningCartItem.copyWith(
+          AvailableItemModel diningCartItemTemp = diningCartItem.copyWith(
               infoToCustomer: "${availableItem.availableQty!} Qty available.");
 
           /// update diningCartItem using their index(position) to diningCartList

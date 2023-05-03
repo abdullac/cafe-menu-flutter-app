@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
   /// category index is position of category in availableItemsListByCategoryMap.
   final int categoryIndex;
-  final Map<String, List<ProductModel>> availableItemsListByCategoryMap;
+  final Map<String, List<AvailableItemModel>> availableItemsListByCategoryMap;
   PageviewOfAvailableitemsByCategoryname({
     super.key,
     required this.categoryIndex,

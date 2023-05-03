@@ -1,5 +1,5 @@
 import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/select_unselect_item.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/select_unselect_item.dart';
 import 'package:flutter/material.dart';
 
 /// this widget shows serial number and isSelect checkBox
@@ -14,8 +14,8 @@ class DiningcartListItemSerialNumberAndIsSelectCheckBox
   });
 
   final int index;
-  final ProductModel diningCartItem;
-  final List<ProductModel> diningCartItemsList;
+  final AvailableItemModel diningCartItem;
+  final List<AvailableItemModel> diningCartItemsList;
   final ValueNotifier<bool?> isSelectNotifier;
 
   @override

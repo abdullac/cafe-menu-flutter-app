@@ -2,11 +2,11 @@ import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart'
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/customername_and_chairnumber.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/create_customermodel_json.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/order_saveto_firebase.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/set_order_id.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/set_ordered_time.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/takenow_order.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/create_customermodel_json.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/order_saveto_firebase.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_order_id.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_ordered_time.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/takenow_order.dart';
 import 'package:flutter/material.dart';
 
 /// method for hange diningCart button fuctionality.

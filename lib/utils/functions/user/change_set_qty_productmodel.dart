@@ -11,7 +11,7 @@ void changeSetQtyAndNotifyListener({
   required ChangeQty inreaseOrDecrease,
   required ValueNotifier<int?> valueNotifier,
   required int newQtyValue,
-  required ProductModel availableItem,
+  required AvailableItemModel availableItem,
   bool? removeitemAtQty0,
 }) {
   /// gets urrent value from valueNotifier
@@ -23,7 +23,7 @@ void changeSetQtyAndNotifyListener({
   valueNotifier.notifyListeners();
 
   /// update itemQty count to availableItem using copywith
-  ProductModel availableItemModified =
+  AvailableItemModel availableItemModified =
       availableItem.copyWith(orderedQty: valueNotifier.value);
 
   /// int diningCartPosition for gets current position of that availableItem from diningCartList. temporary usage
@@ -59,7 +59,7 @@ void changeSetQtyAndNotifyListener({
 }
 
 void addOrUpdateItemDiningCartList(
-    int? diningCartPosition, ProductModel availableItemModified) {
+    int? diningCartPosition, AvailableItemModel availableItemModified) {
   if (diningCartPosition != null) {
     diningCartList[diningCartPosition] = availableItemModified;
   } else {

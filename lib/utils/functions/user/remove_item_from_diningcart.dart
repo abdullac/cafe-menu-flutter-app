@@ -5,7 +5,7 @@ import 'package:cafemenu_app/utils/constants/lists.dart';
 
 /// this method for remove ProductModel from dininCartList
 /// when that productModel Qty count is 0 while derease button/deletebutton pressed
-void removeItemAtQty0FromDiningCartList(int newValue, ProductModel productModel) {
+void removeItemAtQty0FromDiningCartList(int newValue, AvailableItemModel productModel) {
   if (newValue == 1 || newValue == 0) {
     int? elementPosition;
     /// itrate diningCartList for find position of that Productmodel

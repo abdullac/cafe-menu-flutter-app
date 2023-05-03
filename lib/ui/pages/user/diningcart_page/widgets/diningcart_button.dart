@@ -1,6 +1,6 @@
 import 'package:cafemenu_app/utils/constants/enums.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/set_diningcartbutton_functionality.dart';
-import 'package:cafemenu_app/utils/functions/diningcart_page/set_diningcartbutton_title.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_diningcartbutton_functionality.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_diningcartbutton_title.dart';
 import 'package:flutter/material.dart';
 
 /// this is button widget for  takeNow order or confirmOrder

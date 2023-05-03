@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class SetQtySetion extends StatelessWidget {
   final MainAxisAlignment? mainAxisAlignment;
   final ValueNotifier<int?> valueNotifier;
-  final ProductModel availableItem;
+  final AvailableItemModel availableItem;
   final void Function()? onIncreasePressed;
   final void Function()? onDecreasePressed;
   final bool removeitemAtQty0;
