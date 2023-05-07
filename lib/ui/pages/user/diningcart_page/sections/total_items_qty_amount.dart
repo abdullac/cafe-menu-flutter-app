@@ -1,7 +1,7 @@
 
 import 'package:cafemenu_app/core/provider/bloc/diningcart_page/diningcart_page_bloc.dart';
-import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcart_button.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
+import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +17,7 @@ class TotalItemQtyAmount extends StatelessWidget {
     /// returned Map results (toatal items,qty,amount) assign to diningCartTotalNotifier value
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if ([null, DiningCartButtonFunctionality.takeNow]
-          .contains(DiningCartButton.diningCartButtonType)) {
+          .contains(diningCartButtonType)) {
         /// BlocProvider for rebuild TotalItemQtyAmount widget when any changes in diningCartTotalNotifier value,
         /// BlocProvider value is return of findTotalItemsQtyAmount().
         /// method findTotalItemsQtyAmount return a Map contains toatal items,qty,amount.

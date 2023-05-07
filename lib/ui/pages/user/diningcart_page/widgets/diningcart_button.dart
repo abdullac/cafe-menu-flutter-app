@@ -10,7 +10,6 @@ class DiningCartButton extends StatelessWidget {
     super.key,
   });
 
-  static DiningCartButtonFunctionality? diningCartButtonType;
 
   @override
   Widget build(BuildContext context) {

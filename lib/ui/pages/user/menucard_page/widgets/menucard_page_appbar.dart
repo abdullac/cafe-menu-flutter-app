@@ -32,7 +32,7 @@ class MenuCardPageAppBar extends StatelessWidget {
                 ),
               );
             },
-            label: const Text("Dining Cart"),
+            label: const Text("Take Now"),
             icon: const Icon(Icons.dining),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.red[700]),
