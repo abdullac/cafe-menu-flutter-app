@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/firebase_backend.dart';
+import 'package:cafemenu_app/core/services/firebase/firebase_refs.dart';
 import 'package:cafemenu_app/ui/pages/admin/admin_auth_page/page_admin_auth.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 
@@ -8,7 +8,7 @@ import 'package:cafemenu_app/utils/constants/enums.dart';
 ///
 Future<AuthentiationType> getMainAdminEmailAndAdminCode() async {
   /// get admin reference child path from firebase database,
-  final mainAdminEmailAndCodePath = FirebaseBackend.mainAminChildRef();
+  final mainAdminEmailAndCodePath = FirebaseRefs.mainAminChild();
   final getMainAdminEmailAndCodeSnapshot =
       await mainAdminEmailAndCodePath.get();
 

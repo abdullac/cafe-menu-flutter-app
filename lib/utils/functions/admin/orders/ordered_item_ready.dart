@@ -1,13 +1,13 @@
 import 'dart:convert';
-import 'package:cafemenu_app/core/model/customer/customer_model.dart';
-import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/firebase_backend.dart';
+import 'package:cafemenu_app/core/model/order/order_model.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
+import 'package:cafemenu_app/core/services/firebase/firebase_refs.dart';
 
 /// method for item ready value change to true when pressed button
 Future orderedItemReady(
     {required OrderModel order, required AvailableItemModel readyItem}) async {
   /// get firebase orderedList snapshot child path
-  final orderListSnapShot = await FirebaseBackend.orderedListChildRef().get();
+  final orderListSnapShot = await FirebaseRefs.orderedListChild().get();
   String? getOrderListKey;
   String? getOrderedItemKey;
 
@@ -24,7 +24,7 @@ Future orderedItemReady(
 
       /// get firebase orderedItemsList snapshot child path
       final orderedItemsListSnapShot =
-          await FirebaseBackend.orderedItemsListChildRef(getOrderListKey).get();
+          await FirebaseRefs.orderedItemsListChild(getOrderListKey).get();
 
       /// iter ordered items list snapshot for get orderedItem firebase key
       for (var orderedItemSnapshot in orderedItemsListSnapShot.children) {
@@ -40,7 +40,7 @@ Future orderedItemReady(
               readyItem.copyWith(itemReady: true);
 
           /// update to firebase.
-          await FirebaseBackend.orderedItemsListChildRef(getOrderListKey)
+          await FirebaseRefs.orderedItemsListChild(getOrderListKey)
               .child("/$getOrderedItemKey")
               .update(orderedItemModified.toJson());
         }

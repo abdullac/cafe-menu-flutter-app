@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 
 /// this method for making Map for create lists by CategoryNames from availableItemList
 /// Map keys are categoryName, Map values are List of availableItem by that key name

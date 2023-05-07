@@ -1,8 +1,9 @@
-import 'package:cafemenu_app/core/model/customer/customer_model.dart';
+import 'package:cafemenu_app/core/model/order/order_model.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/customername_and_chairnumber.dart';
-import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/total_items_qty_amount.dart';
+import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/find_total_itemsqtyamount.dart';
 import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_customer_id.dart';
 
 /// method for make json of orderModel
@@ -15,7 +16,7 @@ Map<String, dynamic> createOrderModelJson() {
 
   /// gettotal items,Quantity, amount for assin to
   /// orderModel before save to firebase database.
-  final totalItemsQtyAmount = TotalItemQtyAmount.diningCartTotalNotifier.value;
+  final totalItemsQtyAmount = findTotalItemsQtyAmount();
 
   /// convet orderModel to json for save to firebase database.
   OrderModel orderModel = OrderModel(
@@ -29,8 +30,10 @@ Map<String, dynamic> createOrderModelJson() {
       totalItems: totalItemsQtyAmount["items"],
       totalQty: totalItemsQtyAmount["Qty"],
       totalAmount: totalItemsQtyAmount["amount"],
-      positionCode: NameAndPositionCode.tableOrChairNumberNotifier.value,
+      // positionCode: NameAndPositionCode.tableOrChairNumberNotifier.value,
+      positionCode: NameAndPositionCode.positionCode,
       orderType: OrderType.order);
-      /// return orderModel json.
+
+  /// return orderModel json.
   return orderModel.toJson();
 }

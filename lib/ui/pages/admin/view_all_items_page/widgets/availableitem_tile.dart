@@ -1,6 +1,5 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/page_add_item.dart';
-import 'package:cafemenu_app/ui/pages/admin/view_all_items_page/page_view_all_items.dart';
 import 'package:cafemenu_app/utils/constants/image_links.dart';
 import 'package:cafemenu_app/utils/functions/admin/view_all_items/deleteitem_from_firebase.dart';
 import 'package:flutter/material.dart';

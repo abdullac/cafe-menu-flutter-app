@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/ui/shared/pages/item_page/widgets/item_image_container.dart';
 import 'package:cafemenu_app/utils/constants/image_links.dart';
 import 'package:flutter/material.dart';

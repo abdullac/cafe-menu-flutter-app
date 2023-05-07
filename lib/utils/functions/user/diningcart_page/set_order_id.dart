@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:math' as math;
-import 'package:cafemenu_app/core/model/customer/customer_model.dart';
-import 'package:cafemenu_app/firebase_backend.dart';
+import 'package:cafemenu_app/core/model/order/order_model.dart';
+import 'package:cafemenu_app/core/services/firebase/firebase_refs.dart';
 
 /// create method for get last orderId from firebase realtime database.
 Future<int> setOrderId() async {
   /// get ordered list snapshot from firebase
   final ordersListSnapshot =
-      await FirebaseBackend.orderedListChildRef().get();
+      await FirebaseRefs.orderedListChild().get();
   /// get all orderId and addd to a list while iter orderedList with convert to availableItemModel
   List<int> orderIdList = [];
   for (var orderedItemSnapshot in ordersListSnapshot.children) {

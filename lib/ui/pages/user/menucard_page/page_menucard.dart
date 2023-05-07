@@ -1,5 +1,5 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/firebase_backend.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
+import 'package:cafemenu_app/core/services/firebase/firebase_refs.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/user/diningcart_page/make_diningcart_list.dart';
 import 'package:cafemenu_app/utils/functions/user/menucard_page/get_availableitems_list.dart';
@@ -26,7 +26,7 @@ class PageMenuCard extends StatelessWidget {
     return StreamBuilder(
       /// get reference and child path from Firebasebackend class
       /// for get event from database with stream of sytream builder.
-      stream: FirebaseBackend.availableItemsChildRef().onValue,
+      stream: FirebaseRefs.availableItemsChild().onValue,
       builder: (context, snapshot) {
         if (snapshot.data != null) {
           /// get list of available Items by stream builder snapshot

@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/page_add_item.dart';
 import 'package:flutter/material.dart';
 
@@ -11,12 +11,13 @@ class CategoryNameAutoTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     /// auto complete widget0
     return Autocomplete(
-      fieldViewBuilder:
-          (context, autoCompletetextEditingController, focusNode, onFieldSubmitted) {
+      fieldViewBuilder: (context, autoCompletetextEditingController, focusNode,
+          onFieldSubmitted) {
         if (editItem != null && editItem!.categoryName != null) {
           autoCompletetextEditingController.text = editItem!.categoryName!;
         }
-        /// get text from autoComplete editingcontroller and assign to textfield editingController 
+
+        /// get text from autoComplete editingcontroller and assign to textfield editingController
         if (autoCompletetextEditingController.text.isNotEmpty) {
           PageAddOrEditItem.categoryNameEditingController =
               autoCompletetextEditingController;
@@ -35,13 +36,15 @@ class CategoryNameAutoTextField extends StatelessWidget {
           },
         );
       },
+
       /// text list (String list)
       optionsBuilder: (TextEditingValue textEditingValue) {
         if (textEditingValue.text == "") {
           return const Iterable<String>.empty();
         } else {
           List<String> matches = <String>[];
-          /// get matched texts(strings) from categoryNameList 
+
+          /// get matched texts(strings) from categoryNameList
           /// and reassign/re add to matches list.
           matches.addAll(PageAddOrEditItem.categoryNameList);
           matches.retainWhere((element) {
@@ -49,6 +52,7 @@ class CategoryNameAutoTextField extends StatelessWidget {
                 .toLowerCase()
                 .contains(textEditingValue.text.toLowerCase());
           });
+
           /// return matched string list.
           return matches;
         }

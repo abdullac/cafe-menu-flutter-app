@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 
 updateProductModelToDiningCartList(

@@ -1,6 +1,7 @@
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcart_button.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/find_total_itemsqtyamount.dart';
 import 'package:flutter/material.dart';
 
 class MenuCardPageAppBar extends StatelessWidget {
@@ -23,18 +24,18 @@ class MenuCardPageAppBar extends StatelessWidget {
       actions: [
         Padding(
           padding: const EdgeInsets.all(5.0),
+          /// menucardPage to diningcartPage button (appBar button)
           child: ElevatedButton.icon(
             onPressed: () {
               /// diningCartButtonNotifier value to null for change button text to Take Now,
               /// and button functionality for filter diningcartList if press button.
               /// diningCartButtonNotifier cannot change to null if already ordered with diningCartList items,
-              if (![
-                DiningCartButtonFunctionality.takeNow,
-                DiningCartButtonFunctionality.orderConfirm,
-              ].contains(DiningCartButton.diningCartButtonNotifier.value)) {
-                DiningCartButton.diningCartButtonNotifier.value = null;
-                DiningCartButton.diningCartButtonNotifier.notifyListeners();
-              }
+              // if (![
+              //   DiningCartButtonFunctionality.takeNow,
+              //   DiningCartButtonFunctionality.orderConfirm,
+              // ].contains(DiningCartButton.diningCartButtonNotifier.value)) {
+              //   changeDiningCartTotal();
+              // }
               // goto dining cart page button pressed
               /// page Navigate to PageDiningCart by pushReplacement.
               Navigator.of(context).pushReplacement(

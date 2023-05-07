@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'customer_model.dart';
+part of 'order_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 OrderModel _$OrderModelFromJson(Map<String, dynamic> json) {
-  return _CustomerModel.fromJson(json);
+  return _OrderModel.fromJson(json);
 }
 
 /// @nodoc
@@ -26,8 +26,6 @@ mixin _$OrderModel {
   String? get positionCode => throw _privateConstructorUsedError;
   List<Map<String, dynamic>> get orderedAvailableItemModelList =>
       throw _privateConstructorUsedError;
-
-  /// orderedAvailableItemModelList
   List<dynamic>? get additionalOrderList => throw _privateConstructorUsedError;
   List<dynamic>? get runningOrderList => throw _privateConstructorUsedError;
   OrderType? get orderType => throw _privateConstructorUsedError;
@@ -199,11 +197,11 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
 }
 
 /// @nodoc
-abstract class _$$_CustomerModelCopyWith<$Res>
+abstract class _$$_OrderModelCopyWith<$Res>
     implements $OrderModelCopyWith<$Res> {
-  factory _$$_CustomerModelCopyWith(
-          _$_CustomerModel value, $Res Function(_$_CustomerModel) then) =
-      __$$_CustomerModelCopyWithImpl<$Res>;
+  factory _$$_OrderModelCopyWith(
+          _$_OrderModel value, $Res Function(_$_OrderModel) then) =
+      __$$_OrderModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -230,11 +228,11 @@ abstract class _$$_CustomerModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CustomerModelCopyWithImpl<$Res>
-    extends _$OrderModelCopyWithImpl<$Res, _$_CustomerModel>
-    implements _$$_CustomerModelCopyWith<$Res> {
-  __$$_CustomerModelCopyWithImpl(
-      _$_CustomerModel _value, $Res Function(_$_CustomerModel) _then)
+class __$$_OrderModelCopyWithImpl<$Res>
+    extends _$OrderModelCopyWithImpl<$Res, _$_OrderModel>
+    implements _$$_OrderModelCopyWith<$Res> {
+  __$$_OrderModelCopyWithImpl(
+      _$_OrderModel _value, $Res Function(_$_OrderModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -261,7 +259,7 @@ class __$$_CustomerModelCopyWithImpl<$Res>
     Object? itemsReady = freezed,
     Object? orderDelevered = freezed,
   }) {
-    return _then(_$_CustomerModel(
+    return _then(_$_OrderModel(
       orderId: freezed == orderId
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
@@ -348,8 +346,8 @@ class __$$_CustomerModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CustomerModel implements _CustomerModel {
-  const _$_CustomerModel(
+class _$_OrderModel implements _OrderModel {
+  const _$_OrderModel(
       {this.orderId,
       this.customerId,
       this.customerName,
@@ -374,8 +372,8 @@ class _$_CustomerModel implements _CustomerModel {
         _additionalOrderList = additionalOrderList,
         _runningOrderList = runningOrderList;
 
-  factory _$_CustomerModel.fromJson(Map<String, dynamic> json) =>
-      _$$_CustomerModelFromJson(json);
+  factory _$_OrderModel.fromJson(Map<String, dynamic> json) =>
+      _$$_OrderModelFromJson(json);
 
   @override
   final int? orderId;
@@ -394,10 +392,7 @@ class _$_CustomerModel implements _CustomerModel {
     return EqualUnmodifiableListView(_orderedAvailableItemModelList);
   }
 
-  /// orderedAvailableItemModelList
   final List<dynamic>? _additionalOrderList;
-
-  /// orderedAvailableItemModelList
   @override
   List<dynamic>? get additionalOrderList {
     final value = _additionalOrderList;
@@ -455,7 +450,7 @@ class _$_CustomerModel implements _CustomerModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CustomerModel &&
+            other is _$_OrderModel &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
             (identical(other.customerId, customerId) ||
                 other.customerId == customerId) &&
@@ -526,19 +521,19 @@ class _$_CustomerModel implements _CustomerModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CustomerModelCopyWith<_$_CustomerModel> get copyWith =>
-      __$$_CustomerModelCopyWithImpl<_$_CustomerModel>(this, _$identity);
+  _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>
+      __$$_OrderModelCopyWithImpl<_$_OrderModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CustomerModelToJson(
+    return _$$_OrderModelToJson(
       this,
     );
   }
 }
 
-abstract class _CustomerModel implements OrderModel {
-  const factory _CustomerModel(
+abstract class _OrderModel implements OrderModel {
+  const factory _OrderModel(
       {final int? orderId,
       final int? customerId,
       final String? customerName,
@@ -558,10 +553,10 @@ abstract class _CustomerModel implements OrderModel {
       final String? customerSuggession,
       final bool? recievedAllItems,
       final bool? itemsReady,
-      final bool? orderDelevered}) = _$_CustomerModel;
+      final bool? orderDelevered}) = _$_OrderModel;
 
-  factory _CustomerModel.fromJson(Map<String, dynamic> json) =
-      _$_CustomerModel.fromJson;
+  factory _OrderModel.fromJson(Map<String, dynamic> json) =
+      _$_OrderModel.fromJson;
 
   @override
   int? get orderId;
@@ -574,8 +569,6 @@ abstract class _CustomerModel implements OrderModel {
   @override
   List<Map<String, dynamic>> get orderedAvailableItemModelList;
   @override
-
-  /// orderedAvailableItemModelList
   List<dynamic>? get additionalOrderList;
   @override
   List<dynamic>? get runningOrderList;
@@ -607,6 +600,6 @@ abstract class _CustomerModel implements OrderModel {
   bool? get orderDelevered;
   @override
   @JsonKey(ignore: true)
-  _$$_CustomerModelCopyWith<_$_CustomerModel> get copyWith =>
+  _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

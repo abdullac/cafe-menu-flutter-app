@@ -1,6 +1,5 @@
-import 'package:cafemenu_app/core/model/customer/customer_model.dart';
-import 'package:cafemenu_app/core/model/product/product_model.dart';
-import 'package:cafemenu_app/ui/pages/admin/orders_page/page_orders.dart';
+import 'package:cafemenu_app/core/model/order/order_model.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/ui/pages/admin/orders_page/widgets/ordered_item_by_customer.dart';
 import 'package:cafemenu_app/ui/pages/admin/orders_page/widgets/order_item_headings.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';

@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'product_model.dart';
+part of 'available_item_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
-    _$_ProductModel(
+_$_AvailableItemModel _$$_AvailableItemModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_AvailableItemModel(
       itemId: json['itemId'] as int?,
       itemName: json['itemName'] as String?,
       serialNumber: json['serialNumber'] as int?,
@@ -29,7 +30,8 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       infoToCustomer: json['infoToCustomer'] as String?,
     );
 
-Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
+Map<String, dynamic> _$$_AvailableItemModelToJson(
+        _$_AvailableItemModel instance) =>
     <String, dynamic>{
       'itemId': instance.itemId,
       'itemName': instance.itemName,

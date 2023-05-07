@@ -12,7 +12,7 @@ enum ChangeQty {
 }
 
 /// selecet customer sitting positiontype
-enum TableOrChair {
+enum PositionType {
   table,
   chair,
 }
@@ -35,4 +35,11 @@ enum AuthentiationType {
   registerMainAdmin,
   registerSubAdmin,
   signInAdmin,
+}
+
+/// orderModel
+enum OrderType {
+  order,
+  additionalOrder,
+  runningOrder,
 }

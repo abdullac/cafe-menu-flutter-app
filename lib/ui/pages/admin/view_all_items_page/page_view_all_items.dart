@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:cafemenu_app/firebase_backend.dart';
-import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/core/services/firebase/firebase_refs.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/ui/pages/admin/view_all_items_page/widgets/availableitem_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class PageViewAllItems extends StatelessWidget {
       body: SafeArea(
         /// rebuild widget when any change in firebase availableItem child path.
         child: StreamBuilder(
-            stream: FirebaseBackend.availableItemsChildRef().onValue,
+            stream: FirebaseRefs.availableItemsChild().onValue,
             builder: (context, snapshot) {
               List<AvailableItemModel> availableItemsList = [];
               if (snapshot.data != null) {

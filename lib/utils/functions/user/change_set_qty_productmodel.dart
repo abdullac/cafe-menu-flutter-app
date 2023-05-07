@@ -1,4 +1,6 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'dart:developer';
+
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
@@ -22,10 +24,6 @@ void changeSetQtyAndNotifyListener({
       : newQtyValue - 1;
   valueNotifier.notifyListeners();
 
-  /// update itemQty count to availableItem using copywith
-  AvailableItemModel availableItemModified =
-      availableItem.copyWith(orderedQty: valueNotifier.value);
-
   /// int diningCartPosition for gets current position of that availableItem from diningCartList. temporary usage
   /// iterate diningCartList for find current position of that availableItem position.
   int? diningCartPosition;
@@ -43,7 +41,11 @@ void changeSetQtyAndNotifyListener({
   /// when setQty reach to count 0.
 
   if (valueNotifier.value != 0) {
-    addOrUpdateItemDiningCartList(diningCartPosition, availableItemModified);
+    addOrUpdateItemDiningCartList(
+      diningCartPosition: diningCartPosition,
+      valueNotifier: valueNotifier,
+      availableItem: availableItem,
+    );
   } else {
     if (removeitemAtQty0 == true) {
       if (diningCartPosition != null) {
@@ -53,16 +55,30 @@ void changeSetQtyAndNotifyListener({
         showSnackBar("cannot remove ${availableItem.itemName}");
       }
     } else {
-      addOrUpdateItemDiningCartList(diningCartPosition, availableItemModified);
+      addOrUpdateItemDiningCartList(
+        diningCartPosition: diningCartPosition,
+        valueNotifier: valueNotifier,
+        availableItem: availableItem,
+      );
     }
   }
 }
 
-void addOrUpdateItemDiningCartList(
-    int? diningCartPosition, AvailableItemModel availableItemModified) {
+void addOrUpdateItemDiningCartList({
+  required int? diningCartPosition,
+  required ValueNotifier<int?> valueNotifier,
+  required AvailableItemModel availableItem,
+}) {
   if (diningCartPosition != null) {
+    /// modify itemQty count to availableItem using copywith
+    AvailableItemModel availableItemModified =
+        diningCartList[diningCartPosition]
+            .copyWith(orderedQty: valueNotifier.value);
     diningCartList[diningCartPosition] = availableItemModified;
   } else {
+    /// modify itemQty count to availableItem using copywith
+    AvailableItemModel availableItemModified =
+        availableItem.copyWith(orderedQty: valueNotifier.value);
     diningCartList.add(availableItemModified);
   }
 }

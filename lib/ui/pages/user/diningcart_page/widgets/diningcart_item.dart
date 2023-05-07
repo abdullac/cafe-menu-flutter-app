@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/categoryname_and_itemname.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcartlist_item_quandity.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcartlitem_delete_button.dart';
@@ -19,20 +19,15 @@ class DiningCartItem extends StatelessWidget {
     required this.diningCartItemsList,
   });
 
-  /// isSelectNotifier for change checkBox to select/unselsect
-  static ValueNotifier<bool?> isSelectNotifier = ValueNotifier(null);
 
   @override
   Widget build(BuildContext context) {
-    /// isSelectNotifier value change to isSelectDiningCart of this diningCartItem.
-    isSelectNotifier =
-        ValueNotifier(diningCartItemsList[index].isSelectDiningCart ?? true);
+    /// get diningCartItem from diningCartItemsList using
+    AvailableItemModel diningCartItem = diningCartItemsList[index];
 
     /// create setQtyNotifier for shows ordered Quantity
     ValueNotifier<int?> setQtyNotifier = ValueNotifier(null);
 
-    /// get diningCartItem from diningCartItemsList using
-    AvailableItemModel diningCartItem = diningCartItemsList[index];
     return InkWell(
       onTap: () {
         // cart item image taped
@@ -62,7 +57,6 @@ class DiningCartItem extends StatelessWidget {
                 index: index,
                 diningCartItem: diningCartItem,
                 diningCartItemsList: diningCartItemsList,
-                isSelectNotifier: isSelectNotifier,
               ),
             ),
             Expanded(
@@ -89,9 +83,11 @@ class DiningCartItem extends StatelessWidget {
 
                       /// this Widget contains Quantity and increase or decreadse button.
                       DiningcartListItemQty(
-                          diningCartItem: diningCartItem,
-                          setQtyNotifier: setQtyNotifier,
-                          isSelectNotifier: isSelectNotifier),
+                        diningCartItem: diningCartItem,
+                        setQtyNotifier: setQtyNotifier,
+                        // isSelectNotifier: isSelectNotifier,
+                        itemIndex: index,
+                      ),
                     ],
                   ),
                 ),

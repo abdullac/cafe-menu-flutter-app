@@ -1,4 +1,6 @@
-import 'package:cafemenu_app/firebase_backend.dart';
+import 'dart:developer';
+
+import 'package:cafemenu_app/core/services/firebase/firebase_refs.dart';
 import 'package:cafemenu_app/ui/pages/admin/orders_page/widgets/order_by_customer.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/functions/admin/orders/orderedlist_from_firebase.dart';
@@ -12,7 +14,7 @@ class PageOrdersPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     /// stream builder for rebuild widget/Pageview when any changes in firebase database orderedList
     return StreamBuilder(
-        stream: FirebaseBackend.orderedListChildRef().onValue,
+        stream: FirebaseRefs.orderedListChild().onValue,
         builder: (context, snapshot) {
           /// method for add orders to orderedListFromFireBase when rebuild streamBuilder.
           getOrderedListFromFireBase(snapshot);
@@ -53,4 +55,3 @@ class PageOrdersPageView extends StatelessWidget {
         });
   }
 }
-

@@ -1,6 +1,9 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'dart:developer';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
+import 'package:cafemenu_app/core/provider/bloc/menucard_page/menucard_page_bloc.dart';
 import 'package:cafemenu_app/ui/pages/user/menucard_page/widgets/item_by_category.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// this is pageview by categoryName of availableItemModelList.
 /// each pageview is List of availableItem (items by category).
@@ -15,17 +18,18 @@ class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
     required this.availableItemsListByCategoryMap,
   });
 
-  /// left and right scroll arrow inticators shows/hide when their Notifier true/false
-  ValueNotifier<bool> pageViewLeftScrollNotifier = ValueNotifier(false);
-  ValueNotifier<bool> pageViewRightScrollNotifier = ValueNotifier(true);
-
   ///pageViewcontroller for automatic Animated scroll pageview
   PageController pageViewController = PageController();
 
   @override
   Widget build(BuildContext context) {
-    /// sizedBox widget for set hight of listview
+    int pageviewItemsCount =
+        availableItemsListByCategoryMap.values.toList()[categoryIndex].length;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<MenucardPageBloc>(context).add(RightScrollIndicator(
+          reachToEnd: pageviewItemsCount > 1 ? false : true,
+          categoryIndex: categoryIndex));
+
       /// make automatically animated scroll for represent page view srollable,
       /// only animated scroll first pageView.
       if (categoryIndex == 0 && availableItemsListByCategoryMap.length > 1) {
@@ -48,19 +52,11 @@ class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
           /// UserScrollNotification for first pageView animated scroll
           NotificationListener<UserScrollNotification>(
             onNotification: (notification) {
-              /// hide/show riht or left sroll indicators when user scroll to pageview end  or start.
-              if (notification.metrics.extentBefore ==
-                  notification.metrics.minScrollExtent) {
-                pageViewLeftScrollNotifier.value = false;
-              } else {
-                pageViewLeftScrollNotifier.value = true;
-              }
-              if (notification.metrics.extentBefore ==
-                  notification.metrics.maxScrollExtent) {
-                pageViewRightScrollNotifier.value = false;
-              } else {
-                pageViewRightScrollNotifier.value = true;
-              }
+              /// hide/show right or left sroll indicators when user scroll to pageview end  or start.
+              BlocProvider.of<MenucardPageBloc>(context).add(
+                  UserScrolledPageview(
+                      notification: notification,
+                      categoryIndex: categoryIndex));
               return true;
             },
 
@@ -68,9 +64,7 @@ class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
             /// get values(AvailabliItemsList) from availableItemsListByCategoryMap
             child: PageView.builder(
               controller: pageViewController,
-              itemCount: availableItemsListByCategoryMap.values
-                  .toList()[categoryIndex]
-                  .length,
+              itemCount: pageviewItemsCount,
               itemBuilder: (context, categoryItemIndex) =>
                   AvailableItemByCategory(
                 /// get availableitem from values of availableItemsListByCategoryMap by category
@@ -109,11 +103,11 @@ class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
             ),
           ),
 
-          /// pageView Right arrow
-          ValueListenableBuilder(
-            valueListenable: pageViewLeftScrollNotifier,
-            builder: (context, newLeftScrollValue, _) {
-              return newLeftScrollValue == false
+          /// pageView Left arrow
+          BlocBuilder<MenucardPageBloc, MenucardPageState>(
+            builder: (context, state) {
+              return state.showLeftArrow == false &&
+                      state.categoryIndex == categoryIndex
                   ? const SizedBox()
                   : Align(
                       alignment: Alignment.centerLeft,
@@ -135,11 +129,11 @@ class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
             },
           ),
 
-          /// pageView Left Arrow
-          ValueListenableBuilder(
-            valueListenable: pageViewRightScrollNotifier,
-            builder: (context, newRightScrollValue, _) {
-              return newRightScrollValue == false
+          /// pageView Right Arrow
+          BlocBuilder<MenucardPageBloc, MenucardPageState>(
+            builder: (context, state) {
+              return state.showRightArrow == false &&
+                      state.categoryIndex == categoryIndex
                   ? const SizedBox()
                   : Align(
                       alignment: Alignment.centerRight,
@@ -164,3 +158,4 @@ class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
     );
   }
 }
+

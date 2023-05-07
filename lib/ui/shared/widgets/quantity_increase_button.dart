@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/functions/user/change_set_qty_productmodel.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
@@ -24,9 +24,10 @@ class QtyIncreaseButton extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (![valueNotifier.value, availableItem.availableQty].contains(null) &&
-            valueNotifier.value! >= availableItem.availableQty!){
-              showSnackBar("Maximum available Quantity is ${availableItem.availableQty!}");
-            }else {
+            valueNotifier.value! >= availableItem.availableQty!) {
+          showSnackBar(
+              "Maximum available Quantity is ${availableItem.availableQty!}");
+        } else {
           // count increase button pressed
           /// call method for increase Qty of availableItem
           /// and availableItem add/update to diningCardList

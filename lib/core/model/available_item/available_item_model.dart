@@ -1,8 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'product_model.freezed.dart';
-part 'product_model.g.dart';
+part 'available_item_model.freezed.dart';
+part 'available_item_model.g.dart';
 
-///  AvailableItemModel
 @freezed
 class AvailableItemModel with _$AvailableItemModel {
   const factory AvailableItemModel({
@@ -25,7 +24,7 @@ class AvailableItemModel with _$AvailableItemModel {
     bool? itemReady,
     bool? itemDelevered,
     String? infoToCustomer,
-  }) = _ProductModel;
+  }) = _AvailableItemModel;
 
   factory AvailableItemModel.fromJson(Map<String, dynamic> json) =>
       _$AvailableItemModelFromJson(json);

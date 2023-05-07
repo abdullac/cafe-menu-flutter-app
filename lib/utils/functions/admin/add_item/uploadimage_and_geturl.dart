@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:cafemenu_app/firebase_backend.dart';
+import 'package:cafemenu_app/core/services/firebase/firebase_refs.dart';
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/page_add_item.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 
@@ -17,7 +17,7 @@ Future<String?> uploadImagetoFirebaseGetUrl() async {
 
     /// upload image to firebase storage
     PageAddOrEditItem.uploadTask =
-        FirebaseBackend.imageStorageRef(imagePath).putFile(imagefile);
+        FirebaseRefs.imageStorage(imagePath).putFile(imagefile);
   }
   if (PageAddOrEditItem.uploadTask != null) {
     /// show progress indicator while uploading indicator

@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/core/model/product/product_model.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/widgets/additem_page_appbar.dart';
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/widgets/categoryname_auto_textfield.dart';
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/widgets/pick_imagefromdevice_button.dart';

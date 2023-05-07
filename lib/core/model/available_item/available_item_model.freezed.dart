@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'product_model.dart';
+part of 'available_item_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AvailableItemModel _$AvailableItemModelFromJson(Map<String, dynamic> json) {
-  return _ProductModel.fromJson(json);
+  return _AvailableItemModel.fromJson(json);
 }
 
 /// @nodoc
@@ -177,11 +177,11 @@ class _$AvailableItemModelCopyWithImpl<$Res, $Val extends AvailableItemModel>
 }
 
 /// @nodoc
-abstract class _$$_ProductModelCopyWith<$Res>
+abstract class _$$_AvailableItemModelCopyWith<$Res>
     implements $AvailableItemModelCopyWith<$Res> {
-  factory _$$_ProductModelCopyWith(
-          _$_ProductModel value, $Res Function(_$_ProductModel) then) =
-      __$$_ProductModelCopyWithImpl<$Res>;
+  factory _$$_AvailableItemModelCopyWith(_$_AvailableItemModel value,
+          $Res Function(_$_AvailableItemModel) then) =
+      __$$_AvailableItemModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -205,11 +205,11 @@ abstract class _$$_ProductModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProductModelCopyWithImpl<$Res>
-    extends _$AvailableItemModelCopyWithImpl<$Res, _$_ProductModel>
-    implements _$$_ProductModelCopyWith<$Res> {
-  __$$_ProductModelCopyWithImpl(
-      _$_ProductModel _value, $Res Function(_$_ProductModel) _then)
+class __$$_AvailableItemModelCopyWithImpl<$Res>
+    extends _$AvailableItemModelCopyWithImpl<$Res, _$_AvailableItemModel>
+    implements _$$_AvailableItemModelCopyWith<$Res> {
+  __$$_AvailableItemModelCopyWithImpl(
+      _$_AvailableItemModel _value, $Res Function(_$_AvailableItemModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -233,7 +233,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? itemDelevered = freezed,
     Object? infoToCustomer = freezed,
   }) {
-    return _then(_$_ProductModel(
+    return _then(_$_AvailableItemModel(
       itemId: freezed == itemId
           ? _value.itemId
           : itemId // ignore: cast_nullable_to_non_nullable
@@ -308,8 +308,8 @@ class __$$_ProductModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProductModel implements _ProductModel {
-  const _$_ProductModel(
+class _$_AvailableItemModel implements _AvailableItemModel {
+  const _$_AvailableItemModel(
       {required this.itemId,
       required this.itemName,
       this.serialNumber,
@@ -328,8 +328,8 @@ class _$_ProductModel implements _ProductModel {
       this.itemDelevered,
       this.infoToCustomer});
 
-  factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ProductModelFromJson(json);
+  factory _$_AvailableItemModel.fromJson(Map<String, dynamic> json) =>
+      _$$_AvailableItemModelFromJson(json);
 
   @override
   final int? itemId;
@@ -377,7 +377,7 @@ class _$_ProductModel implements _ProductModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProductModel &&
+            other is _$_AvailableItemModel &&
             (identical(other.itemId, itemId) || other.itemId == itemId) &&
             (identical(other.itemName, itemName) ||
                 other.itemName == itemName) &&
@@ -437,19 +437,20 @@ class _$_ProductModel implements _ProductModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>
-      __$$_ProductModelCopyWithImpl<_$_ProductModel>(this, _$identity);
+  _$$_AvailableItemModelCopyWith<_$_AvailableItemModel> get copyWith =>
+      __$$_AvailableItemModelCopyWithImpl<_$_AvailableItemModel>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductModelToJson(
+    return _$$_AvailableItemModelToJson(
       this,
     );
   }
 }
 
-abstract class _ProductModel implements AvailableItemModel {
-  const factory _ProductModel(
+abstract class _AvailableItemModel implements AvailableItemModel {
+  const factory _AvailableItemModel(
       {required final int? itemId,
       required final String? itemName,
       final int? serialNumber,
@@ -466,10 +467,10 @@ abstract class _ProductModel implements AvailableItemModel {
       final bool? isSelectDiningCart,
       final bool? itemReady,
       final bool? itemDelevered,
-      final String? infoToCustomer}) = _$_ProductModel;
+      final String? infoToCustomer}) = _$_AvailableItemModel;
 
-  factory _ProductModel.fromJson(Map<String, dynamic> json) =
-      _$_ProductModel.fromJson;
+  factory _AvailableItemModel.fromJson(Map<String, dynamic> json) =
+      _$_AvailableItemModel.fromJson;
 
   @override
   int? get itemId;
@@ -508,6 +509,6 @@ abstract class _ProductModel implements AvailableItemModel {
   String? get infoToCustomer;
   @override
   @JsonKey(ignore: true)
-  _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>
+  _$$_AvailableItemModelCopyWith<_$_AvailableItemModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

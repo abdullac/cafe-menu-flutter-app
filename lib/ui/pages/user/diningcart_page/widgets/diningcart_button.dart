@@ -1,7 +1,7 @@
+import 'package:cafemenu_app/core/provider/bloc/diningcart_page/diningcart_page_bloc.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_diningcartbutton_functionality.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_diningcartbutton_title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// this is button widget for  takeNow order or confirmOrder
 class DiningCartButton extends StatelessWidget {
@@ -9,24 +9,25 @@ class DiningCartButton extends StatelessWidget {
     super.key,
   });
 
-  /// diningCartButtonNotifier for change button text/functionality takenow,confirmOrder.
-  static ValueNotifier<DiningCartButtonFunctionality?>
-      diningCartButtonNotifier = ValueNotifier(null);
+  static DiningCartButtonFunctionality? diningCartButtonType;
+
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        // take(Order) now button pressed
-        setDiningCartButtonFunctionality(diningCartButtonNotifier);
+    return BlocBuilder<DiningcartPageBloc, DiningcartPageState>(
+      builder: (context, state) {
+        diningCartButtonType =state.diningCartButtonType;
+        return ElevatedButton(
+          onPressed: () {
+            // DiningCartPage button pressed
+            BlocProvider.of<DiningcartPageBloc>(context).add(
+                DiningCartButtonPressed(
+                    diningCartButtonType: state.diningCartButtonType));
+          },
+              /// button text.
+              ///change button text when changed button functionalty.
+          child: Text(state.diningCartButtonText),
+        );
       },
-      child: ValueListenableBuilder(
-        valueListenable: diningCartButtonNotifier,
-        builder: (context, buttonValue, _) {
-          /// button text.
-          /// method setDiningCartButtonTitle for change button text when changed button functionalty.
-          return Text(setDiningCartButtonTitle(buttonValue));
-        },
-      ),
     );
   }
 }

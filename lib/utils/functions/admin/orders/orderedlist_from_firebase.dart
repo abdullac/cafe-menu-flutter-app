@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:cafemenu_app/core/model/customer/customer_model.dart';
+import 'dart:developer';
+import 'package:cafemenu_app/core/model/order/order_model.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ getOrderedListFromFireBase(
     /// iterablely assign to orderedListFromFireBase.
     for (var orderModelsnapshot in orderedListSnapshot.children) {
       if (orderModelsnapshot.key != null) {
+          log("${orderModelsnapshot.value}");
         /// convert orderModelsnapshot to orderModel
         OrderModel orderModel = OrderModel.fromJson(
             jsonDecode(jsonEncode(orderModelsnapshot.value)));
