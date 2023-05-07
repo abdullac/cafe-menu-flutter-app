@@ -1,20 +1,17 @@
-import 'dart:developer';
 
 import 'package:cafemenu_app/core/provider/bloc/diningcart_page/diningcart_page_bloc.dart';
-import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcart_button.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/show_confirmed_position.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
+import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:cafemenu_app/utils/functions/user/diningcart_page/dropdownmenu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// this widget shows customer name and Position code
 class NameAndPositionCode extends StatelessWidget {
-  NameAndPositionCode({
+  const NameAndPositionCode({
     super.key,
   });
-
-  static String? positionCode;
 
   /// editing controller for customer name textField.
   static TextEditingController customerNameEditingController =
@@ -24,17 +21,12 @@ class NameAndPositionCode extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DiningcartPageBloc, DiningcartPageState>(
       builder: (context, state) {
-        String customerName = customerNameEditingController.text;
         return state.diningCartButtonType == null
             ? const SizedBox()
 
             /// show ShowConfirmedPosition widget if pressed Order confirmed button.
             : state.diningCartButtonType ==
-                        DiningCartButtonFunctionality.orderConfirm &&
-                    customerName.isNotEmpty &&
-                    customerName != "" &&
-                    ![null, "-1", "--", "-Select-"]
-                        .contains(NameAndPositionCode.positionCode)
+                        DiningCartButtonFunctionality.orderConfirm 
                 ? const ShowConfirmedNameAndPosition()
 
                 /// show NameAndPositionCode(Name textField, positionCode dropdownButtons) widget

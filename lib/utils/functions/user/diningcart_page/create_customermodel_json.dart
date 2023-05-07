@@ -30,8 +30,7 @@ Map<String, dynamic> createOrderModelJson() {
       totalItems: totalItemsQtyAmount["items"],
       totalQty: totalItemsQtyAmount["Qty"],
       totalAmount: totalItemsQtyAmount["amount"],
-      // positionCode: NameAndPositionCode.tableOrChairNumberNotifier.value,
-      positionCode: NameAndPositionCode.positionCode,
+      positionCode: positionCode,
       orderType: OrderType.order);
 
   /// return orderModel json.

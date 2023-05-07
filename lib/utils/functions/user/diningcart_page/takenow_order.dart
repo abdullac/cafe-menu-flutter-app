@@ -1,5 +1,4 @@
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
-import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 
 /// method for takeNow order diningCart list
@@ -17,6 +16,4 @@ filterAndRefreshDiningCartList() {
   }
   /// diningCartListTemp assiign to diningCartList;
   diningCartList = diningCartListTemp;
-  /// notify diningCartListViewNotifier for rebuild diningCart widgets.
-  PageDiningCart.diningCartListViewNotifier.notifyListeners();
 }

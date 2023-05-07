@@ -9,12 +9,12 @@ import 'widgets/category_list.dart';
 import 'widgets/menucard_page_appbar.dart';
 
 /// this widget is like a screen/page for shows available items.
-/// This Page shows items(list of ProductModel)
+/// This Page shows items(list of AvailableItemModel)
 /// this is the listView page.
 /// each listView items Contains horizontal Pageview by items category name.
 /// pageview items shows items(available items)by their cateegory name.
 class PageMenuCard extends StatelessWidget {
-  /// list of items(ProductModel/available items) from realtime database
+  /// list of items(AvailableItemModel/available items) from realtime database
   const PageMenuCard({
     Key? key,
   }) : super(key: key);

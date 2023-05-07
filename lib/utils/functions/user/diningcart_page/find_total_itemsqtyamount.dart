@@ -1,18 +1,5 @@
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
-import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/total_items_qty_amount.dart';
-import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcart_button.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
-import 'package:flutter/material.dart';
-
-///diningCartPage setQty inrease/decrease button pressed additional function
-// additionalIncreaseOrDecreaseButtonPressed(
-//     // {required ValueNotifier<bool?> isSelectNotifier}
-//     ) {
-//   changeDiningCartTotal();
-//   // if (isSelectNotifier.value == false) {
-//   //   isSelectNotifier.value = true;
-//   // }
-// }
 
 /// findTotalItemsQtyAmount when change item ccount, isSelect, delete
 Map<String, dynamic> findTotalItemsQtyAmount() {

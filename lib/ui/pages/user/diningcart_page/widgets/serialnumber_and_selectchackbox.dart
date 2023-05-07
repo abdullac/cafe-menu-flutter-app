@@ -1,27 +1,23 @@
-import 'dart:developer';
 
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/core/provider/bloc/diningcart_page/diningcart_page_bloc.dart';
 import 'package:cafemenu_app/utils/functions/user/diningcart_page/item_from_diningcartlist.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/select_unselect_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// this widget shows serial number and isSelect checkBox
 class DiningcartListItemSerialNumberAndIsSelectCheckBox
     extends StatelessWidget {
-  DiningcartListItemSerialNumberAndIsSelectCheckBox({
+  const DiningcartListItemSerialNumberAndIsSelectCheckBox({
     super.key,
     required this.index,
     required this.diningCartItem,
     required this.diningCartItemsList,
-    // required this.isSelectNotifier,
   });
 
   final int index;
   final AvailableItemModel diningCartItem;
   final List<AvailableItemModel> diningCartItemsList;
-  // final ValueNotifier<bool?> isSelectNotifier;
 
   @override
   Widget build(BuildContext context) {

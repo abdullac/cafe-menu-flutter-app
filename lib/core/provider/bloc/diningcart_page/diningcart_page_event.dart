@@ -13,11 +13,10 @@ class DiningcartPageEvent with _$DiningcartPageEvent {
   const factory DiningcartPageEvent.changePositionNumber({
     required String? changedPositionNumberValue,
   }) = ChangePositionNumber;
-  // const factory DiningcartPageEvent.setOrderIdAndTime({
-  //   required DiningCartButtonFunctionality? diningCartButtonType,
-  // }) = SetOrderIdAndTime;
   const factory DiningcartPageEvent.diningCartButtonPressed({
     required DiningCartButtonFunctionality? diningCartButtonType,
+    bool? isReTakeDiningCart,
+    String? positionCode,
+    AvailableItemModel? diningCartItemForDelete,
   }) = DiningCartButtonPressed;
-  const factory DiningcartPageEvent.diningCartListview() = DiningCartListview;
 }

@@ -18,9 +18,6 @@ class PageDiningCart extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  /// diningCartListViewNotifier for rebuild PageDiningCart when streamBuilder
-  static ValueNotifier diningCartListViewNotifier = ValueNotifier(null);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,77 +49,80 @@ class PageDiningCart extends StatelessWidget {
             /// method for make diningCartList/ new diningCartList when sreamBuilder
             makeDiningCartListByStreamBuilder(availableItemsList);
 
-            /// notify diningCartListViewNotifier when streamBuilder for rebuild listView Widget
+            /// BlocProvider for rebuild listView Widget when streamBuilder
             /// and bottum Widgets(total item,Qty,Amount,
             /// name,positionode, orderId,Time, diningCartButton)
-            diningCartListViewNotifier.notifyListeners();
+            BlocProvider.of<DiningcartPageBloc>(context).add(
+                const DiningCartButtonPressed(
+                    diningCartButtonType: null, isReTakeDiningCart: true));
           }
           return BlocBuilder<DiningcartPageBloc, DiningcartPageState>(
             builder: (context, state) {
-              return ValueListenableBuilder(
-                  valueListenable: diningCartListViewNotifier,
-                  builder: (context, newValue, _) {
-                    /// show empty message and goto menuCardPage button
-                    /// if diningCartList is empty
-                    return diningCartList.isEmpty
-                        ? Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Text("You h'nt selected any item"),
-                                IconButton(
-                                  onPressed: () {
-                                    // goto menucard page
-                                    Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PageMenuCard(),
-                                      ),
-                                    );
-                                  },
-                                  icon: const Icon(
-                                    Icons.add_circle,
-                                    color: Colors.green,
-                                  ),
-                                )
-                              ],
+              /// show empty message and goto menuCardPage button
+              /// if diningCartList is empty
+              return state.diningCartList.isEmpty
+                  ? Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text("You h'nt selected any item"),
+                          IconButton(
+                            onPressed: () {
+                              // goto menucard page
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => const PageMenuCard(),
+                                ),
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.add_circle,
+                              color: Colors.green,
                             ),
                           )
+                        ],
+                      ),
+                    )
 
-                        /// show diningCart ListView and bottom Widgets(total item,Qty,Amount,
-                        /// name,positionode, orderId,Time, diningCartButton)
-                        : Column(
-                            children: [
-                              const Expanded(
-                                /// diningCart listView
-                                child: DiningCartItemListview(),
-                              ),
-                              Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Container(
-                                  color: Colors.red[200],
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      /// total items, quantity, amount.
-                                      const TotalItemQtyAmount(),
+                  /// show diningCart ListView and bottom Widgets(total item,Qty,Amount,
+                  /// name,positionode, orderId,Time, diningCartButton)
+                  : Column(
+                      children: [
+                        const Expanded(
+                          /// diningCart listView
+                          child: DiningCartItemListview(),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 5),
+                            decoration: BoxDecoration(
+                                color: Colors.red[200],
+                                borderRadius: const BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                    topLeft: Radius.circular(10))),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: const [
+                                /// total items, quantity, amount.
+                                TotalItemQtyAmount(),
 
-                                      /// name and positionCode
-                                      NameAndPositionCode(),
+                                /// name and positionCode
+                                NameAndPositionCode(),
 
-                                      /// OrderId and ordered time
-                                      const OrderIdAndTime(),
+                                /// OrderId and ordered time
+                                OrderIdAndTime(),
 
-                                      /// diningCart button for deffrent functionality
-                                      /// takeNow order, confirmOrder,..
-                                      const DiningCartButton(),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
-                  });
+                                /// diningCart button for deffrent functionality
+                                /// takeNow order, confirmOrder,..
+                                DiningCartButton(),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+              // });
             },
           );
         },

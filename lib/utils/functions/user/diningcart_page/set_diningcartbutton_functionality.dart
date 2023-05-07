@@ -1,37 +1,46 @@
-import 'package:cafemenu_app/core/provider/bloc/diningcart_page/diningcart_page_bloc.dart';
-import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/diningcart_button.dart';
+import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/functions/user/diningcart_page/confirm_order.dart';
+import 'package:cafemenu_app/utils/functions/user/diningcart_page/deleteitem_from_diningcartlist.dart';
 import 'package:cafemenu_app/utils/functions/user/diningcart_page/takenow_order.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// method for hange diningCart button fuctionality.
-Future<DiningCartButtonFunctionality?> setDiningCartButtonFunctionality(
-    // BuildContext context,
-    // ValueNotifier<DiningCartButtonFunctionality?> diningCartButtonNotifier
-    DiningCartButtonFunctionality? diningCartButtonType) async {
-      DiningCartButtonFunctionality? diningCartButtonTypeTemp;
-  switch (diningCartButtonType) {
-    /// button press for takeNow order
-    case null:
+Future<DiningCartButtonFunctionality?> setDiningCartButtonFunctionality({
+  required DiningCartButtonFunctionality? diningCartButtonType,
+  required bool? isReTakeDiningCart,
+  required String? positionCode,
+  required AvailableItemModel? diningCartItemForDelete,
+}) async {
+  DiningCartButtonFunctionality? diningCartButtonTypeTemp;
+        /// method for delete. when diningCartItemForDelete is not null.
+        /// and set diningCartList and notify diningCartListViewNotifier for
+  deleteItemFromDiningCartList(diningCartItemForDelete);
+    ///
+  if (isReTakeDiningCart == true) {
+    diningCartButtonTypeTemp = null;
+  } else {
+    switch (diningCartButtonType) {
+      /// button press for takeNow order
+      case null:
 
-      /// method for filter and avoid 0 orderedQty items and notfy for rebuild diningCArt widgets.
-      filterAndRefreshDiningCartList();
-      diningCartButtonTypeTemp = DiningCartButtonFunctionality.takeNow;
-      break;
+        /// method for filter and avoid 0 orderedQty items and notfy for rebuild diningCArt widgets.
+        filterAndRefreshDiningCartList();
+        diningCartButtonTypeTemp = DiningCartButtonFunctionality.takeNow;
+        break;
 
-    /// button pressed for confirmOrder
-    case DiningCartButtonFunctionality.takeNow:
-
-      /// method for order save to firebase when pressed confirm order button
-      await buttonPressedForConfirmOrder(
-          // context, diningCartButtonType
-          );
-      diningCartButtonTypeTemp = DiningCartButtonFunctionality.orderConfirm;
-      break;
-    default:
-      diningCartButtonTypeTemp = DiningCartButtonFunctionality.orderConfirm;
+      /// button pressed for confirmOrder
+      case DiningCartButtonFunctionality.takeNow:
+        if (![null, "", "--", "-Select-"].contains(positionCode)) {
+          /// method for order save to firebase when pressed confirm order button
+          await buttonPressedForConfirmOrder();
+          diningCartButtonTypeTemp = DiningCartButtonFunctionality.orderConfirm;
+        } else {
+          diningCartButtonTypeTemp = DiningCartButtonFunctionality.takeNow;
+        }
+        break;
+      default:
+        diningCartButtonTypeTemp = DiningCartButtonFunctionality.orderConfirm;
+    }
   }
   return diningCartButtonTypeTemp;
   // diningCartButtonNotifier.notifyListeners();

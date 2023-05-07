@@ -26,9 +26,11 @@ mixin _$DiningcartPageEvent {
     required TResult Function(String? changedPositionNumberValue)
         changePositionNumber,
     required TResult Function(
-            DiningCartButtonFunctionality? diningCartButtonType)
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)
         diningCartButtonPressed,
-    required TResult Function() diningCartListview,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,9 +41,12 @@ mixin _$DiningcartPageEvent {
     TResult? Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult? Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult? Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult? Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult? Function()? diningCartListview,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,9 +57,12 @@ mixin _$DiningcartPageEvent {
     TResult Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult Function()? diningCartListview,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,7 +74,6 @@ mixin _$DiningcartPageEvent {
     required TResult Function(ChangePositionNumber value) changePositionNumber,
     required TResult Function(DiningCartButtonPressed value)
         diningCartButtonPressed,
-    required TResult Function(DiningCartListview value) diningCartListview,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,7 +83,6 @@ mixin _$DiningcartPageEvent {
     TResult? Function(ChangePositionType value)? changePositionType,
     TResult? Function(ChangePositionNumber value)? changePositionNumber,
     TResult? Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult? Function(DiningCartListview value)? diningCartListview,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,7 +92,6 @@ mixin _$DiningcartPageEvent {
     TResult Function(ChangePositionType value)? changePositionType,
     TResult Function(ChangePositionNumber value)? changePositionNumber,
     TResult Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult Function(DiningCartListview value)? diningCartListview,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -204,9 +209,11 @@ class _$UserClickedCheckbox implements UserClickedCheckbox {
     required TResult Function(String? changedPositionNumberValue)
         changePositionNumber,
     required TResult Function(
-            DiningCartButtonFunctionality? diningCartButtonType)
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)
         diningCartButtonPressed,
-    required TResult Function() diningCartListview,
   }) {
     return userClickedCheckbox(diningCartItem, itemIndex);
   }
@@ -220,9 +227,12 @@ class _$UserClickedCheckbox implements UserClickedCheckbox {
     TResult? Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult? Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult? Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult? Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult? Function()? diningCartListview,
   }) {
     return userClickedCheckbox?.call(diningCartItem, itemIndex);
   }
@@ -236,9 +246,12 @@ class _$UserClickedCheckbox implements UserClickedCheckbox {
     TResult Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult Function()? diningCartListview,
     required TResult orElse(),
   }) {
     if (userClickedCheckbox != null) {
@@ -256,7 +269,6 @@ class _$UserClickedCheckbox implements UserClickedCheckbox {
     required TResult Function(ChangePositionNumber value) changePositionNumber,
     required TResult Function(DiningCartButtonPressed value)
         diningCartButtonPressed,
-    required TResult Function(DiningCartListview value) diningCartListview,
   }) {
     return userClickedCheckbox(this);
   }
@@ -269,7 +281,6 @@ class _$UserClickedCheckbox implements UserClickedCheckbox {
     TResult? Function(ChangePositionType value)? changePositionType,
     TResult? Function(ChangePositionNumber value)? changePositionNumber,
     TResult? Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult? Function(DiningCartListview value)? diningCartListview,
   }) {
     return userClickedCheckbox?.call(this);
   }
@@ -282,7 +293,6 @@ class _$UserClickedCheckbox implements UserClickedCheckbox {
     TResult Function(ChangePositionType value)? changePositionType,
     TResult Function(ChangePositionNumber value)? changePositionNumber,
     TResult Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult Function(DiningCartListview value)? diningCartListview,
     required TResult orElse(),
   }) {
     if (userClickedCheckbox != null) {
@@ -350,9 +360,11 @@ class _$EditTotalSection implements EditTotalSection {
     required TResult Function(String? changedPositionNumberValue)
         changePositionNumber,
     required TResult Function(
-            DiningCartButtonFunctionality? diningCartButtonType)
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)
         diningCartButtonPressed,
-    required TResult Function() diningCartListview,
   }) {
     return editTotalSection();
   }
@@ -366,9 +378,12 @@ class _$EditTotalSection implements EditTotalSection {
     TResult? Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult? Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult? Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult? Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult? Function()? diningCartListview,
   }) {
     return editTotalSection?.call();
   }
@@ -382,9 +397,12 @@ class _$EditTotalSection implements EditTotalSection {
     TResult Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult Function()? diningCartListview,
     required TResult orElse(),
   }) {
     if (editTotalSection != null) {
@@ -402,7 +420,6 @@ class _$EditTotalSection implements EditTotalSection {
     required TResult Function(ChangePositionNumber value) changePositionNumber,
     required TResult Function(DiningCartButtonPressed value)
         diningCartButtonPressed,
-    required TResult Function(DiningCartListview value) diningCartListview,
   }) {
     return editTotalSection(this);
   }
@@ -415,7 +432,6 @@ class _$EditTotalSection implements EditTotalSection {
     TResult? Function(ChangePositionType value)? changePositionType,
     TResult? Function(ChangePositionNumber value)? changePositionNumber,
     TResult? Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult? Function(DiningCartListview value)? diningCartListview,
   }) {
     return editTotalSection?.call(this);
   }
@@ -428,7 +444,6 @@ class _$EditTotalSection implements EditTotalSection {
     TResult Function(ChangePositionType value)? changePositionType,
     TResult Function(ChangePositionNumber value)? changePositionNumber,
     TResult Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult Function(DiningCartListview value)? diningCartListview,
     required TResult orElse(),
   }) {
     if (editTotalSection != null) {
@@ -517,9 +532,11 @@ class _$ChangePositionType implements ChangePositionType {
     required TResult Function(String? changedPositionNumberValue)
         changePositionNumber,
     required TResult Function(
-            DiningCartButtonFunctionality? diningCartButtonType)
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)
         diningCartButtonPressed,
-    required TResult Function() diningCartListview,
   }) {
     return changePositionType(changedPositionTypeValue);
   }
@@ -533,9 +550,12 @@ class _$ChangePositionType implements ChangePositionType {
     TResult? Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult? Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult? Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult? Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult? Function()? diningCartListview,
   }) {
     return changePositionType?.call(changedPositionTypeValue);
   }
@@ -549,9 +569,12 @@ class _$ChangePositionType implements ChangePositionType {
     TResult Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult Function()? diningCartListview,
     required TResult orElse(),
   }) {
     if (changePositionType != null) {
@@ -569,7 +592,6 @@ class _$ChangePositionType implements ChangePositionType {
     required TResult Function(ChangePositionNumber value) changePositionNumber,
     required TResult Function(DiningCartButtonPressed value)
         diningCartButtonPressed,
-    required TResult Function(DiningCartListview value) diningCartListview,
   }) {
     return changePositionType(this);
   }
@@ -582,7 +604,6 @@ class _$ChangePositionType implements ChangePositionType {
     TResult? Function(ChangePositionType value)? changePositionType,
     TResult? Function(ChangePositionNumber value)? changePositionNumber,
     TResult? Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult? Function(DiningCartListview value)? diningCartListview,
   }) {
     return changePositionType?.call(this);
   }
@@ -595,7 +616,6 @@ class _$ChangePositionType implements ChangePositionType {
     TResult Function(ChangePositionType value)? changePositionType,
     TResult Function(ChangePositionNumber value)? changePositionNumber,
     TResult Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult Function(DiningCartListview value)? diningCartListview,
     required TResult orElse(),
   }) {
     if (changePositionType != null) {
@@ -692,9 +712,11 @@ class _$ChangePositionNumber implements ChangePositionNumber {
     required TResult Function(String? changedPositionNumberValue)
         changePositionNumber,
     required TResult Function(
-            DiningCartButtonFunctionality? diningCartButtonType)
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)
         diningCartButtonPressed,
-    required TResult Function() diningCartListview,
   }) {
     return changePositionNumber(changedPositionNumberValue);
   }
@@ -708,9 +730,12 @@ class _$ChangePositionNumber implements ChangePositionNumber {
     TResult? Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult? Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult? Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult? Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult? Function()? diningCartListview,
   }) {
     return changePositionNumber?.call(changedPositionNumberValue);
   }
@@ -724,9 +749,12 @@ class _$ChangePositionNumber implements ChangePositionNumber {
     TResult Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult Function()? diningCartListview,
     required TResult orElse(),
   }) {
     if (changePositionNumber != null) {
@@ -744,7 +772,6 @@ class _$ChangePositionNumber implements ChangePositionNumber {
     required TResult Function(ChangePositionNumber value) changePositionNumber,
     required TResult Function(DiningCartButtonPressed value)
         diningCartButtonPressed,
-    required TResult Function(DiningCartListview value) diningCartListview,
   }) {
     return changePositionNumber(this);
   }
@@ -757,7 +784,6 @@ class _$ChangePositionNumber implements ChangePositionNumber {
     TResult? Function(ChangePositionType value)? changePositionType,
     TResult? Function(ChangePositionNumber value)? changePositionNumber,
     TResult? Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult? Function(DiningCartListview value)? diningCartListview,
   }) {
     return changePositionNumber?.call(this);
   }
@@ -770,7 +796,6 @@ class _$ChangePositionNumber implements ChangePositionNumber {
     TResult Function(ChangePositionType value)? changePositionType,
     TResult Function(ChangePositionNumber value)? changePositionNumber,
     TResult Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult Function(DiningCartListview value)? diningCartListview,
     required TResult orElse(),
   }) {
     if (changePositionNumber != null) {
@@ -797,7 +822,13 @@ abstract class _$$DiningCartButtonPressedCopyWith<$Res> {
           $Res Function(_$DiningCartButtonPressed) then) =
       __$$DiningCartButtonPressedCopyWithImpl<$Res>;
   @useResult
-  $Res call({DiningCartButtonFunctionality? diningCartButtonType});
+  $Res call(
+      {DiningCartButtonFunctionality? diningCartButtonType,
+      bool? isReTakeDiningCart,
+      String? positionCode,
+      AvailableItemModel? diningCartItemForDelete});
+
+  $AvailableItemModelCopyWith<$Res>? get diningCartItemForDelete;
 }
 
 /// @nodoc
@@ -812,27 +843,65 @@ class __$$DiningCartButtonPressedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? diningCartButtonType = freezed,
+    Object? isReTakeDiningCart = freezed,
+    Object? positionCode = freezed,
+    Object? diningCartItemForDelete = freezed,
   }) {
     return _then(_$DiningCartButtonPressed(
       diningCartButtonType: freezed == diningCartButtonType
           ? _value.diningCartButtonType
           : diningCartButtonType // ignore: cast_nullable_to_non_nullable
               as DiningCartButtonFunctionality?,
+      isReTakeDiningCart: freezed == isReTakeDiningCart
+          ? _value.isReTakeDiningCart
+          : isReTakeDiningCart // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      positionCode: freezed == positionCode
+          ? _value.positionCode
+          : positionCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      diningCartItemForDelete: freezed == diningCartItemForDelete
+          ? _value.diningCartItemForDelete
+          : diningCartItemForDelete // ignore: cast_nullable_to_non_nullable
+              as AvailableItemModel?,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AvailableItemModelCopyWith<$Res>? get diningCartItemForDelete {
+    if (_value.diningCartItemForDelete == null) {
+      return null;
+    }
+
+    return $AvailableItemModelCopyWith<$Res>(_value.diningCartItemForDelete!,
+        (value) {
+      return _then(_value.copyWith(diningCartItemForDelete: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$DiningCartButtonPressed implements DiningCartButtonPressed {
-  const _$DiningCartButtonPressed({required this.diningCartButtonType});
+  const _$DiningCartButtonPressed(
+      {required this.diningCartButtonType,
+      this.isReTakeDiningCart,
+      this.positionCode,
+      this.diningCartItemForDelete});
 
   @override
   final DiningCartButtonFunctionality? diningCartButtonType;
+  @override
+  final bool? isReTakeDiningCart;
+  @override
+  final String? positionCode;
+  @override
+  final AvailableItemModel? diningCartItemForDelete;
 
   @override
   String toString() {
-    return 'DiningcartPageEvent.diningCartButtonPressed(diningCartButtonType: $diningCartButtonType)';
+    return 'DiningcartPageEvent.diningCartButtonPressed(diningCartButtonType: $diningCartButtonType, isReTakeDiningCart: $isReTakeDiningCart, positionCode: $positionCode, diningCartItemForDelete: $diningCartItemForDelete)';
   }
 
   @override
@@ -841,11 +910,19 @@ class _$DiningCartButtonPressed implements DiningCartButtonPressed {
         (other.runtimeType == runtimeType &&
             other is _$DiningCartButtonPressed &&
             (identical(other.diningCartButtonType, diningCartButtonType) ||
-                other.diningCartButtonType == diningCartButtonType));
+                other.diningCartButtonType == diningCartButtonType) &&
+            (identical(other.isReTakeDiningCart, isReTakeDiningCart) ||
+                other.isReTakeDiningCart == isReTakeDiningCart) &&
+            (identical(other.positionCode, positionCode) ||
+                other.positionCode == positionCode) &&
+            (identical(
+                    other.diningCartItemForDelete, diningCartItemForDelete) ||
+                other.diningCartItemForDelete == diningCartItemForDelete));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, diningCartButtonType);
+  int get hashCode => Object.hash(runtimeType, diningCartButtonType,
+      isReTakeDiningCart, positionCode, diningCartItemForDelete);
 
   @JsonKey(ignore: true)
   @override
@@ -865,11 +942,14 @@ class _$DiningCartButtonPressed implements DiningCartButtonPressed {
     required TResult Function(String? changedPositionNumberValue)
         changePositionNumber,
     required TResult Function(
-            DiningCartButtonFunctionality? diningCartButtonType)
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)
         diningCartButtonPressed,
-    required TResult Function() diningCartListview,
   }) {
-    return diningCartButtonPressed(diningCartButtonType);
+    return diningCartButtonPressed(diningCartButtonType, isReTakeDiningCart,
+        positionCode, diningCartItemForDelete);
   }
 
   @override
@@ -881,11 +961,15 @@ class _$DiningCartButtonPressed implements DiningCartButtonPressed {
     TResult? Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult? Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult? Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult? Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult? Function()? diningCartListview,
   }) {
-    return diningCartButtonPressed?.call(diningCartButtonType);
+    return diningCartButtonPressed?.call(diningCartButtonType,
+        isReTakeDiningCart, positionCode, diningCartItemForDelete);
   }
 
   @override
@@ -897,13 +981,17 @@ class _$DiningCartButtonPressed implements DiningCartButtonPressed {
     TResult Function(PositionType? changedPositionTypeValue)?
         changePositionType,
     TResult Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult Function(DiningCartButtonFunctionality? diningCartButtonType)?
+    TResult Function(
+            DiningCartButtonFunctionality? diningCartButtonType,
+            bool? isReTakeDiningCart,
+            String? positionCode,
+            AvailableItemModel? diningCartItemForDelete)?
         diningCartButtonPressed,
-    TResult Function()? diningCartListview,
     required TResult orElse(),
   }) {
     if (diningCartButtonPressed != null) {
-      return diningCartButtonPressed(diningCartButtonType);
+      return diningCartButtonPressed(diningCartButtonType, isReTakeDiningCart,
+          positionCode, diningCartItemForDelete);
     }
     return orElse();
   }
@@ -917,7 +1005,6 @@ class _$DiningCartButtonPressed implements DiningCartButtonPressed {
     required TResult Function(ChangePositionNumber value) changePositionNumber,
     required TResult Function(DiningCartButtonPressed value)
         diningCartButtonPressed,
-    required TResult Function(DiningCartListview value) diningCartListview,
   }) {
     return diningCartButtonPressed(this);
   }
@@ -930,7 +1017,6 @@ class _$DiningCartButtonPressed implements DiningCartButtonPressed {
     TResult? Function(ChangePositionType value)? changePositionType,
     TResult? Function(ChangePositionNumber value)? changePositionNumber,
     TResult? Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult? Function(DiningCartListview value)? diningCartListview,
   }) {
     return diningCartButtonPressed?.call(this);
   }
@@ -943,7 +1029,6 @@ class _$DiningCartButtonPressed implements DiningCartButtonPressed {
     TResult Function(ChangePositionType value)? changePositionType,
     TResult Function(ChangePositionNumber value)? changePositionNumber,
     TResult Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult Function(DiningCartListview value)? diningCartListview,
     required TResult orElse(),
   }) {
     if (diningCartButtonPressed != null) {
@@ -955,166 +1040,32 @@ class _$DiningCartButtonPressed implements DiningCartButtonPressed {
 
 abstract class DiningCartButtonPressed implements DiningcartPageEvent {
   const factory DiningCartButtonPressed(
-      {required final DiningCartButtonFunctionality?
-          diningCartButtonType}) = _$DiningCartButtonPressed;
+          {required final DiningCartButtonFunctionality? diningCartButtonType,
+          final bool? isReTakeDiningCart,
+          final String? positionCode,
+          final AvailableItemModel? diningCartItemForDelete}) =
+      _$DiningCartButtonPressed;
 
   DiningCartButtonFunctionality? get diningCartButtonType;
+  bool? get isReTakeDiningCart;
+  String? get positionCode;
+  AvailableItemModel? get diningCartItemForDelete;
   @JsonKey(ignore: true)
   _$$DiningCartButtonPressedCopyWith<_$DiningCartButtonPressed> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DiningCartListviewCopyWith<$Res> {
-  factory _$$DiningCartListviewCopyWith(_$DiningCartListview value,
-          $Res Function(_$DiningCartListview) then) =
-      __$$DiningCartListviewCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$DiningCartListviewCopyWithImpl<$Res>
-    extends _$DiningcartPageEventCopyWithImpl<$Res, _$DiningCartListview>
-    implements _$$DiningCartListviewCopyWith<$Res> {
-  __$$DiningCartListviewCopyWithImpl(
-      _$DiningCartListview _value, $Res Function(_$DiningCartListview) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$DiningCartListview implements DiningCartListview {
-  const _$DiningCartListview();
-
-  @override
-  String toString() {
-    return 'DiningcartPageEvent.diningCartListview()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DiningCartListview);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AvailableItemModel diningCartItem, int itemIndex)
-        userClickedCheckbox,
-    required TResult Function() editTotalSection,
-    required TResult Function(PositionType? changedPositionTypeValue)
-        changePositionType,
-    required TResult Function(String? changedPositionNumberValue)
-        changePositionNumber,
-    required TResult Function(
-            DiningCartButtonFunctionality? diningCartButtonType)
-        diningCartButtonPressed,
-    required TResult Function() diningCartListview,
-  }) {
-    return diningCartListview();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AvailableItemModel diningCartItem, int itemIndex)?
-        userClickedCheckbox,
-    TResult? Function()? editTotalSection,
-    TResult? Function(PositionType? changedPositionTypeValue)?
-        changePositionType,
-    TResult? Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult? Function(DiningCartButtonFunctionality? diningCartButtonType)?
-        diningCartButtonPressed,
-    TResult? Function()? diningCartListview,
-  }) {
-    return diningCartListview?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AvailableItemModel diningCartItem, int itemIndex)?
-        userClickedCheckbox,
-    TResult Function()? editTotalSection,
-    TResult Function(PositionType? changedPositionTypeValue)?
-        changePositionType,
-    TResult Function(String? changedPositionNumberValue)? changePositionNumber,
-    TResult Function(DiningCartButtonFunctionality? diningCartButtonType)?
-        diningCartButtonPressed,
-    TResult Function()? diningCartListview,
-    required TResult orElse(),
-  }) {
-    if (diningCartListview != null) {
-      return diningCartListview();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UserClickedCheckbox value) userClickedCheckbox,
-    required TResult Function(EditTotalSection value) editTotalSection,
-    required TResult Function(ChangePositionType value) changePositionType,
-    required TResult Function(ChangePositionNumber value) changePositionNumber,
-    required TResult Function(DiningCartButtonPressed value)
-        diningCartButtonPressed,
-    required TResult Function(DiningCartListview value) diningCartListview,
-  }) {
-    return diningCartListview(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UserClickedCheckbox value)? userClickedCheckbox,
-    TResult? Function(EditTotalSection value)? editTotalSection,
-    TResult? Function(ChangePositionType value)? changePositionType,
-    TResult? Function(ChangePositionNumber value)? changePositionNumber,
-    TResult? Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult? Function(DiningCartListview value)? diningCartListview,
-  }) {
-    return diningCartListview?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserClickedCheckbox value)? userClickedCheckbox,
-    TResult Function(EditTotalSection value)? editTotalSection,
-    TResult Function(ChangePositionType value)? changePositionType,
-    TResult Function(ChangePositionNumber value)? changePositionNumber,
-    TResult Function(DiningCartButtonPressed value)? diningCartButtonPressed,
-    TResult Function(DiningCartListview value)? diningCartListview,
-    required TResult orElse(),
-  }) {
-    if (diningCartListview != null) {
-      return diningCartListview(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DiningCartListview implements DiningcartPageEvent {
-  const factory DiningCartListview() = _$DiningCartListview;
-}
-
-/// @nodoc
 mixin _$DiningcartPageState {
+  List<AvailableItemModel> get diningCartList =>
+      throw _privateConstructorUsedError;
   bool get isSelected => throw _privateConstructorUsedError;
   int? get itemIndex => throw _privateConstructorUsedError;
   Map<String, dynamic> get valuesOfTotalSectionAsMap =>
       throw _privateConstructorUsedError;
   PositionType? get positionTypeValue => throw _privateConstructorUsedError;
-  String? get positionNumberValue =>
-      throw _privateConstructorUsedError; // required int? orderId,
-// required String? orderedTime,
+  String? get positionNumberValue => throw _privateConstructorUsedError;
   DiningCartButtonFunctionality? get diningCartButtonType =>
-      throw _privateConstructorUsedError;
-  DiningCartButtonFunctionality? get diningCartButtonNotifier =>
       throw _privateConstructorUsedError;
   String get diningCartButtonText => throw _privateConstructorUsedError;
 
@@ -1130,13 +1081,13 @@ abstract class $DiningcartPageStateCopyWith<$Res> {
       _$DiningcartPageStateCopyWithImpl<$Res, DiningcartPageState>;
   @useResult
   $Res call(
-      {bool isSelected,
+      {List<AvailableItemModel> diningCartList,
+      bool isSelected,
       int? itemIndex,
       Map<String, dynamic> valuesOfTotalSectionAsMap,
       PositionType? positionTypeValue,
       String? positionNumberValue,
       DiningCartButtonFunctionality? diningCartButtonType,
-      DiningCartButtonFunctionality? diningCartButtonNotifier,
       String diningCartButtonText});
 }
 
@@ -1153,16 +1104,20 @@ class _$DiningcartPageStateCopyWithImpl<$Res, $Val extends DiningcartPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? diningCartList = null,
     Object? isSelected = null,
     Object? itemIndex = freezed,
     Object? valuesOfTotalSectionAsMap = null,
     Object? positionTypeValue = freezed,
     Object? positionNumberValue = freezed,
     Object? diningCartButtonType = freezed,
-    Object? diningCartButtonNotifier = freezed,
     Object? diningCartButtonText = null,
   }) {
     return _then(_value.copyWith(
+      diningCartList: null == diningCartList
+          ? _value.diningCartList
+          : diningCartList // ignore: cast_nullable_to_non_nullable
+              as List<AvailableItemModel>,
       isSelected: null == isSelected
           ? _value.isSelected
           : isSelected // ignore: cast_nullable_to_non_nullable
@@ -1187,10 +1142,6 @@ class _$DiningcartPageStateCopyWithImpl<$Res, $Val extends DiningcartPageState>
           ? _value.diningCartButtonType
           : diningCartButtonType // ignore: cast_nullable_to_non_nullable
               as DiningCartButtonFunctionality?,
-      diningCartButtonNotifier: freezed == diningCartButtonNotifier
-          ? _value.diningCartButtonNotifier
-          : diningCartButtonNotifier // ignore: cast_nullable_to_non_nullable
-              as DiningCartButtonFunctionality?,
       diningCartButtonText: null == diningCartButtonText
           ? _value.diningCartButtonText
           : diningCartButtonText // ignore: cast_nullable_to_non_nullable
@@ -1208,13 +1159,13 @@ abstract class _$$_DiningcartPageStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isSelected,
+      {List<AvailableItemModel> diningCartList,
+      bool isSelected,
       int? itemIndex,
       Map<String, dynamic> valuesOfTotalSectionAsMap,
       PositionType? positionTypeValue,
       String? positionNumberValue,
       DiningCartButtonFunctionality? diningCartButtonType,
-      DiningCartButtonFunctionality? diningCartButtonNotifier,
       String diningCartButtonText});
 }
 
@@ -1229,16 +1180,20 @@ class __$$_DiningcartPageStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? diningCartList = null,
     Object? isSelected = null,
     Object? itemIndex = freezed,
     Object? valuesOfTotalSectionAsMap = null,
     Object? positionTypeValue = freezed,
     Object? positionNumberValue = freezed,
     Object? diningCartButtonType = freezed,
-    Object? diningCartButtonNotifier = freezed,
     Object? diningCartButtonText = null,
   }) {
     return _then(_$_DiningcartPageState(
+      diningCartList: null == diningCartList
+          ? _value._diningCartList
+          : diningCartList // ignore: cast_nullable_to_non_nullable
+              as List<AvailableItemModel>,
       isSelected: null == isSelected
           ? _value.isSelected
           : isSelected // ignore: cast_nullable_to_non_nullable
@@ -1263,10 +1218,6 @@ class __$$_DiningcartPageStateCopyWithImpl<$Res>
           ? _value.diningCartButtonType
           : diningCartButtonType // ignore: cast_nullable_to_non_nullable
               as DiningCartButtonFunctionality?,
-      diningCartButtonNotifier: freezed == diningCartButtonNotifier
-          ? _value.diningCartButtonNotifier
-          : diningCartButtonNotifier // ignore: cast_nullable_to_non_nullable
-              as DiningCartButtonFunctionality?,
       diningCartButtonText: null == diningCartButtonText
           ? _value.diningCartButtonText
           : diningCartButtonText // ignore: cast_nullable_to_non_nullable
@@ -1279,15 +1230,24 @@ class __$$_DiningcartPageStateCopyWithImpl<$Res>
 
 class _$_DiningcartPageState implements _DiningcartPageState {
   const _$_DiningcartPageState(
-      {required this.isSelected,
+      {required final List<AvailableItemModel> diningCartList,
+      required this.isSelected,
       required this.itemIndex,
       required final Map<String, dynamic> valuesOfTotalSectionAsMap,
       required this.positionTypeValue,
       required this.positionNumberValue,
       required this.diningCartButtonType,
-      required this.diningCartButtonNotifier,
       required this.diningCartButtonText})
-      : _valuesOfTotalSectionAsMap = valuesOfTotalSectionAsMap;
+      : _diningCartList = diningCartList,
+        _valuesOfTotalSectionAsMap = valuesOfTotalSectionAsMap;
+
+  final List<AvailableItemModel> _diningCartList;
+  @override
+  List<AvailableItemModel> get diningCartList {
+    if (_diningCartList is EqualUnmodifiableListView) return _diningCartList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_diningCartList);
+  }
 
   @override
   final bool isSelected;
@@ -1306,18 +1266,14 @@ class _$_DiningcartPageState implements _DiningcartPageState {
   final PositionType? positionTypeValue;
   @override
   final String? positionNumberValue;
-// required int? orderId,
-// required String? orderedTime,
   @override
   final DiningCartButtonFunctionality? diningCartButtonType;
-  @override
-  final DiningCartButtonFunctionality? diningCartButtonNotifier;
   @override
   final String diningCartButtonText;
 
   @override
   String toString() {
-    return 'DiningcartPageState(isSelected: $isSelected, itemIndex: $itemIndex, valuesOfTotalSectionAsMap: $valuesOfTotalSectionAsMap, positionTypeValue: $positionTypeValue, positionNumberValue: $positionNumberValue, diningCartButtonType: $diningCartButtonType, diningCartButtonNotifier: $diningCartButtonNotifier, diningCartButtonText: $diningCartButtonText)';
+    return 'DiningcartPageState(diningCartList: $diningCartList, isSelected: $isSelected, itemIndex: $itemIndex, valuesOfTotalSectionAsMap: $valuesOfTotalSectionAsMap, positionTypeValue: $positionTypeValue, positionNumberValue: $positionNumberValue, diningCartButtonType: $diningCartButtonType, diningCartButtonText: $diningCartButtonText)';
   }
 
   @override
@@ -1325,6 +1281,8 @@ class _$_DiningcartPageState implements _DiningcartPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DiningcartPageState &&
+            const DeepCollectionEquality()
+                .equals(other._diningCartList, _diningCartList) &&
             (identical(other.isSelected, isSelected) ||
                 other.isSelected == isSelected) &&
             (identical(other.itemIndex, itemIndex) ||
@@ -1337,9 +1295,6 @@ class _$_DiningcartPageState implements _DiningcartPageState {
                 other.positionNumberValue == positionNumberValue) &&
             (identical(other.diningCartButtonType, diningCartButtonType) ||
                 other.diningCartButtonType == diningCartButtonType) &&
-            (identical(
-                    other.diningCartButtonNotifier, diningCartButtonNotifier) ||
-                other.diningCartButtonNotifier == diningCartButtonNotifier) &&
             (identical(other.diningCartButtonText, diningCartButtonText) ||
                 other.diningCartButtonText == diningCartButtonText));
   }
@@ -1347,13 +1302,13 @@ class _$_DiningcartPageState implements _DiningcartPageState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(_diningCartList),
       isSelected,
       itemIndex,
       const DeepCollectionEquality().hash(_valuesOfTotalSectionAsMap),
       positionTypeValue,
       positionNumberValue,
       diningCartButtonType,
-      diningCartButtonNotifier,
       diningCartButtonText);
 
   @JsonKey(ignore: true)
@@ -1366,15 +1321,17 @@ class _$_DiningcartPageState implements _DiningcartPageState {
 
 abstract class _DiningcartPageState implements DiningcartPageState {
   const factory _DiningcartPageState(
-      {required final bool isSelected,
+      {required final List<AvailableItemModel> diningCartList,
+      required final bool isSelected,
       required final int? itemIndex,
       required final Map<String, dynamic> valuesOfTotalSectionAsMap,
       required final PositionType? positionTypeValue,
       required final String? positionNumberValue,
       required final DiningCartButtonFunctionality? diningCartButtonType,
-      required final DiningCartButtonFunctionality? diningCartButtonNotifier,
       required final String diningCartButtonText}) = _$_DiningcartPageState;
 
+  @override
+  List<AvailableItemModel> get diningCartList;
   @override
   bool get isSelected;
   @override
@@ -1385,11 +1342,8 @@ abstract class _DiningcartPageState implements DiningcartPageState {
   PositionType? get positionTypeValue;
   @override
   String? get positionNumberValue;
-  @override // required int? orderId,
-// required String? orderedTime,
-  DiningCartButtonFunctionality? get diningCartButtonType;
   @override
-  DiningCartButtonFunctionality? get diningCartButtonNotifier;
+  DiningCartButtonFunctionality? get diningCartButtonType;
   @override
   String get diningCartButtonText;
   @override

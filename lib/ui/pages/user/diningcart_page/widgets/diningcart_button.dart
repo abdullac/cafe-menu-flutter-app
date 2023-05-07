@@ -1,5 +1,6 @@
 import 'package:cafemenu_app/core/provider/bloc/diningcart_page/diningcart_page_bloc.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
+import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +22,8 @@ class DiningCartButton extends StatelessWidget {
             // DiningCartPage button pressed
             BlocProvider.of<DiningcartPageBloc>(context).add(
                 DiningCartButtonPressed(
-                    diningCartButtonType: state.diningCartButtonType));
+                    diningCartButtonType: state.diningCartButtonType,
+                    positionCode: positionCode));
           },
               /// button text.
               ///change button text when changed button functionalty.

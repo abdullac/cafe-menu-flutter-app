@@ -1,8 +1,7 @@
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
-import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
-import 'package:cafemenu_app/utils/constants/lists.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/deleteitem_from_diningcartlist.dart';
+import 'package:cafemenu_app/core/provider/bloc/diningcart_page/diningcart_page_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// this widget for delete item from diningCartList
 class DiningcartListItemDeleteButton extends StatelessWidget {
@@ -18,12 +17,14 @@ class DiningcartListItemDeleteButton extends StatelessWidget {
     return InkWell(
       onTap: () {
         // cart item delete button pressed
-        /// method for delete.
-        /// and set diningCartList and notify diningCartListViewNotifier for 
         /// rebuild diningCartListView
-        deleteItemFromDiningCartList(diningCartItem);
-        // PageDiningCart.diningCartListViewNotifier.value = diningCartList;
-        PageDiningCart.diningCartListViewNotifier.notifyListeners();
+        BlocProvider.of<DiningcartPageBloc>(context)
+            .add(DiningCartButtonPressed(
+          diningCartButtonType: null,
+          isReTakeDiningCart: true,
+          diningCartItemForDelete: diningCartItem,
+        ));BlocProvider.of<DiningcartPageBloc>(context)
+            .add(const EditTotalSection());
       },
       child: Icon(
         Icons.delete,
