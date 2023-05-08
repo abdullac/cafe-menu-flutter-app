@@ -1,6 +1,14 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
+import 'package:cafemenu_app/core/provider/logics/find_location_distence.dart';
+import 'package:cafemenu_app/core/provider/logics/get_shop_location.dart';
+import 'package:cafemenu_app/core/provider/logics/user/menucard_page/find_location.dart';
+import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:geolocator/geolocator.dart';
 
 part 'menucard_page_event.dart';
 part 'menucard_page_state.dart';
@@ -8,24 +16,11 @@ part 'menucard_page_bloc.freezed.dart';
 
 class MenucardPageBloc extends Bloc<MenucardPageEvent, MenucardPageState> {
   MenucardPageBloc() : super(MenucardPageState.initial()) {
-    on<LeftScrollIndicator>((event, emit) {
-      emit(state.copyWith(
-        showLeftArrow: event.reachToStart == true ? false : true,
-        categoryIndex: event.categoryIndex,
-      ));
-    });
-    on<RightScrollIndicator>((event, emit) {
-      emit(state.copyWith(
-        showRightArrow: event.reachToEnd == true ? false : true,
-        categoryIndex: event.categoryIndex,
-      ));
-    });
-
+    /// menucardPage pageview(listview item) left/right scroll indicator
     on<UserScrolledPageview>((event, emit) {
       bool? showLeftArrow;
       bool? showRightArrow;
-
-      /// hide/show riht or left sroll indicators when user scroll to pageview end  or start.
+      /// hide/show right or left sroll indicators when user scroll to pageview end  or start.
       if (event.notification.metrics.extentBefore ==
           event.notification.metrics.minScrollExtent) {
         showLeftArrow = false;
@@ -42,6 +37,17 @@ class MenucardPageBloc extends Bloc<MenucardPageEvent, MenucardPageState> {
         showLeftArrow: showLeftArrow,
         showRightArrow: showRightArrow,
         categoryIndex: event.categoryIndex,
+      ));
+    });
+    /// rebuild by location stream
+    on<FindLocationByStream>((event, emit) async {
+      emit(state.copyWith(
+        isInsideLocation: locationDistence != null
+            ? locationDistence! < 2000.0
+                ? true
+                : false
+            : false,
+        isLocationLoading: event.isLocationLoading,
       ));
     });
   }

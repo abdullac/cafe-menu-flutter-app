@@ -1,6 +1,6 @@
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
-import 'package:cafemenu_app/utils/functions/user/change_set_qty_productmodel.dart';
+import 'package:cafemenu_app/core/provider/logics/user/change_set_qty_productmodel.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:flutter/material.dart';
 

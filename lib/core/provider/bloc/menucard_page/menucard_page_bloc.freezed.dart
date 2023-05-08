@@ -16,61 +16,47 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MenucardPageEvent {
-  int get categoryIndex => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool reachToStart, int categoryIndex)
-        leftScrollIndicator,
-    required TResult Function(bool reachToEnd, int categoryIndex)
-        rightScrollIndicator,
     required TResult Function(
             UserScrollNotification notification, int categoryIndex)
         userScrolledPageview,
+    required TResult Function(bool isLocationLoading) findLocationByStream,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool reachToStart, int categoryIndex)?
-        leftScrollIndicator,
-    TResult? Function(bool reachToEnd, int categoryIndex)? rightScrollIndicator,
     TResult? Function(UserScrollNotification notification, int categoryIndex)?
         userScrolledPageview,
+    TResult? Function(bool isLocationLoading)? findLocationByStream,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool reachToStart, int categoryIndex)? leftScrollIndicator,
-    TResult Function(bool reachToEnd, int categoryIndex)? rightScrollIndicator,
     TResult Function(UserScrollNotification notification, int categoryIndex)?
         userScrolledPageview,
+    TResult Function(bool isLocationLoading)? findLocationByStream,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LeftScrollIndicator value) leftScrollIndicator,
-    required TResult Function(RightScrollIndicator value) rightScrollIndicator,
     required TResult Function(UserScrolledPageview value) userScrolledPageview,
+    required TResult Function(FindLocationByStream value) findLocationByStream,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LeftScrollIndicator value)? leftScrollIndicator,
-    TResult? Function(RightScrollIndicator value)? rightScrollIndicator,
     TResult? Function(UserScrolledPageview value)? userScrolledPageview,
+    TResult? Function(FindLocationByStream value)? findLocationByStream,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LeftScrollIndicator value)? leftScrollIndicator,
-    TResult Function(RightScrollIndicator value)? rightScrollIndicator,
     TResult Function(UserScrolledPageview value)? userScrolledPageview,
+    TResult Function(FindLocationByStream value)? findLocationByStream,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $MenucardPageEventCopyWith<MenucardPageEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -79,8 +65,6 @@ abstract class $MenucardPageEventCopyWith<$Res> {
   factory $MenucardPageEventCopyWith(
           MenucardPageEvent value, $Res Function(MenucardPageEvent) then) =
       _$MenucardPageEventCopyWithImpl<$Res, MenucardPageEvent>;
-  @useResult
-  $Res call({int categoryIndex});
 }
 
 /// @nodoc
@@ -92,358 +76,13 @@ class _$MenucardPageEventCopyWithImpl<$Res, $Val extends MenucardPageEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? categoryIndex = null,
-  }) {
-    return _then(_value.copyWith(
-      categoryIndex: null == categoryIndex
-          ? _value.categoryIndex
-          : categoryIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$LeftScrollIndicatorCopyWith<$Res>
-    implements $MenucardPageEventCopyWith<$Res> {
-  factory _$$LeftScrollIndicatorCopyWith(_$LeftScrollIndicator value,
-          $Res Function(_$LeftScrollIndicator) then) =
-      __$$LeftScrollIndicatorCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool reachToStart, int categoryIndex});
-}
-
-/// @nodoc
-class __$$LeftScrollIndicatorCopyWithImpl<$Res>
-    extends _$MenucardPageEventCopyWithImpl<$Res, _$LeftScrollIndicator>
-    implements _$$LeftScrollIndicatorCopyWith<$Res> {
-  __$$LeftScrollIndicatorCopyWithImpl(
-      _$LeftScrollIndicator _value, $Res Function(_$LeftScrollIndicator) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? reachToStart = null,
-    Object? categoryIndex = null,
-  }) {
-    return _then(_$LeftScrollIndicator(
-      reachToStart: null == reachToStart
-          ? _value.reachToStart
-          : reachToStart // ignore: cast_nullable_to_non_nullable
-              as bool,
-      categoryIndex: null == categoryIndex
-          ? _value.categoryIndex
-          : categoryIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$LeftScrollIndicator implements LeftScrollIndicator {
-  const _$LeftScrollIndicator(
-      {required this.reachToStart, required this.categoryIndex});
-
-  @override
-  final bool reachToStart;
-  @override
-  final int categoryIndex;
-
-  @override
-  String toString() {
-    return 'MenucardPageEvent.leftScrollIndicator(reachToStart: $reachToStart, categoryIndex: $categoryIndex)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LeftScrollIndicator &&
-            (identical(other.reachToStart, reachToStart) ||
-                other.reachToStart == reachToStart) &&
-            (identical(other.categoryIndex, categoryIndex) ||
-                other.categoryIndex == categoryIndex));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, reachToStart, categoryIndex);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LeftScrollIndicatorCopyWith<_$LeftScrollIndicator> get copyWith =>
-      __$$LeftScrollIndicatorCopyWithImpl<_$LeftScrollIndicator>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool reachToStart, int categoryIndex)
-        leftScrollIndicator,
-    required TResult Function(bool reachToEnd, int categoryIndex)
-        rightScrollIndicator,
-    required TResult Function(
-            UserScrollNotification notification, int categoryIndex)
-        userScrolledPageview,
-  }) {
-    return leftScrollIndicator(reachToStart, categoryIndex);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool reachToStart, int categoryIndex)?
-        leftScrollIndicator,
-    TResult? Function(bool reachToEnd, int categoryIndex)? rightScrollIndicator,
-    TResult? Function(UserScrollNotification notification, int categoryIndex)?
-        userScrolledPageview,
-  }) {
-    return leftScrollIndicator?.call(reachToStart, categoryIndex);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool reachToStart, int categoryIndex)? leftScrollIndicator,
-    TResult Function(bool reachToEnd, int categoryIndex)? rightScrollIndicator,
-    TResult Function(UserScrollNotification notification, int categoryIndex)?
-        userScrolledPageview,
-    required TResult orElse(),
-  }) {
-    if (leftScrollIndicator != null) {
-      return leftScrollIndicator(reachToStart, categoryIndex);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LeftScrollIndicator value) leftScrollIndicator,
-    required TResult Function(RightScrollIndicator value) rightScrollIndicator,
-    required TResult Function(UserScrolledPageview value) userScrolledPageview,
-  }) {
-    return leftScrollIndicator(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LeftScrollIndicator value)? leftScrollIndicator,
-    TResult? Function(RightScrollIndicator value)? rightScrollIndicator,
-    TResult? Function(UserScrolledPageview value)? userScrolledPageview,
-  }) {
-    return leftScrollIndicator?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LeftScrollIndicator value)? leftScrollIndicator,
-    TResult Function(RightScrollIndicator value)? rightScrollIndicator,
-    TResult Function(UserScrolledPageview value)? userScrolledPageview,
-    required TResult orElse(),
-  }) {
-    if (leftScrollIndicator != null) {
-      return leftScrollIndicator(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LeftScrollIndicator implements MenucardPageEvent {
-  const factory LeftScrollIndicator(
-      {required final bool reachToStart,
-      required final int categoryIndex}) = _$LeftScrollIndicator;
-
-  bool get reachToStart;
-  @override
-  int get categoryIndex;
-  @override
-  @JsonKey(ignore: true)
-  _$$LeftScrollIndicatorCopyWith<_$LeftScrollIndicator> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$RightScrollIndicatorCopyWith<$Res>
-    implements $MenucardPageEventCopyWith<$Res> {
-  factory _$$RightScrollIndicatorCopyWith(_$RightScrollIndicator value,
-          $Res Function(_$RightScrollIndicator) then) =
-      __$$RightScrollIndicatorCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool reachToEnd, int categoryIndex});
-}
-
-/// @nodoc
-class __$$RightScrollIndicatorCopyWithImpl<$Res>
-    extends _$MenucardPageEventCopyWithImpl<$Res, _$RightScrollIndicator>
-    implements _$$RightScrollIndicatorCopyWith<$Res> {
-  __$$RightScrollIndicatorCopyWithImpl(_$RightScrollIndicator _value,
-      $Res Function(_$RightScrollIndicator) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? reachToEnd = null,
-    Object? categoryIndex = null,
-  }) {
-    return _then(_$RightScrollIndicator(
-      reachToEnd: null == reachToEnd
-          ? _value.reachToEnd
-          : reachToEnd // ignore: cast_nullable_to_non_nullable
-              as bool,
-      categoryIndex: null == categoryIndex
-          ? _value.categoryIndex
-          : categoryIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$RightScrollIndicator implements RightScrollIndicator {
-  const _$RightScrollIndicator(
-      {required this.reachToEnd, required this.categoryIndex});
-
-  @override
-  final bool reachToEnd;
-  @override
-  final int categoryIndex;
-
-  @override
-  String toString() {
-    return 'MenucardPageEvent.rightScrollIndicator(reachToEnd: $reachToEnd, categoryIndex: $categoryIndex)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RightScrollIndicator &&
-            (identical(other.reachToEnd, reachToEnd) ||
-                other.reachToEnd == reachToEnd) &&
-            (identical(other.categoryIndex, categoryIndex) ||
-                other.categoryIndex == categoryIndex));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, reachToEnd, categoryIndex);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RightScrollIndicatorCopyWith<_$RightScrollIndicator> get copyWith =>
-      __$$RightScrollIndicatorCopyWithImpl<_$RightScrollIndicator>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool reachToStart, int categoryIndex)
-        leftScrollIndicator,
-    required TResult Function(bool reachToEnd, int categoryIndex)
-        rightScrollIndicator,
-    required TResult Function(
-            UserScrollNotification notification, int categoryIndex)
-        userScrolledPageview,
-  }) {
-    return rightScrollIndicator(reachToEnd, categoryIndex);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool reachToStart, int categoryIndex)?
-        leftScrollIndicator,
-    TResult? Function(bool reachToEnd, int categoryIndex)? rightScrollIndicator,
-    TResult? Function(UserScrollNotification notification, int categoryIndex)?
-        userScrolledPageview,
-  }) {
-    return rightScrollIndicator?.call(reachToEnd, categoryIndex);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool reachToStart, int categoryIndex)? leftScrollIndicator,
-    TResult Function(bool reachToEnd, int categoryIndex)? rightScrollIndicator,
-    TResult Function(UserScrollNotification notification, int categoryIndex)?
-        userScrolledPageview,
-    required TResult orElse(),
-  }) {
-    if (rightScrollIndicator != null) {
-      return rightScrollIndicator(reachToEnd, categoryIndex);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LeftScrollIndicator value) leftScrollIndicator,
-    required TResult Function(RightScrollIndicator value) rightScrollIndicator,
-    required TResult Function(UserScrolledPageview value) userScrolledPageview,
-  }) {
-    return rightScrollIndicator(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LeftScrollIndicator value)? leftScrollIndicator,
-    TResult? Function(RightScrollIndicator value)? rightScrollIndicator,
-    TResult? Function(UserScrolledPageview value)? userScrolledPageview,
-  }) {
-    return rightScrollIndicator?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LeftScrollIndicator value)? leftScrollIndicator,
-    TResult Function(RightScrollIndicator value)? rightScrollIndicator,
-    TResult Function(UserScrolledPageview value)? userScrolledPageview,
-    required TResult orElse(),
-  }) {
-    if (rightScrollIndicator != null) {
-      return rightScrollIndicator(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class RightScrollIndicator implements MenucardPageEvent {
-  const factory RightScrollIndicator(
-      {required final bool reachToEnd,
-      required final int categoryIndex}) = _$RightScrollIndicator;
-
-  bool get reachToEnd;
-  @override
-  int get categoryIndex;
-  @override
-  @JsonKey(ignore: true)
-  _$$RightScrollIndicatorCopyWith<_$RightScrollIndicator> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UserScrolledPageviewCopyWith<$Res>
-    implements $MenucardPageEventCopyWith<$Res> {
+abstract class _$$UserScrolledPageviewCopyWith<$Res> {
   factory _$$UserScrolledPageviewCopyWith(_$UserScrolledPageview value,
           $Res Function(_$UserScrolledPageview) then) =
       __$$UserScrolledPageviewCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({UserScrollNotification notification, int categoryIndex});
 }
@@ -515,13 +154,10 @@ class _$UserScrolledPageview implements UserScrolledPageview {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool reachToStart, int categoryIndex)
-        leftScrollIndicator,
-    required TResult Function(bool reachToEnd, int categoryIndex)
-        rightScrollIndicator,
     required TResult Function(
             UserScrollNotification notification, int categoryIndex)
         userScrolledPageview,
+    required TResult Function(bool isLocationLoading) findLocationByStream,
   }) {
     return userScrolledPageview(notification, categoryIndex);
   }
@@ -529,11 +165,9 @@ class _$UserScrolledPageview implements UserScrolledPageview {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool reachToStart, int categoryIndex)?
-        leftScrollIndicator,
-    TResult? Function(bool reachToEnd, int categoryIndex)? rightScrollIndicator,
     TResult? Function(UserScrollNotification notification, int categoryIndex)?
         userScrolledPageview,
+    TResult? Function(bool isLocationLoading)? findLocationByStream,
   }) {
     return userScrolledPageview?.call(notification, categoryIndex);
   }
@@ -541,10 +175,9 @@ class _$UserScrolledPageview implements UserScrolledPageview {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool reachToStart, int categoryIndex)? leftScrollIndicator,
-    TResult Function(bool reachToEnd, int categoryIndex)? rightScrollIndicator,
     TResult Function(UserScrollNotification notification, int categoryIndex)?
         userScrolledPageview,
+    TResult Function(bool isLocationLoading)? findLocationByStream,
     required TResult orElse(),
   }) {
     if (userScrolledPageview != null) {
@@ -556,9 +189,8 @@ class _$UserScrolledPageview implements UserScrolledPageview {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LeftScrollIndicator value) leftScrollIndicator,
-    required TResult Function(RightScrollIndicator value) rightScrollIndicator,
     required TResult Function(UserScrolledPageview value) userScrolledPageview,
+    required TResult Function(FindLocationByStream value) findLocationByStream,
   }) {
     return userScrolledPageview(this);
   }
@@ -566,9 +198,8 @@ class _$UserScrolledPageview implements UserScrolledPageview {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LeftScrollIndicator value)? leftScrollIndicator,
-    TResult? Function(RightScrollIndicator value)? rightScrollIndicator,
     TResult? Function(UserScrolledPageview value)? userScrolledPageview,
+    TResult? Function(FindLocationByStream value)? findLocationByStream,
   }) {
     return userScrolledPageview?.call(this);
   }
@@ -576,9 +207,8 @@ class _$UserScrolledPageview implements UserScrolledPageview {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LeftScrollIndicator value)? leftScrollIndicator,
-    TResult Function(RightScrollIndicator value)? rightScrollIndicator,
     TResult Function(UserScrolledPageview value)? userScrolledPageview,
+    TResult Function(FindLocationByStream value)? findLocationByStream,
     required TResult orElse(),
   }) {
     if (userScrolledPageview != null) {
@@ -594,11 +224,149 @@ abstract class UserScrolledPageview implements MenucardPageEvent {
       required final int categoryIndex}) = _$UserScrolledPageview;
 
   UserScrollNotification get notification;
-  @override
   int get categoryIndex;
-  @override
   @JsonKey(ignore: true)
   _$$UserScrolledPageviewCopyWith<_$UserScrolledPageview> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FindLocationByStreamCopyWith<$Res> {
+  factory _$$FindLocationByStreamCopyWith(_$FindLocationByStream value,
+          $Res Function(_$FindLocationByStream) then) =
+      __$$FindLocationByStreamCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isLocationLoading});
+}
+
+/// @nodoc
+class __$$FindLocationByStreamCopyWithImpl<$Res>
+    extends _$MenucardPageEventCopyWithImpl<$Res, _$FindLocationByStream>
+    implements _$$FindLocationByStreamCopyWith<$Res> {
+  __$$FindLocationByStreamCopyWithImpl(_$FindLocationByStream _value,
+      $Res Function(_$FindLocationByStream) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLocationLoading = null,
+  }) {
+    return _then(_$FindLocationByStream(
+      isLocationLoading: null == isLocationLoading
+          ? _value.isLocationLoading
+          : isLocationLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FindLocationByStream implements FindLocationByStream {
+  const _$FindLocationByStream({required this.isLocationLoading});
+
+  @override
+  final bool isLocationLoading;
+
+  @override
+  String toString() {
+    return 'MenucardPageEvent.findLocationByStream(isLocationLoading: $isLocationLoading)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FindLocationByStream &&
+            (identical(other.isLocationLoading, isLocationLoading) ||
+                other.isLocationLoading == isLocationLoading));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isLocationLoading);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FindLocationByStreamCopyWith<_$FindLocationByStream> get copyWith =>
+      __$$FindLocationByStreamCopyWithImpl<_$FindLocationByStream>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            UserScrollNotification notification, int categoryIndex)
+        userScrolledPageview,
+    required TResult Function(bool isLocationLoading) findLocationByStream,
+  }) {
+    return findLocationByStream(isLocationLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserScrollNotification notification, int categoryIndex)?
+        userScrolledPageview,
+    TResult? Function(bool isLocationLoading)? findLocationByStream,
+  }) {
+    return findLocationByStream?.call(isLocationLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserScrollNotification notification, int categoryIndex)?
+        userScrolledPageview,
+    TResult Function(bool isLocationLoading)? findLocationByStream,
+    required TResult orElse(),
+  }) {
+    if (findLocationByStream != null) {
+      return findLocationByStream(isLocationLoading);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserScrolledPageview value) userScrolledPageview,
+    required TResult Function(FindLocationByStream value) findLocationByStream,
+  }) {
+    return findLocationByStream(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserScrolledPageview value)? userScrolledPageview,
+    TResult? Function(FindLocationByStream value)? findLocationByStream,
+  }) {
+    return findLocationByStream?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserScrolledPageview value)? userScrolledPageview,
+    TResult Function(FindLocationByStream value)? findLocationByStream,
+    required TResult orElse(),
+  }) {
+    if (findLocationByStream != null) {
+      return findLocationByStream(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FindLocationByStream implements MenucardPageEvent {
+  const factory FindLocationByStream({required final bool isLocationLoading}) =
+      _$FindLocationByStream;
+
+  bool get isLocationLoading;
+  @JsonKey(ignore: true)
+  _$$FindLocationByStreamCopyWith<_$FindLocationByStream> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -607,6 +375,8 @@ mixin _$MenucardPageState {
   bool get showLeftArrow => throw _privateConstructorUsedError;
   bool get showRightArrow => throw _privateConstructorUsedError;
   int? get categoryIndex => throw _privateConstructorUsedError;
+  bool? get isInsideLocation => throw _privateConstructorUsedError;
+  bool get isLocationLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MenucardPageStateCopyWith<MenucardPageState> get copyWith =>
@@ -619,7 +389,12 @@ abstract class $MenucardPageStateCopyWith<$Res> {
           MenucardPageState value, $Res Function(MenucardPageState) then) =
       _$MenucardPageStateCopyWithImpl<$Res, MenucardPageState>;
   @useResult
-  $Res call({bool showLeftArrow, bool showRightArrow, int? categoryIndex});
+  $Res call(
+      {bool showLeftArrow,
+      bool showRightArrow,
+      int? categoryIndex,
+      bool? isInsideLocation,
+      bool isLocationLoading});
 }
 
 /// @nodoc
@@ -638,6 +413,8 @@ class _$MenucardPageStateCopyWithImpl<$Res, $Val extends MenucardPageState>
     Object? showLeftArrow = null,
     Object? showRightArrow = null,
     Object? categoryIndex = freezed,
+    Object? isInsideLocation = freezed,
+    Object? isLocationLoading = null,
   }) {
     return _then(_value.copyWith(
       showLeftArrow: null == showLeftArrow
@@ -652,6 +429,14 @@ class _$MenucardPageStateCopyWithImpl<$Res, $Val extends MenucardPageState>
           ? _value.categoryIndex
           : categoryIndex // ignore: cast_nullable_to_non_nullable
               as int?,
+      isInsideLocation: freezed == isInsideLocation
+          ? _value.isInsideLocation
+          : isInsideLocation // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isLocationLoading: null == isLocationLoading
+          ? _value.isLocationLoading
+          : isLocationLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -664,7 +449,12 @@ abstract class _$$_MenucardPageStateCopyWith<$Res>
       __$$_MenucardPageStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool showLeftArrow, bool showRightArrow, int? categoryIndex});
+  $Res call(
+      {bool showLeftArrow,
+      bool showRightArrow,
+      int? categoryIndex,
+      bool? isInsideLocation,
+      bool isLocationLoading});
 }
 
 /// @nodoc
@@ -681,6 +471,8 @@ class __$$_MenucardPageStateCopyWithImpl<$Res>
     Object? showLeftArrow = null,
     Object? showRightArrow = null,
     Object? categoryIndex = freezed,
+    Object? isInsideLocation = freezed,
+    Object? isLocationLoading = null,
   }) {
     return _then(_$_MenucardPageState(
       showLeftArrow: null == showLeftArrow
@@ -695,6 +487,14 @@ class __$$_MenucardPageStateCopyWithImpl<$Res>
           ? _value.categoryIndex
           : categoryIndex // ignore: cast_nullable_to_non_nullable
               as int?,
+      isInsideLocation: freezed == isInsideLocation
+          ? _value.isInsideLocation
+          : isInsideLocation // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isLocationLoading: null == isLocationLoading
+          ? _value.isLocationLoading
+          : isLocationLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -705,7 +505,9 @@ class _$_MenucardPageState implements _MenucardPageState {
   const _$_MenucardPageState(
       {required this.showLeftArrow,
       required this.showRightArrow,
-      required this.categoryIndex});
+      required this.categoryIndex,
+      required this.isInsideLocation,
+      required this.isLocationLoading});
 
   @override
   final bool showLeftArrow;
@@ -713,10 +515,14 @@ class _$_MenucardPageState implements _MenucardPageState {
   final bool showRightArrow;
   @override
   final int? categoryIndex;
+  @override
+  final bool? isInsideLocation;
+  @override
+  final bool isLocationLoading;
 
   @override
   String toString() {
-    return 'MenucardPageState(showLeftArrow: $showLeftArrow, showRightArrow: $showRightArrow, categoryIndex: $categoryIndex)';
+    return 'MenucardPageState(showLeftArrow: $showLeftArrow, showRightArrow: $showRightArrow, categoryIndex: $categoryIndex, isInsideLocation: $isInsideLocation, isLocationLoading: $isLocationLoading)';
   }
 
   @override
@@ -729,12 +535,16 @@ class _$_MenucardPageState implements _MenucardPageState {
             (identical(other.showRightArrow, showRightArrow) ||
                 other.showRightArrow == showRightArrow) &&
             (identical(other.categoryIndex, categoryIndex) ||
-                other.categoryIndex == categoryIndex));
+                other.categoryIndex == categoryIndex) &&
+            (identical(other.isInsideLocation, isInsideLocation) ||
+                other.isInsideLocation == isInsideLocation) &&
+            (identical(other.isLocationLoading, isLocationLoading) ||
+                other.isLocationLoading == isLocationLoading));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, showLeftArrow, showRightArrow, categoryIndex);
+  int get hashCode => Object.hash(runtimeType, showLeftArrow, showRightArrow,
+      categoryIndex, isInsideLocation, isLocationLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -748,7 +558,9 @@ abstract class _MenucardPageState implements MenucardPageState {
   const factory _MenucardPageState(
       {required final bool showLeftArrow,
       required final bool showRightArrow,
-      required final int? categoryIndex}) = _$_MenucardPageState;
+      required final int? categoryIndex,
+      required final bool? isInsideLocation,
+      required final bool isLocationLoading}) = _$_MenucardPageState;
 
   @override
   bool get showLeftArrow;
@@ -756,6 +568,10 @@ abstract class _MenucardPageState implements MenucardPageState {
   bool get showRightArrow;
   @override
   int? get categoryIndex;
+  @override
+  bool? get isInsideLocation;
+  @override
+  bool get isLocationLoading;
   @override
   @JsonKey(ignore: true)
   _$$_MenucardPageStateCopyWith<_$_MenucardPageState> get copyWith =>

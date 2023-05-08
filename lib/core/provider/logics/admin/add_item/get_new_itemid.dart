@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/page_add_item.dart';
-import 'package:cafemenu_app/utils/functions/admin/add_item/getall_itemid_and_categorynames.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/add_item/getall_itemid_and_categorynames.dart';
 
 /// method for create and get new ItemId
 Future<int> getNewItemId() async {

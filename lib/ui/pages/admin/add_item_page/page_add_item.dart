@@ -3,7 +3,7 @@ import 'package:cafemenu_app/ui/pages/admin/add_item_page/widgets/additem_page_a
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/widgets/categoryname_auto_textfield.dart';
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/widgets/pick_imagefromdevice_button.dart';
 import 'package:cafemenu_app/utils/constants/space.dart';
-import 'package:cafemenu_app/utils/functions/admin/add_item/get_new_itemid.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/add_item/get_new_itemid.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

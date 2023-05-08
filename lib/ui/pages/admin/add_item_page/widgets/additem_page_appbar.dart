@@ -1,6 +1,6 @@
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
-import 'package:cafemenu_app/utils/functions/admin/add_item/add_update_availableitem.dart';
-import 'package:cafemenu_app/utils/functions/admin/add_item/create_availableitemmodel_json.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/add_item/add_update_availableitem.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/add_item/create_availableitemmodel_json.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:flutter/material.dart';
 

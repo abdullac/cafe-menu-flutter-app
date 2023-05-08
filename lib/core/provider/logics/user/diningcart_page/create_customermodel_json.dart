@@ -3,8 +3,8 @@ import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/customername
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/find_total_itemsqtyamount.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_customer_id.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/set_customer_id.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/find_total_itemsqtyamount.dart';
 
 /// method for make json of orderModel
 Map<String, dynamic> createOrderModelJson() {

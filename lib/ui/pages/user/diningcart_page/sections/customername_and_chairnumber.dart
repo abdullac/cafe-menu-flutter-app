@@ -3,7 +3,7 @@ import 'package:cafemenu_app/core/provider/bloc/diningcart_page/diningcart_page_
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/widgets/show_confirmed_position.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/dropdownmenu_item.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/dropdownmenu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

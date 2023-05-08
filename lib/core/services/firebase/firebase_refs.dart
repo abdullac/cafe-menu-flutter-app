@@ -38,4 +38,9 @@ class FirebaseRefs {
   static Reference imageStorage(String imagePathWithImageName) {
     return storage.child(imagePathWithImageName);
   }
+
+  /// loation reference
+  static DatabaseReference location(){
+    return database.child("cafeMenu/admin/location");
+  }
 }

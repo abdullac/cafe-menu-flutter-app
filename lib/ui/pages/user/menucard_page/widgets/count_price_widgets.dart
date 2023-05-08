@@ -1,6 +1,6 @@
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/ui/shared/widgets/set_qty_section.dart';
-import 'package:cafemenu_app/utils/functions/modified_product_model.dart';
+import 'package:cafemenu_app/core/provider/logics/modified_product_model.dart';
 import 'package:flutter/material.dart';
 
 /// this is row widget includes show price and Qty widget

@@ -31,7 +31,6 @@ class SetQtySetion extends StatelessWidget {
     return ValueListenableBuilder(
         valueListenable: valueNotifier,
         builder: (context, newQtyValue, _) {
-          log("rebuilded SetQtySetion");
           return Row(
             mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,

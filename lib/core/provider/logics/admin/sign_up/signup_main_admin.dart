@@ -1,4 +1,4 @@
-import 'package:cafemenu_app/utils/functions/admin/sign_up/save_mainadmin_code_email.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/sign_up/save_mainadmin_code_email.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

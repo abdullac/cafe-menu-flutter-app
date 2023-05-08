@@ -1,3 +1,4 @@
+import 'package:cafemenu_app/core/provider/bloc/admin/location_page/location_page_bloc.dart';
 import 'package:cafemenu_app/core/provider/bloc/diningcart_page/diningcart_page_bloc.dart';
 import 'package:cafemenu_app/core/provider/bloc/menucard_page/menucard_page_bloc.dart';
 import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
@@ -25,11 +26,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        /// MenucardPageBloc
         BlocProvider<MenucardPageBloc>(
           create: (BuildContext context) => MenucardPageBloc(),
         ),
+        /// MenucardPageBloc
         BlocProvider<DiningcartPageBloc>(
           create: (BuildContext context) => DiningcartPageBloc(),
+        ),
+        /// MenucardPageBloc
+        BlocProvider<LocationPageBloc>(
+          create: (BuildContext context) => LocationPageBloc(),
         ),
       ],
       child: MaterialApp(

@@ -26,10 +26,6 @@ class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
     int pageviewItemsCount =
         availableItemsListByCategoryMap.values.toList()[categoryIndex].length;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      BlocProvider.of<MenucardPageBloc>(context).add(RightScrollIndicator(
-          reachToEnd: pageviewItemsCount > 1 ? false : true,
-          categoryIndex: categoryIndex));
-
       /// make automatically animated scroll for represent page view srollable,
       /// only animated scroll first pageView.
       if (categoryIndex == 0 && availableItemsListByCategoryMap.length > 1) {
@@ -158,4 +154,3 @@ class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
     );
   }
 }
-

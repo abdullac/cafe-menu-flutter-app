@@ -1,12 +1,11 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/find_total_itemsqtyamount.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/select_unselect_item.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_diningcartbutton_functionality.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_diningcartbutton_title.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/find_total_itemsqtyamount.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/set_diningcartbutton_title.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/set_diningcartbutton_functionality.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/select_unselect_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'diningcart_page_event.dart';

@@ -1,9 +1,9 @@
 import 'package:cafemenu_app/ui/pages/admin/admin_auth_page/page_admin_auth.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
-import 'package:cafemenu_app/utils/functions/admin/sign_in/sign_in.dart';
-import 'package:cafemenu_app/utils/functions/admin/sign_up/mainadmin_email_code.dart';
-import 'package:cafemenu_app/utils/functions/admin/sign_up/page_for_signup.dart';
-import 'package:cafemenu_app/utils/functions/admin/sign_up/signup_button_pressed.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/sign_in/sign_in.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/sign_up/mainadmin_email_code.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/sign_up/page_for_signup.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/sign_up/signup_button_pressed.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:cafemenu_app/core/services/firebase/firebase_refs.dart';
 import 'package:cafemenu_app/ui/pages/admin/orders_page/widgets/order_by_customer.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
-import 'package:cafemenu_app/utils/functions/admin/orders/orderedlist_from_firebase.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/orders/orderedlist_from_firebase.dart';
 import 'package:flutter/material.dart';
 
 /// this widget/Screen is show listview with orderedList

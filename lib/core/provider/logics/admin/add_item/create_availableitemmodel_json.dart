@@ -1,6 +1,6 @@
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/page_add_item.dart';
-import 'package:cafemenu_app/utils/functions/admin/add_item/uploadimage_and_geturl.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/add_item/uploadimage_and_geturl.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 
 /// method for create json of availableItemModel

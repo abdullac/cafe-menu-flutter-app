@@ -1,8 +1,8 @@
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/deleteitem_from_diningcartlist.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/page_diningcart.dart';
 import 'package:cafemenu_app/ui/pages/user/menucard_page/page_menucard.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/deleteitem_from_diningcartlist.dart';
 import 'package:flutter/material.dart';
 
 /// this is appBar of PageItem widget

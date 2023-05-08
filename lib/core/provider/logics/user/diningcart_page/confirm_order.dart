@@ -1,10 +1,10 @@
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/customername_and_chairnumber.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/create_customermodel_json.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/order_saveto_firebase.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_order_id.dart';
-import 'package:cafemenu_app/utils/functions/user/diningcart_page/set_ordered_time.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/set_order_id.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/set_ordered_time.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/create_customermodel_json.dart';
+import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/order_saveto_firebase.dart';
 
 /// method for order save to firebase when pressed confirm order button
 Future<void> buttonPressedForConfirmOrder() async {

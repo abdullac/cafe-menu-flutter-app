@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'package:cafemenu_app/ui/pages/admin/admin_auth_page/widgets/admin_register_signin.dart';
 import 'package:cafemenu_app/utils/constants/enums.dart';
-import 'package:cafemenu_app/utils/functions/admin/sign_up/signup_main_admin.dart';
-import 'package:cafemenu_app/utils/functions/admin/sign_up/signup_sub_admin.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/sign_up/signup_main_admin.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/sign_up/signup_sub_admin.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 
 /// method for register/sign up admin when press adminAuthPage button

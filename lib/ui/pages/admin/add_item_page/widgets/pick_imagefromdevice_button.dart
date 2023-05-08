@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
-import 'package:cafemenu_app/utils/functions/admin/add_item/pickimage_from_device.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/add_item/pickimage_from_device.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
