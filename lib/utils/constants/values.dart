@@ -9,3 +9,4 @@ Position? shoplocationByAdmin;
 Position? userLocation;
 Position? shopLocationByUser;
 double? locationDistence;
+bool? onceScrolledPageView;

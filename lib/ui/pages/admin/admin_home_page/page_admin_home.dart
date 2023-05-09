@@ -1,3 +1,4 @@
+import 'package:cafemenu_app/main.dart';
 import 'package:cafemenu_app/ui/pages/admin/add_item_page/page_add_item.dart';
 import 'package:cafemenu_app/ui/pages/admin/location_page/page_location.dart';
 import 'package:cafemenu_app/ui/pages/admin/orders_page/page_orders.dart';
@@ -14,6 +15,12 @@ class PageAdminHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await getSavedTokensAndKeys();
+      await listenFCM();
+      await getToken();
+    });
+
     return Scaffold(
       appBar: AppBar(
         actions: [

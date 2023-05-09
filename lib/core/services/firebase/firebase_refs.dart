@@ -40,7 +40,12 @@ class FirebaseRefs {
   }
 
   /// loation reference
-  static DatabaseReference location(){
+  static DatabaseReference location() {
     return database.child("cafeMenu/admin/location");
+  }
+
+  /// admin firebase notification token reference
+  static DatabaseReference adminNotificationToken() {
+    return database.child("cafeMenu/admin/fcmToken");
   }
 }

@@ -38,7 +38,7 @@ Future<StreamSubscription<Position>?> positionStream({
     }
   } catch (e) {
     log("positionStream $e");
-    showSnackBar("C'not get your location");
+    showSnackBar("C'not get your location, please enable location servie");
   }
   return streamPosition;
 }

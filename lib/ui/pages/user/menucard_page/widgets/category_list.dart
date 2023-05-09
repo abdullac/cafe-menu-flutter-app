@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/core/provider/bloc/menucard_page/menucard_page_bloc.dart';
 import 'package:cafemenu_app/ui/pages/user/menucard_page/widgets/item_by_category.dart';
+import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,12 +29,13 @@ class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       /// make automatically animated scroll for represent page view srollable,
       /// only animated scroll first pageView.
-      if (categoryIndex == 0 && availableItemsListByCategoryMap.length > 1) {
+      if (categoryIndex == 0 && availableItemsListByCategoryMap.length > 1 && onceScrolledPageView !=true) {
         pageViewController.animateTo(
           150.0,
           duration: const Duration(milliseconds: 800),
           curve: Curves.linear,
         );
+        onceScrolledPageView = true;
       }
     });
 

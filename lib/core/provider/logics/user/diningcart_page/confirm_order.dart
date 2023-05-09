@@ -1,3 +1,4 @@
+import 'package:cafemenu_app/main.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/customername_and_chairnumber.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
@@ -23,6 +24,9 @@ Future<void> buttonPressedForConfirmOrder() async {
     final orderModelJson = createOrderModelJson();
 
     /// method for save ordermodel json to firebase database.
-    orderSaveToFireBaseDatabase(orderModelJson);
+    await orderSaveToFireBaseDatabase(orderModelJson);
+        await getSavedTokensAndKeys();
+        await listenFCM();
+        await sendNotificationToAllAdmins();
   }
 }

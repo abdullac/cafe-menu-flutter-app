@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/core/provider/bloc/menucard_page/menucard_page_bloc.dart';
 import 'package:cafemenu_app/core/provider/logics/get_shop_location.dart';
@@ -10,6 +12,7 @@ import 'package:cafemenu_app/core/provider/logics/user/menucard_page/productmode
 import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'widgets/category_list.dart';
 import 'widgets/menucard_page_appbar.dart';
 
@@ -65,7 +68,8 @@ class PageMenuCard extends StatelessWidget {
                 ? const Center(
                     child: CircularProgressIndicator(strokeWidth: 2),
                   )
-                : state.isInsideLocation != true
+                :
+                 state.isInsideLocation != true
                     ? const Center(
                         child: Text("You are not inside around shop"),
                       )

@@ -1,5 +1,6 @@
 import 'package:cafemenu_app/core/provider/bloc/diningcart_page/diningcart_page_bloc.dart';
 import 'package:cafemenu_app/core/services/firebase/firebase_refs.dart';
+import 'package:cafemenu_app/main.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/customername_and_chairnumber.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/diningcart_item_listview.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/order_number_and_time.dart';
@@ -53,9 +54,10 @@ class PageDiningCart extends StatelessWidget {
             /// BlocProvider for rebuild listView Widget when streamBuilder
             /// and bottum Widgets(total item,Qty,Amount,
             /// name,positionode, orderId,Time, diningCartButton)
-            BlocProvider.of<DiningcartPageBloc>(context).add(
-                DiningCartButtonPressed(
-                    diningCartButtonType: diningCartButtonType,));
+            BlocProvider.of<DiningcartPageBloc>(context)
+                .add(DiningCartButtonPressed(
+              diningCartButtonType: diningCartButtonType,
+            ));
           }
           return BlocBuilder<DiningcartPageBloc, DiningcartPageState>(
             builder: (context, state) {

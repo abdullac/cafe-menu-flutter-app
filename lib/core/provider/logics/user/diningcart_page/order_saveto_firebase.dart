@@ -5,7 +5,7 @@ import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 /// method for save Orde rModel json to firebase Database.
-orderSaveToFireBaseDatabase(Map<String, dynamic> orderModelJson) async {
+Future orderSaveToFireBaseDatabase(Map<String, dynamic> orderModelJson) async {
   /// get already orderListSnapshot from firbase database for get latest firebase Key and create new Key,
   /// becuase, firebase save/update data as json(Map), not as List.
   DataSnapshot getOrderListSnapshot =

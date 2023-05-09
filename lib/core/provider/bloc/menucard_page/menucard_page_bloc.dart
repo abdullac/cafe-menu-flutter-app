@@ -43,7 +43,7 @@ class MenucardPageBloc extends Bloc<MenucardPageEvent, MenucardPageState> {
     on<FindLocationByStream>((event, emit) async {
       emit(state.copyWith(
         isInsideLocation: locationDistence != null
-            ? locationDistence! < 2000.0
+            ? locationDistence! < 10000.0
                 ? true
                 : false
             : false,

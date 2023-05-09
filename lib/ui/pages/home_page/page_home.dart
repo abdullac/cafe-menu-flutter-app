@@ -1,3 +1,4 @@
+import 'package:cafemenu_app/main.dart';
 import 'package:cafemenu_app/ui/pages/admin/admin_auth_page/page_admin_auth.dart';
 import 'package:cafemenu_app/ui/pages/home_page/widgets/menu_card_button.dart';
 import 'package:cafemenu_app/utils/constants/colors.dart';
@@ -59,12 +60,15 @@ class PageHome extends StatelessWidget {
                               /// admin iconButton pressed
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const PageAdminAuth(),
+                                  builder: (context) => const PageAdminAuth(),
                                 ),
                               );
                             },
-                            icon: const Icon(Icons.person,color: Colors.red,size: 40,),
+                            icon: const Icon(
+                              Icons.person,
+                              color: Colors.red,
+                              size: 40,
+                            ),
                           );
                   }),
             ],
