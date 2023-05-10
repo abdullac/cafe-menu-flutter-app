@@ -19,37 +19,50 @@ mixin _$LocationPageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getCurrentLocation,
-    required TResult Function(Position location) saveLocation,
+    required TResult Function(bool isPressedDistenceConditionButton)
+        setDistenceConditionButton,
+    required TResult Function(Position location, double? distenceMeter)
+        saveLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getCurrentLocation,
-    TResult? Function(Position location)? saveLocation,
+    TResult? Function(bool isPressedDistenceConditionButton)?
+        setDistenceConditionButton,
+    TResult? Function(Position location, double? distenceMeter)? saveLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCurrentLocation,
-    TResult Function(Position location)? saveLocation,
+    TResult Function(bool isPressedDistenceConditionButton)?
+        setDistenceConditionButton,
+    TResult Function(Position location, double? distenceMeter)? saveLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetCurrentLocation value) getCurrentLocation,
+    required TResult Function(SetDistenceConditionButton value)
+        setDistenceConditionButton,
     required TResult Function(SaveLocation value) saveLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetCurrentLocation value)? getCurrentLocation,
+    TResult? Function(SetDistenceConditionButton value)?
+        setDistenceConditionButton,
     TResult? Function(SaveLocation value)? saveLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetCurrentLocation value)? getCurrentLocation,
+    TResult Function(SetDistenceConditionButton value)?
+        setDistenceConditionButton,
     TResult Function(SaveLocation value)? saveLocation,
     required TResult orElse(),
   }) =>
@@ -113,7 +126,10 @@ class _$GetCurrentLocation implements GetCurrentLocation {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getCurrentLocation,
-    required TResult Function(Position location) saveLocation,
+    required TResult Function(bool isPressedDistenceConditionButton)
+        setDistenceConditionButton,
+    required TResult Function(Position location, double? distenceMeter)
+        saveLocation,
   }) {
     return getCurrentLocation();
   }
@@ -122,7 +138,9 @@ class _$GetCurrentLocation implements GetCurrentLocation {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getCurrentLocation,
-    TResult? Function(Position location)? saveLocation,
+    TResult? Function(bool isPressedDistenceConditionButton)?
+        setDistenceConditionButton,
+    TResult? Function(Position location, double? distenceMeter)? saveLocation,
   }) {
     return getCurrentLocation?.call();
   }
@@ -131,7 +149,9 @@ class _$GetCurrentLocation implements GetCurrentLocation {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCurrentLocation,
-    TResult Function(Position location)? saveLocation,
+    TResult Function(bool isPressedDistenceConditionButton)?
+        setDistenceConditionButton,
+    TResult Function(Position location, double? distenceMeter)? saveLocation,
     required TResult orElse(),
   }) {
     if (getCurrentLocation != null) {
@@ -144,6 +164,8 @@ class _$GetCurrentLocation implements GetCurrentLocation {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetCurrentLocation value) getCurrentLocation,
+    required TResult Function(SetDistenceConditionButton value)
+        setDistenceConditionButton,
     required TResult Function(SaveLocation value) saveLocation,
   }) {
     return getCurrentLocation(this);
@@ -153,6 +175,8 @@ class _$GetCurrentLocation implements GetCurrentLocation {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetCurrentLocation value)? getCurrentLocation,
+    TResult? Function(SetDistenceConditionButton value)?
+        setDistenceConditionButton,
     TResult? Function(SaveLocation value)? saveLocation,
   }) {
     return getCurrentLocation?.call(this);
@@ -162,6 +186,8 @@ class _$GetCurrentLocation implements GetCurrentLocation {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetCurrentLocation value)? getCurrentLocation,
+    TResult Function(SetDistenceConditionButton value)?
+        setDistenceConditionButton,
     TResult Function(SaveLocation value)? saveLocation,
     required TResult orElse(),
   }) {
@@ -177,12 +203,168 @@ abstract class GetCurrentLocation implements LocationPageEvent {
 }
 
 /// @nodoc
+abstract class _$$SetDistenceConditionButtonCopyWith<$Res> {
+  factory _$$SetDistenceConditionButtonCopyWith(
+          _$SetDistenceConditionButton value,
+          $Res Function(_$SetDistenceConditionButton) then) =
+      __$$SetDistenceConditionButtonCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isPressedDistenceConditionButton});
+}
+
+/// @nodoc
+class __$$SetDistenceConditionButtonCopyWithImpl<$Res>
+    extends _$LocationPageEventCopyWithImpl<$Res, _$SetDistenceConditionButton>
+    implements _$$SetDistenceConditionButtonCopyWith<$Res> {
+  __$$SetDistenceConditionButtonCopyWithImpl(
+      _$SetDistenceConditionButton _value,
+      $Res Function(_$SetDistenceConditionButton) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isPressedDistenceConditionButton = null,
+  }) {
+    return _then(_$SetDistenceConditionButton(
+      isPressedDistenceConditionButton: null == isPressedDistenceConditionButton
+          ? _value.isPressedDistenceConditionButton
+          : isPressedDistenceConditionButton // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetDistenceConditionButton implements SetDistenceConditionButton {
+  const _$SetDistenceConditionButton(
+      {required this.isPressedDistenceConditionButton});
+
+  @override
+  final bool isPressedDistenceConditionButton;
+
+  @override
+  String toString() {
+    return 'LocationPageEvent.setDistenceConditionButton(isPressedDistenceConditionButton: $isPressedDistenceConditionButton)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetDistenceConditionButton &&
+            (identical(other.isPressedDistenceConditionButton,
+                    isPressedDistenceConditionButton) ||
+                other.isPressedDistenceConditionButton ==
+                    isPressedDistenceConditionButton));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, isPressedDistenceConditionButton);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetDistenceConditionButtonCopyWith<_$SetDistenceConditionButton>
+      get copyWith => __$$SetDistenceConditionButtonCopyWithImpl<
+          _$SetDistenceConditionButton>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCurrentLocation,
+    required TResult Function(bool isPressedDistenceConditionButton)
+        setDistenceConditionButton,
+    required TResult Function(Position location, double? distenceMeter)
+        saveLocation,
+  }) {
+    return setDistenceConditionButton(isPressedDistenceConditionButton);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getCurrentLocation,
+    TResult? Function(bool isPressedDistenceConditionButton)?
+        setDistenceConditionButton,
+    TResult? Function(Position location, double? distenceMeter)? saveLocation,
+  }) {
+    return setDistenceConditionButton?.call(isPressedDistenceConditionButton);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCurrentLocation,
+    TResult Function(bool isPressedDistenceConditionButton)?
+        setDistenceConditionButton,
+    TResult Function(Position location, double? distenceMeter)? saveLocation,
+    required TResult orElse(),
+  }) {
+    if (setDistenceConditionButton != null) {
+      return setDistenceConditionButton(isPressedDistenceConditionButton);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetCurrentLocation value) getCurrentLocation,
+    required TResult Function(SetDistenceConditionButton value)
+        setDistenceConditionButton,
+    required TResult Function(SaveLocation value) saveLocation,
+  }) {
+    return setDistenceConditionButton(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetCurrentLocation value)? getCurrentLocation,
+    TResult? Function(SetDistenceConditionButton value)?
+        setDistenceConditionButton,
+    TResult? Function(SaveLocation value)? saveLocation,
+  }) {
+    return setDistenceConditionButton?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetCurrentLocation value)? getCurrentLocation,
+    TResult Function(SetDistenceConditionButton value)?
+        setDistenceConditionButton,
+    TResult Function(SaveLocation value)? saveLocation,
+    required TResult orElse(),
+  }) {
+    if (setDistenceConditionButton != null) {
+      return setDistenceConditionButton(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetDistenceConditionButton implements LocationPageEvent {
+  const factory SetDistenceConditionButton(
+          {required final bool isPressedDistenceConditionButton}) =
+      _$SetDistenceConditionButton;
+
+  bool get isPressedDistenceConditionButton;
+  @JsonKey(ignore: true)
+  _$$SetDistenceConditionButtonCopyWith<_$SetDistenceConditionButton>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$SaveLocationCopyWith<$Res> {
   factory _$$SaveLocationCopyWith(
           _$SaveLocation value, $Res Function(_$SaveLocation) then) =
       __$$SaveLocationCopyWithImpl<$Res>;
   @useResult
-  $Res call({Position location});
+  $Res call({Position location, double? distenceMeter});
 }
 
 /// @nodoc
@@ -197,12 +379,17 @@ class __$$SaveLocationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? location = null,
+    Object? distenceMeter = freezed,
   }) {
     return _then(_$SaveLocation(
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as Position,
+      distenceMeter: freezed == distenceMeter
+          ? _value.distenceMeter
+          : distenceMeter // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -210,14 +397,16 @@ class __$$SaveLocationCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SaveLocation implements SaveLocation {
-  const _$SaveLocation({required this.location});
+  const _$SaveLocation({required this.location, required this.distenceMeter});
 
   @override
   final Position location;
+  @override
+  final double? distenceMeter;
 
   @override
   String toString() {
-    return 'LocationPageEvent.saveLocation(location: $location)';
+    return 'LocationPageEvent.saveLocation(location: $location, distenceMeter: $distenceMeter)';
   }
 
   @override
@@ -226,11 +415,13 @@ class _$SaveLocation implements SaveLocation {
         (other.runtimeType == runtimeType &&
             other is _$SaveLocation &&
             (identical(other.location, location) ||
-                other.location == location));
+                other.location == location) &&
+            (identical(other.distenceMeter, distenceMeter) ||
+                other.distenceMeter == distenceMeter));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, location);
+  int get hashCode => Object.hash(runtimeType, location, distenceMeter);
 
   @JsonKey(ignore: true)
   @override
@@ -242,29 +433,36 @@ class _$SaveLocation implements SaveLocation {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getCurrentLocation,
-    required TResult Function(Position location) saveLocation,
+    required TResult Function(bool isPressedDistenceConditionButton)
+        setDistenceConditionButton,
+    required TResult Function(Position location, double? distenceMeter)
+        saveLocation,
   }) {
-    return saveLocation(location);
+    return saveLocation(location, distenceMeter);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getCurrentLocation,
-    TResult? Function(Position location)? saveLocation,
+    TResult? Function(bool isPressedDistenceConditionButton)?
+        setDistenceConditionButton,
+    TResult? Function(Position location, double? distenceMeter)? saveLocation,
   }) {
-    return saveLocation?.call(location);
+    return saveLocation?.call(location, distenceMeter);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCurrentLocation,
-    TResult Function(Position location)? saveLocation,
+    TResult Function(bool isPressedDistenceConditionButton)?
+        setDistenceConditionButton,
+    TResult Function(Position location, double? distenceMeter)? saveLocation,
     required TResult orElse(),
   }) {
     if (saveLocation != null) {
-      return saveLocation(location);
+      return saveLocation(location, distenceMeter);
     }
     return orElse();
   }
@@ -273,6 +471,8 @@ class _$SaveLocation implements SaveLocation {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetCurrentLocation value) getCurrentLocation,
+    required TResult Function(SetDistenceConditionButton value)
+        setDistenceConditionButton,
     required TResult Function(SaveLocation value) saveLocation,
   }) {
     return saveLocation(this);
@@ -282,6 +482,8 @@ class _$SaveLocation implements SaveLocation {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetCurrentLocation value)? getCurrentLocation,
+    TResult? Function(SetDistenceConditionButton value)?
+        setDistenceConditionButton,
     TResult? Function(SaveLocation value)? saveLocation,
   }) {
     return saveLocation?.call(this);
@@ -291,6 +493,8 @@ class _$SaveLocation implements SaveLocation {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetCurrentLocation value)? getCurrentLocation,
+    TResult Function(SetDistenceConditionButton value)?
+        setDistenceConditionButton,
     TResult Function(SaveLocation value)? saveLocation,
     required TResult orElse(),
   }) {
@@ -302,10 +506,12 @@ class _$SaveLocation implements SaveLocation {
 }
 
 abstract class SaveLocation implements LocationPageEvent {
-  const factory SaveLocation({required final Position location}) =
-      _$SaveLocation;
+  const factory SaveLocation(
+      {required final Position location,
+      required final double? distenceMeter}) = _$SaveLocation;
 
   Position get location;
+  double? get distenceMeter;
   @JsonKey(ignore: true)
   _$$SaveLocationCopyWith<_$SaveLocation> get copyWith =>
       throw _privateConstructorUsedError;
@@ -315,7 +521,10 @@ abstract class SaveLocation implements LocationPageEvent {
 mixin _$LocationPageState {
   Position? get currentLocation => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isPressedDistenceConditionButton =>
+      throw _privateConstructorUsedError;
   bool? get hasLocationSaved => throw _privateConstructorUsedError;
+  bool? get hasSavedDistence => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LocationPageStateCopyWith<LocationPageState> get copyWith =>
@@ -329,7 +538,11 @@ abstract class $LocationPageStateCopyWith<$Res> {
       _$LocationPageStateCopyWithImpl<$Res, LocationPageState>;
   @useResult
   $Res call(
-      {Position? currentLocation, bool isLoading, bool? hasLocationSaved});
+      {Position? currentLocation,
+      bool isLoading,
+      bool isPressedDistenceConditionButton,
+      bool? hasLocationSaved,
+      bool? hasSavedDistence});
 }
 
 /// @nodoc
@@ -347,7 +560,9 @@ class _$LocationPageStateCopyWithImpl<$Res, $Val extends LocationPageState>
   $Res call({
     Object? currentLocation = freezed,
     Object? isLoading = null,
+    Object? isPressedDistenceConditionButton = null,
     Object? hasLocationSaved = freezed,
+    Object? hasSavedDistence = freezed,
   }) {
     return _then(_value.copyWith(
       currentLocation: freezed == currentLocation
@@ -358,9 +573,17 @@ class _$LocationPageStateCopyWithImpl<$Res, $Val extends LocationPageState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isPressedDistenceConditionButton: null == isPressedDistenceConditionButton
+          ? _value.isPressedDistenceConditionButton
+          : isPressedDistenceConditionButton // ignore: cast_nullable_to_non_nullable
+              as bool,
       hasLocationSaved: freezed == hasLocationSaved
           ? _value.hasLocationSaved
           : hasLocationSaved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasSavedDistence: freezed == hasSavedDistence
+          ? _value.hasSavedDistence
+          : hasSavedDistence // ignore: cast_nullable_to_non_nullable
               as bool?,
     ) as $Val);
   }
@@ -375,7 +598,11 @@ abstract class _$$_LocationPageStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Position? currentLocation, bool isLoading, bool? hasLocationSaved});
+      {Position? currentLocation,
+      bool isLoading,
+      bool isPressedDistenceConditionButton,
+      bool? hasLocationSaved,
+      bool? hasSavedDistence});
 }
 
 /// @nodoc
@@ -391,7 +618,9 @@ class __$$_LocationPageStateCopyWithImpl<$Res>
   $Res call({
     Object? currentLocation = freezed,
     Object? isLoading = null,
+    Object? isPressedDistenceConditionButton = null,
     Object? hasLocationSaved = freezed,
+    Object? hasSavedDistence = freezed,
   }) {
     return _then(_$_LocationPageState(
       currentLocation: freezed == currentLocation
@@ -402,9 +631,17 @@ class __$$_LocationPageStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isPressedDistenceConditionButton: null == isPressedDistenceConditionButton
+          ? _value.isPressedDistenceConditionButton
+          : isPressedDistenceConditionButton // ignore: cast_nullable_to_non_nullable
+              as bool,
       hasLocationSaved: freezed == hasLocationSaved
           ? _value.hasLocationSaved
           : hasLocationSaved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasSavedDistence: freezed == hasSavedDistence
+          ? _value.hasSavedDistence
+          : hasSavedDistence // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -416,18 +653,24 @@ class _$_LocationPageState implements _LocationPageState {
   const _$_LocationPageState(
       {required this.currentLocation,
       required this.isLoading,
-      required this.hasLocationSaved});
+      required this.isPressedDistenceConditionButton,
+      required this.hasLocationSaved,
+      required this.hasSavedDistence});
 
   @override
   final Position? currentLocation;
   @override
   final bool isLoading;
   @override
+  final bool isPressedDistenceConditionButton;
+  @override
   final bool? hasLocationSaved;
+  @override
+  final bool? hasSavedDistence;
 
   @override
   String toString() {
-    return 'LocationPageState(currentLocation: $currentLocation, isLoading: $isLoading, hasLocationSaved: $hasLocationSaved)';
+    return 'LocationPageState(currentLocation: $currentLocation, isLoading: $isLoading, isPressedDistenceConditionButton: $isPressedDistenceConditionButton, hasLocationSaved: $hasLocationSaved, hasSavedDistence: $hasSavedDistence)';
   }
 
   @override
@@ -439,13 +682,19 @@ class _$_LocationPageState implements _LocationPageState {
                 other.currentLocation == currentLocation) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.isPressedDistenceConditionButton,
+                    isPressedDistenceConditionButton) ||
+                other.isPressedDistenceConditionButton ==
+                    isPressedDistenceConditionButton) &&
             (identical(other.hasLocationSaved, hasLocationSaved) ||
-                other.hasLocationSaved == hasLocationSaved));
+                other.hasLocationSaved == hasLocationSaved) &&
+            (identical(other.hasSavedDistence, hasSavedDistence) ||
+                other.hasSavedDistence == hasSavedDistence));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, currentLocation, isLoading, hasLocationSaved);
+  int get hashCode => Object.hash(runtimeType, currentLocation, isLoading,
+      isPressedDistenceConditionButton, hasLocationSaved, hasSavedDistence);
 
   @JsonKey(ignore: true)
   @override
@@ -459,14 +708,20 @@ abstract class _LocationPageState implements LocationPageState {
   const factory _LocationPageState(
       {required final Position? currentLocation,
       required final bool isLoading,
-      required final bool? hasLocationSaved}) = _$_LocationPageState;
+      required final bool isPressedDistenceConditionButton,
+      required final bool? hasLocationSaved,
+      required final bool? hasSavedDistence}) = _$_LocationPageState;
 
   @override
   Position? get currentLocation;
   @override
   bool get isLoading;
   @override
+  bool get isPressedDistenceConditionButton;
+  @override
   bool? get hasLocationSaved;
+  @override
+  bool? get hasSavedDistence;
   @override
   @JsonKey(ignore: true)
   _$$_LocationPageStateCopyWith<_$_LocationPageState> get copyWith =>

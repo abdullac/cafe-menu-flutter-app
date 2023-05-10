@@ -31,8 +31,9 @@ class PageMenuCard extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       /// Bloc provider for Cirular prograss (isLocationLoading)
-      BlocProvider.of<MenucardPageBloc>(context).add(FindLocationByStream(
-        isLocationLoading: locationDistence == null ? true : false,
+      BlocProvider.of<MenucardPageBloc>(context).add(const FindLocationByStream(
+        // isLocationLoading: locationDistence == null ? true : false,
+        isLocationLoading: false,
       ));
 
       /// method for get shop location from firebase(admin side location)
@@ -64,54 +65,77 @@ class PageMenuCard extends StatelessWidget {
         /// this is a ListView contains Horizontal Pageview by CategryName
         body: BlocBuilder<MenucardPageBloc, MenucardPageState>(
           builder: (context, state) {
-            return state.isLocationLoading == true
-                ? const Center(
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                :
-                 state.isInsideLocation != true
+            return Stack(
+              children: [
+                state.isLocationLoading == true
                     ? const Center(
-                        child: Text("You are not inside around shop"),
+                        child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : StreamBuilder(
-                        /// get reference and child path from Firebasebackend class
-                        /// for get event from database with stream of sytream builder.
-                        stream: FirebaseRefs.availableItemsChild().onValue,
-                        builder: (context, snapshot) {
-                          if (snapshot.data != null) {
-                            /// get list of available Items by stream builder snapshot
-                            getAvailableItemsListByStreamBuilder(snapshot);
+                    : Opacity(
+                        opacity: state.isInsideLocation != true ? 0.6 : 1.0,
+                        child: StreamBuilder(
+                          /// get reference and child path from Firebasebackend class
+                          /// for get event from database with stream of sytream builder.
+                          stream: FirebaseRefs.availableItemsChild().onValue,
+                          builder: (context, snapshot) {
+                            if (snapshot.data != null) {
+                              /// get list of available Items by stream builder snapshot
+                              getAvailableItemsListByStreamBuilder(snapshot);
 
-                            /// make/set diningCart List when streamBuilder build widget
-                            /// diningCart list is cart List(order items list) of customer/user.
-                            makeDiningCartListByStreamBuilder(
-                                availableItemsList);
-                          }
-
-                          /// method for making AvalableItemModel Map by categoryNames.
-                          /// Map key is category name,
-                          /// Map value is list of availableItems By that categoryName.
-                          Map<String, List<AvailableItemModel>>
-                              availableItemsListByCategoryMap =
-                              makeAvailableItemsListByCategoryMap(
+                              /// make/set diningCart List when streamBuilder build widget
+                              /// diningCart list is cart List(order items list) of customer/user.
+                              makeDiningCartListByStreamBuilder(
                                   availableItemsList);
-                          return ListView.separated(
-                            /// listview length is CategoryNames length
-                            itemCount: availableItemsListByCategoryMap.length,
-                            itemBuilder: (contxt, categoryIndex) {
-                              /// ListView item builder is
-                              /// pageview of availableItems by categoryName
-                              return PageviewOfAvailableitemsByCategoryname(
-                                categoryIndex: categoryIndex,
-                                availableItemsListByCategoryMap:
-                                    availableItemsListByCategoryMap,
-                              );
-                            },
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(),
-                          );
-                        },
-                      );
+                            }
+
+                            /// method for making AvalableItemModel Map by categoryNames.
+                            /// Map key is category name,
+                            /// Map value is list of availableItems By that categoryName.
+                            Map<String, List<AvailableItemModel>>
+                                availableItemsListByCategoryMap =
+                                makeAvailableItemsListByCategoryMap(
+                                    availableItemsList);
+                            return ListView.separated(
+                              /// listview length is CategoryNames length
+                              itemCount: availableItemsListByCategoryMap.length,
+                              itemBuilder: (contxt, categoryIndex) {
+                                /// ListView item builder is
+                                /// pageview of availableItems by categoryName
+                                return PageviewOfAvailableitemsByCategoryname(
+                                  categoryIndex: categoryIndex,
+                                  availableItemsListByCategoryMap:
+                                      availableItemsListByCategoryMap,
+                                );
+                              },
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(),
+                            );
+                          },
+                        ),
+                      ),
+                state.isInsideLocation != true ||
+                        state.isLocationLoading == true
+                    ? Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Visibility(
+                          visible: true,
+                          child: Container(
+                            width: double.infinity,
+                            color: Colors.red.withOpacity(0.4),
+                            child: Text(
+                              state.isInsideLocation != true
+                                  ? "You are not inside around shop"
+                                  : state.isLocationLoading == true
+                                      ? "Location loading"
+                                      : "",
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      )
+                    : SizedBox(),
+              ],
+            );
           },
         ));
   }

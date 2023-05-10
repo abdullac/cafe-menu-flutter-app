@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cafemenu_app/core/provider/logics/admin/location/get_location.dart';
+import 'package:cafemenu_app/core/provider/logics/admin/location/save_distence_location.dart';
 import 'package:cafemenu_app/core/provider/logics/admin/location/save_location_to_firebase.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
@@ -22,11 +23,21 @@ class LocationPageBloc extends Bloc<LocationPageEvent, LocationPageState> {
         isLoading: false,
       ));
     });
-    /// save location 
+
+    on<SetDistenceConditionButton>((event, emit) {
+      emit(state.copyWith(
+        isPressedDistenceConditionButton:
+            event.isPressedDistenceConditionButton,
+      ));
+    });
+
+    /// save location
     on<SaveLocation>((event, emit) async {
       bool? hasLocationSaved = await saveLocationToFirebase(event.location);
+      bool? hasSavedDistence = await saveDistenceLocation(event.distenceMeter);
       emit(state.copyWith(
         hasLocationSaved: hasLocationSaved,
+        hasSavedDistence: hasSavedDistence,
       ));
     });
   }

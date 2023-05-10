@@ -20,6 +20,30 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
+        },
+
+
+        {
+            "name": "emulator1",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554"
+        },
+        {
+            "name": "emulator2",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5556"
+        },
+    ],
+
+    "compounds": [
+        {
+            "name": "All Devices",
+            "configurations": [
+                "emulator1",
+                "emulator2",
+            ],
         }
     ]
 }

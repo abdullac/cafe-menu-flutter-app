@@ -44,8 +44,14 @@ class FirebaseRefs {
     return database.child("cafeMenu/admin/location");
   }
 
+   /// distence loation reference
+  static DatabaseReference distenceLocation() {
+    return database.child("cafeMenu/admin/distenceLocation");
+  }
+
   /// admin firebase notification token reference
   static DatabaseReference adminNotificationToken() {
     return database.child("cafeMenu/admin/fcmToken");
   }
+
 }

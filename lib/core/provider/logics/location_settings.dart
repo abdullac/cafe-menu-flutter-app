@@ -8,7 +8,7 @@ LocationSettings? locationSettings() {
     if (defaultTargetPlatform == TargetPlatform.android) {
       return AndroidSettings(
         accuracy: LocationAccuracy.high,
-        distanceFilter: 100,
+        distanceFilter: 3,
         // forceLocationManager: true,
         intervalDuration: const Duration(seconds: 10),
         //(Optional) Set foreground notification config to keep the app alive
@@ -25,7 +25,7 @@ LocationSettings? locationSettings() {
       return AppleSettings(
         accuracy: LocationAccuracy.high,
         activityType: ActivityType.fitness,
-        distanceFilter: 100,
+        distanceFilter: 3,
         pauseLocationUpdatesAutomatically: true,
         // Only set to true if our app will be started up in the background.
         showBackgroundLocationIndicator: false,

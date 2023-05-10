@@ -9,8 +9,13 @@ showSnackBar(dynamic message) {
     SnackBar(
       content: Text(
         "$message",
+        textAlign: TextAlign.center,
         style: const TextStyle(color: Colors.red),
       ),
+      backgroundColor: Colors.black38,
+      padding: const EdgeInsets.all(0),
+      showCloseIcon: true,
+      duration: const Duration(milliseconds: 500),
     ),
   );
 }

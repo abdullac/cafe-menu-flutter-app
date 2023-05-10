@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cafemenu_app/core/provider/logics/find_location_distence.dart';
 import 'package:cafemenu_app/core/provider/logics/get_shop_location.dart';
 import 'package:cafemenu_app/core/provider/logics/user/menucard_page/find_location.dart';
+import 'package:cafemenu_app/core/provider/logics/user/menucard_page/get_user_distence_condition.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -20,6 +21,7 @@ class MenucardPageBloc extends Bloc<MenucardPageEvent, MenucardPageState> {
     on<UserScrolledPageview>((event, emit) {
       bool? showLeftArrow;
       bool? showRightArrow;
+
       /// hide/show right or left sroll indicators when user scroll to pageview end  or start.
       if (event.notification.metrics.extentBefore ==
           event.notification.metrics.minScrollExtent) {
@@ -39,16 +41,25 @@ class MenucardPageBloc extends Bloc<MenucardPageEvent, MenucardPageState> {
         categoryIndex: event.categoryIndex,
       ));
     });
+
     /// rebuild by location stream
     on<FindLocationByStream>((event, emit) async {
-      emit(state.copyWith(
-        isInsideLocation: locationDistence != null
-            ? locationDistence! < 10000.0
-                ? true
-                : false
-            : false,
-        isLocationLoading: event.isLocationLoading,
-      ));
+      await getUserDistenceCondition();
+      if (userDistenceCondition == null) {
+        emit(state.copyWith(
+          isInsideLocation: true,
+          isLocationLoading: false,
+        ));
+      } else {
+        emit(state.copyWith(
+          isInsideLocation: locationDistence != null
+              ? locationDistence! <= userDistenceCondition!
+                  ? true
+                  : false
+              : false,
+          isLocationLoading: event.isLocationLoading,
+        ));
+      }
     });
   }
 }

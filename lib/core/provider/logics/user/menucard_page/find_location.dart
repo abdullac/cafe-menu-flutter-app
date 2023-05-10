@@ -25,11 +25,14 @@ Future<StreamSubscription<Position>?> positionStream({
         showSnackBar(position == null
             ? 'Location: N/A'
             : 'Location: ${position.latitude.toString()}, ${position.longitude.toString()}');
+
         /// assign position to userLocation
         userLocation = position;
+
         /// method for find user location destense.
         /// for, is user iside shop ?
         findlocationDistence();
+
         /// MenucardPageBloc for FindLocationByStream event
         blocProvider();
       });

@@ -10,3 +10,4 @@ Position? userLocation;
 Position? shopLocationByUser;
 double? locationDistence;
 bool? onceScrolledPageView;
+double? userDistenceCondition;

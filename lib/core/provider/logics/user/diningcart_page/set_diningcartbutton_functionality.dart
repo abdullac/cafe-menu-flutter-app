@@ -12,10 +12,12 @@ Future<DiningCartButtonFunctionality?> setDiningCartButtonFunctionality({
   required AvailableItemModel? diningCartItemForDelete,
 }) async {
   DiningCartButtonFunctionality? diningCartButtonTypeTemp;
-        /// method for delete. when diningCartItemForDelete is not null.
-        /// and set diningCartList and notify diningCartListViewNotifier for
+
+  /// method for delete. when diningCartItemForDelete is not null.
+  /// and set diningCartList and notify diningCartListViewNotifier for
   deleteItemFromDiningCartList(diningCartItemForDelete);
-    ///
+
+  ///
   if (isReTakeDiningCart == true) {
     diningCartButtonTypeTemp = null;
   } else {
@@ -32,8 +34,11 @@ Future<DiningCartButtonFunctionality?> setDiningCartButtonFunctionality({
       case DiningCartButtonFunctionality.takeNow:
         if (![null, "", "--", "-Select-"].contains(positionCode)) {
           /// method for order save to firebase when pressed confirm order button
-          await buttonPressedForConfirmOrder();
-          diningCartButtonTypeTemp = DiningCartButtonFunctionality.orderConfirm;
+          bool? hasSavedOrder = await buttonPressedForConfirmOrder();
+
+          diningCartButtonTypeTemp = hasSavedOrder == true
+              ? DiningCartButtonFunctionality.orderConfirm
+              : DiningCartButtonFunctionality.takeNow;
         } else {
           diningCartButtonTypeTemp = DiningCartButtonFunctionality.takeNow;
         }
