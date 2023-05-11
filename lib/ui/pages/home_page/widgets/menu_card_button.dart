@@ -40,7 +40,7 @@ class MenuCardButton extends StatelessWidget {
             }
             PageHome.isAdminButtonNotifier.notifyListeners();
           },
-          child: const Text("Menu Card"),
+          child: const Text("Menu Card",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40),),
         ),
       ),
     );

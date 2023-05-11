@@ -4,6 +4,7 @@ import 'package:cafemenu_app/core/model/available_item/available_item_model.dart
 import 'package:cafemenu_app/core/provider/bloc/menucard_page/menucard_page_bloc.dart';
 import 'package:cafemenu_app/core/provider/logics/get_shop_location.dart';
 import 'package:cafemenu_app/core/provider/logics/user/menucard_page/find_location.dart';
+import 'package:cafemenu_app/core/provider/logics/user/menucard_page/get_user_distence_condition.dart';
 import 'package:cafemenu_app/core/services/firebase/firebase_refs.dart';
 import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/make_diningcart_list.dart';
@@ -36,20 +37,23 @@ class PageMenuCard extends StatelessWidget {
         isLocationLoading: false,
       ));
 
-      /// method for get shop location from firebase(admin side location)
-      await getShopLocation();
+      getUserDistenceCondition();
+      if (userDistenceCondition != null) {
+        /// method for get shop location from firebase(admin side location)
+        await getShopLocation();
 
-      /// method for find user location and call blocProvider for rebuild menuCardPage
-      /// show Available items listview when user is inside around shoplocation
-      /// hide Available items listview when user is outside around shoplocation
-      await positionStream(
-        blocProvider: () {
-          BlocProvider.of<MenucardPageBloc>(context)
-              .add(const FindLocationByStream(
-            isLocationLoading: false,
-          ));
-        },
-      );
+        /// method for find user location and call blocProvider for rebuild menuCardPage
+        /// show Available items listview when user is inside around shoplocation
+        /// hide Available items listview when user is outside around shoplocation
+        await positionStream(
+          blocProvider: () {
+            BlocProvider.of<MenucardPageBloc>(context)
+                .add(const FindLocationByStream(
+              isLocationLoading: false,
+            ));
+          },
+        );
+      }
     });
 
     /// mwnuCard page created with Stream builder for rebuild widget/page

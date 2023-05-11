@@ -22,9 +22,10 @@ Future<StreamSubscription<Position>?> positionStream({
         log(position == null
             ? 'Location: N/A'
             : 'Location: ${position.latitude.toString()}, ${position.longitude.toString()}');
-        showSnackBar(position == null
-            ? 'Location: N/A'
-            : 'Location: ${position.latitude.toString()}, ${position.longitude.toString()}');
+            /// THIS SNACKBAR TEMPERARLY HIDDEN
+        // showSnackBar(position == null
+        //     ? 'Location: N/A'
+        //     : 'Location: ${position.latitude.toString()}, ${position.longitude.toString()}');
 
         /// assign position to userLocation
         userLocation = position;

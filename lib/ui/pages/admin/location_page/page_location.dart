@@ -104,8 +104,12 @@ class DistenceConditionButtonAndField extends StatelessWidget {
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            /// set distence condition button
             ElevatedButton(
               onPressed: () {
+                if (state.isPressedDistenceConditionButton == true) {
+                  PageLocation.distenceEditingController.text = "";
+                }
                 BlocProvider.of<LocationPageBloc>(context).add(
                     SetDistenceConditionButton(
                         isPressedDistenceConditionButton:

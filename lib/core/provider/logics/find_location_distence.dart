@@ -13,7 +13,7 @@ findlocationDistence() {
       userLocation!.longitude,
     );
     showSnackBar(locationDistence != null
-        ? "$locationDistence meter distence from shop"
+        ? "${locationDistence!.round()} meter distence from shop"
         : "Cannot get location distence");
   }
 }

@@ -55,7 +55,7 @@ class PageHome extends StatelessWidget {
                         /// once, long press menucard button , then shows goto admin page button
                         /// again, long press menucard button , then hide goto admin page button(with sized box)
                         ? const SizedBox()
-                        : IconButton(
+                        : ElevatedButton.icon(
                             onPressed: () {
                               /// admin iconButton pressed
                               Navigator.of(context).push(
@@ -66,9 +66,10 @@ class PageHome extends StatelessWidget {
                             },
                             icon: const Icon(
                               Icons.person,
-                              color: Colors.red,
+                              color: Colors.white70,
                               size: 40,
                             ),
+                            label: const Text("Admin"),
                           );
                   }),
             ],

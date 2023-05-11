@@ -45,6 +45,8 @@ Future<UserCredential?> signIn(BuildContext context) async {
 
   /// show message user Credential if sign in,
   /// null value user Credential if not sign in
-  showSnackBar(userCridential ?? "C'nt signIn");
+  if(userCridential != null && userCridential.user !=null) {
+    showSnackBar(userCridential.user!.email ?? "C'nt signIn");
+  }
   return userCridential;
 }
