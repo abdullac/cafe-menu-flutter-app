@@ -31,7 +31,7 @@ class FirebaseRefs {
   /// orderedList reference
   static DatabaseReference orderedItemsListChild(String? orderedListKey) {
     return database.child(
-        "cafeMenu/orders/orderList/$orderedListKey/productModelOrderList");
+        "cafeMenu/orders/orderList/$orderedListKey/orderedAvailableItemModelList");
   }
 
   /// image storage reference
