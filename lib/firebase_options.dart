@@ -47,6 +47,7 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyD7oaZqrX15rinXw_SWDlrDk8oGeQ3bDCI',
     appId: '1:288985359912:web:8dac014245cb31e862f71d',
     messagingSenderId: '288985359912',
+    databaseURL: "https://cafemenu-5ff22-default-rtdb.firebaseio.com",
     projectId: 'cafemenu-5ff22',
     authDomain: 'cafemenu-5ff22.firebaseapp.com',
     storageBucket: 'cafemenu-5ff22.appspot.com',
@@ -66,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '288985359912',
     projectId: 'cafemenu-5ff22',
     storageBucket: 'cafemenu-5ff22.appspot.com',
-    iosClientId: '288985359912-u4q9c1b1v5fo6uhhimnqec4rdnrd2cvh.apps.googleusercontent.com',
+    iosClientId:
+        '288985359912-u4q9c1b1v5fo6uhhimnqec4rdnrd2cvh.apps.googleusercontent.com',
     iosBundleId: 'com.example.cafemenuApp',
   );
 
@@ -76,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '288985359912',
     projectId: 'cafemenu-5ff22',
     storageBucket: 'cafemenu-5ff22.appspot.com',
-    iosClientId: '288985359912-u4q9c1b1v5fo6uhhimnqec4rdnrd2cvh.apps.googleusercontent.com',
+    iosClientId:
+        '288985359912-u4q9c1b1v5fo6uhhimnqec4rdnrd2cvh.apps.googleusercontent.com',
     iosBundleId: 'com.example.cafemenuApp',
   );
 }

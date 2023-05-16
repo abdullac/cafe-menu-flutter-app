@@ -4,8 +4,7 @@ import 'package:cafemenu_app/utils/constants/lists.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
- getAvailableItemsListByStreamBuilder(
-    AsyncSnapshot<DatabaseEvent> snapshot) {
+getAvailableItemsListByStreamBuilder(AsyncSnapshot<DatabaseEvent> snapshot) {
   /// this method for make list of available items from firebase real time database
   /// using stream builder snapshot.
   /// get snapshot values(available items) without snapshot key.
@@ -23,7 +22,10 @@ import 'package:flutter/material.dart';
   if (availableItemsSnapshotValues != null) {
     /// check availableItemsSnapshotValues as List or Map.
     if (availableItemsSnapshotValues.runtimeType == List<Object?>) {
-      /// availableItemsSnapshotValues assign to Iterable allAvailableItems as List
+      /// availableItemsSnapshotValues assign to Iterable allAvailableItems as List<Objrct?>
+      allAvailableItems = availableItemsSnapshotValues as List;
+    } else if (availableItemsSnapshotValues.runtimeType == List<dynamic>) {
+      /// availableItemsSnapshotValues assign to Iterable allAvailableItems as List<dynamic>
       allAvailableItems = availableItemsSnapshotValues as List;
     } else {
       /// availableItemsSnapshotValues assign to Iterable allAvailableItems as Map
@@ -37,8 +39,8 @@ import 'package:flutter/material.dart';
       if (availableItem != null) {
         /// each available items convert to jsonString, jsonMap, and AvailableItem,
         /// and add to listOfAvailableItem
-        listOfAvailableItem
-            .add(AvailableItemModel.fromJson(jsonDecode(jsonEncode(availableItem))));
+        listOfAvailableItem.add(
+            AvailableItemModel.fromJson(jsonDecode(jsonEncode(availableItem))));
       }
     }
   }
