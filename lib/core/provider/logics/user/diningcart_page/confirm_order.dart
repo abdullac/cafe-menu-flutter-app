@@ -1,7 +1,7 @@
 import 'package:cafemenu_app/core/provider/logics/user/menucard_page/get_user_distence_condition.dart';
-import 'package:cafemenu_app/main.dart';
 import 'package:cafemenu_app/ui/pages/user/diningcart_page/sections/customername_and_chairnumber.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
+import 'package:cafemenu_app/utils/functions/firebase_messaging.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/set_order_id.dart';
 import 'package:cafemenu_app/core/provider/logics/user/diningcart_page/set_ordered_time.dart';

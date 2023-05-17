@@ -117,7 +117,7 @@ class RegisterOrSigninAdmin extends StatelessWidget {
 
                                 /// method for sign in admin onPress button
                                 ? await signIn(context)
-                                : showSnackBar("no choosed register / sign in");
+                                : showSnackBar("No choosed register / sign in");
                       },
                       child: Text([
                         AuthentiationType.registerMainAdmin,
@@ -140,10 +140,10 @@ class RegisterOrSigninAdmin extends StatelessWidget {
                             AuthentiationType.registerMainAdmin,
                             AuthentiationType.registerSubAdmin
                           ].contains(newAuthentiationType)
-                              ? "No account. "
+                              ? "Already have an account. "
                               : [AuthentiationType.signInAdmin]
                                       .contains(newAuthentiationType)
-                                  ? "Already have an account. "
+                                  ? "No account. "
                                   : "!!!",
                           style: const TextStyle(color: Colors.black),
                           children: [

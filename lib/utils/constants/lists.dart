@@ -5,14 +5,6 @@ import 'package:cafemenu_app/core/model/available_item/available_item_model.dart
 /// get availableItemsListsnapshot from firebase and assign to availableItemsList as list.
 /// which is item of list includes itemName, itemId, categoryName, Qty....etc,
 List<AvailableItemModel> availableItemsList = [
-  const AvailableItemModel(
-    itemId: 5,
-    itemName: "ee",
-    categoryName: "EE",
-    itemPrice: 45,
-    itemType: ItemType.plate,
-    availableQty: 54,
-  ),
 ];
 
 /// diningCartList is list of ProductModel

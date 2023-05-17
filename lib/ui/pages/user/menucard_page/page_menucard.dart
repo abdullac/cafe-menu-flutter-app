@@ -82,25 +82,23 @@ class PageMenuCard extends StatelessWidget {
                           Map<String, List<AvailableItemModel>>
                               availableItemsListByCategoryMap = {};
                           if (snapshot.data != null) {
-                            // WidgetsBinding.instance.addPostFrameCallback((_) {
-                              /// get list of available Items by stream builder snapshot
+                            /// get list of available Items by stream builder snapshot
                             getAvailableItemsListByStreamBuilder(snapshot);
 
                             /// make/set diningCart List when streamBuilder build widget
                             /// diningCart list is cart List(order items list) of customer/user.
                             makeDiningCartListByStreamBuilder(
                                 availableItemsList);
-                                 /// method for making AvalableItemModel Map by categoryNames.
-                          /// Map key is category name,
-                          /// Map value is list of availableItems By that categoryName.
-                          // Map<String, List<AvailableItemModel>>
-                              availableItemsListByCategoryMap =
-                              makeAvailableItemsListByCategoryMap(
-                                  availableItemsList);
-                            // });
+
+                            /// method for making AvalableItemModel Map by categoryNames.
+                            /// Map key is category name,
+                            /// Map value is list of availableItems By that categoryName.
+                            // Map<String, List<AvailableItemModel>>
+                            availableItemsListByCategoryMap =
+                                makeAvailableItemsListByCategoryMap(
+                                    availableItemsList);
                           }
 
-                         
                           return ListView.separated(
                             /// listview length is CategoryNames length
                             itemCount: availableItemsListByCategoryMap.length,
