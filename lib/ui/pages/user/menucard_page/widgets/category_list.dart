@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:cafemenu_app/core/model/available_item/available_item_model.dart';
 import 'package:cafemenu_app/core/provider/bloc/menucard_page/menucard_page_bloc.dart';
 import 'package:cafemenu_app/ui/pages/user/menucard_page/widgets/item_by_category.dart';
@@ -29,7 +28,9 @@ class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       /// make automatically animated scroll for represent page view srollable,
       /// only animated scroll first pageView.
-      if (categoryIndex == 0 && availableItemsListByCategoryMap.length > 1 && onceScrolledPageView !=true) {
+      if (categoryIndex == 0 &&
+          availableItemsListByCategoryMap.length > 1 &&
+          onceScrolledPageView != true) {
         pageViewController.animateTo(
           150.0,
           duration: const Duration(milliseconds: 800),
@@ -46,6 +47,7 @@ class PageviewOfAvailableitemsByCategoryname extends StatelessWidget {
       /// Stack widget for make categoryName top of ListView (pageview)
       /// it makes, no scroll categoryName with listView (pageview)
       child: Stack(
+        fit: StackFit.expand,
         children: [
           /// UserScrollNotification for first pageView animated scroll
           NotificationListener<UserScrollNotification>(

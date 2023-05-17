@@ -10,6 +10,7 @@ import 'package:cafemenu_app/ui/pages/home_page/page_home.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -90,7 +91,6 @@ void showFlutterNotification(RemoteMessage message) {
           channel.id,
           channel.name,
           channelDescription: channel.description,
-          // TODO add a proper drawable resource to android, for now using
           //      one that already exists in example app.
           icon: 'launch_background',
         ),
@@ -251,6 +251,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        scrollBehavior: MyCustomScrollBehavior(),
         theme: ThemeData(
           primarySwatch: Colors.red,
 
@@ -266,4 +267,14 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
+  @override
+  Set<PointerDeviceKind> get dragDevices => { 
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+    // etc.
+  };
 }

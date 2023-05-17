@@ -1,15 +1,9 @@
-import 'dart:async';
-import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
-import 'package:cafemenu_app/core/provider/logics/find_location_distence.dart';
-import 'package:cafemenu_app/core/provider/logics/get_shop_location.dart';
-import 'package:cafemenu_app/core/provider/logics/user/menucard_page/find_location.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cafemenu_app/core/provider/logics/user/menucard_page/get_user_distence_condition.dart';
 import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:geolocator/geolocator.dart';
 
 part 'menucard_page_event.dart';
 part 'menucard_page_state.dart';

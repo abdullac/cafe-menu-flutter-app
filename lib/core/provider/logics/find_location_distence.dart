@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:cafemenu_app/utils/constants/values.dart';
 import 'package:cafemenu_app/utils/functions/show_snackbar.dart';
 import 'package:geolocator/geolocator.dart';

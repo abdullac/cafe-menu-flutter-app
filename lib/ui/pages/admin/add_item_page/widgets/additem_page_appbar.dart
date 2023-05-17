@@ -21,11 +21,11 @@ class AddItemPageAppbar extends StatelessWidget {
           onPressed: () async {
             // AddItem page appbar add button
             /// metod for create new/edited availableItem json with PageAddOrEditItem Details.
-            Map<String, dynamic>? AvailableItemModelJson =
+            Map<String, dynamic>? availableItemModelJson =
                 await createAvailableItemModelJson();
-            if (AvailableItemModelJson != null) {
+            if (availableItemModelJson != null) {
               /// method for AvailableItemModelJson add/edit to firebase database
-              await addOrUpdateAvailableItemToFireBase(AvailableItemModelJson,
+              await addOrUpdateAvailableItemToFireBase(availableItemModelJson,
                   editItem: editItem);
 
               /// go back page after add/update to firebase

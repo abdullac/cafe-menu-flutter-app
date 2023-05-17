@@ -1,6 +1,6 @@
 
-import 'package:cafemenu_app/main.dart';
-import 'package:flutter/material.dart';
+// import 'package:cafemenu_app/main.dart';
+// import 'package:flutter/material.dart';
 
 // class DeviceScreen {
 //   static Size size = MediaQuery.of(navigatorState.currentContext!).size;
